@@ -1,0 +1,71 @@
+{{#if message}}
+<div class="alert alert-{{message.type}} alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong>{{message.intro}}: </strong> {{message.message}}
+</div>
+{{/if}}
+<div class="register-card">
+    <div class="register-container">
+        <div style="padding-bottom:50px" class=" form-group">
+            <h1>Registration Info</h1>
+        </div>
+        <form class="login-form" method="post" action="/register" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="number" class="form-control" required placeholder="Phone Number" name="phone_number"
+                    id="phone_number">
+            </div>
+
+
+            <div class="form-group ">
+                <input type="email" class="form-control" required placeholder="Email Address" name="email" id="email">
+            </div>
+
+            <div class="form-group ">
+                <input type="text" class="form-control" required placeholder="Fullname" name="fullname" id="fullname">
+            </div>
+
+
+            <div class="form-group ">
+                <input placeholder="Birthdate" required class="form-control" type="text" onfocus="(this.type='date')"
+                    id="date" name="birthdate" id="birthdate">
+            </div>
+
+            <div class="form-group ">
+                <input type="text" class="form-control" required placeholder="Address" name="address" id="address">
+            </div>
+
+            <div class="mb-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="font_photoPath" name="font_photoPath"
+                            placeholder="Upload CMND mặt trước">
+                        <span class="input-group-text" id="basic-addon2">Browse</span>
+                    </div>
+                    <input type="file"
+                        onchange="document.getElementById('font_photoPath').value = this.value.replace('C:\\fakepath\\', '');"
+                        class="form-control-file" required accept="image/*" id="fieldPhoto" name="photo"
+                        aria-label="File browser example">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="back_photoPath" name="back_photoPath"
+                            placeholder="Upload CMND mặt sau">
+                        <span class="input-group-text" id="basic-addon2">Browse</span>
+                    </div>
+                    <input type="file"
+                        onchange="document.getElementById('back_photoPath').value = this.value.replace('C:\\fakepath\\', '');"
+                        class="form-control-file" required accept="image/*" id="fieldPhoto" name="photo"
+                        aria-label="File browser example">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="form-group" style="display: flex; justify-content:end">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+        </form>
+    </div>
+</div>

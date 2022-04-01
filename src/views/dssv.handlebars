@@ -1,0 +1,59 @@
+{{#if message}}
+<div style="text-align: center" role="alert" class="alert alert-dismissible alert-{{message.type}}">
+    <button type="button" class=" btn-close" data-bs-dismiss="alert">&times;</button>
+    <strong>{{message.intro}}</strong> {{message.message}}
+</div>
+{{/if}}
+
+
+<div style="padding: 10px;">
+    <h1>Danh sách user</h1>
+    <a class="btn btn-success" href="/users/add">Thêm user</a>
+    <p>Chọn user để xem chi tiết</p>
+
+    <table class="table table-striped" id="tbdata">
+        <thead>
+            <tr>
+                <th>Mssv</th>
+                <th>Fullname </th>
+                <th>Username</th>
+                <th>Password</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td>{{mssv}}</td>
+                <td><a style="text-decoration:none!important" href="/users/{{mssv}}">{{fullname}}</a></td>
+                <td>{{username}}</td>
+                <td style=" -webkit-text-security: disc;">{{password}}</td>
+                <td><a href="/users/edit/{{mssv}}">Sửa</a> |
+                    <a data-bs-toggle="modal" data-bs-target="#exampleModal{{mssv}}" href="/delete/{{mssv}}">Xóa</a>
+                </td>
+
+
+                <div class="modal fade" id="exampleModal{{mssv}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Xóa user</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h6>Bạn có chắc muốn xóa user: {{{username}}}</h6>
+                            </div>
+                            <div class="modal-footer">
+                                <a type="submit" role="button" href="/users/delete/{{mssv}}" class=" btn
+                                    btn-danger">Xóa</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
