@@ -1,0 +1,94 @@
+{{#if message}}
+<div class="alert alert-{{message.type}} alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong>{{message.intro}}: </strong> {{message.message}}
+</div>
+{{/if}}
+{{#if data}}
+<div class="register-card">
+    <div class="container">
+        <div class="profile-container">
+            <div class=" form-group">
+                <h1>User Profile </h1>
+            </div>
+            <div class="login-form" method="post" action="/register" enctype="multipart/form-data">
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="phone_number">Phone Number</label>
+                        <input type="number" class="form-control" disabled placeholder="{{data.phone_number}}"
+                            name="phone_number" id="phone_number">
+                    </div>
+
+
+                    <div class="form-group ">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" disabled placeholder="{{data.email}}" name="email"
+                            id="email">
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="fullname">Fullname</label>
+                        <input type="text" class="form-control" disabled placeholder="{{data.fullname}}" name="fullname"
+                            id="fullname">
+                    </div>
+
+
+                    <div class="form-group ">
+                        <label for="birthdate">Birthdate</label>
+                        <input placeholder={{data.birthdate}} disabled class="form-control" type="text"
+                            onfocus="(this.type='date')" id="date" name="birthdate" id="birthdate">
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="address">Address</label>
+                        <textarea type="text" class="form-control" disabled placeholder="{{data.address}}"
+                            name="address" id="address"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="account-container">
+            <div style="padding-bottom:50px;display:flex;align-items:center;justify-content:space-between"
+                class=" form-group">
+                <h1>Account </h1>
+                <div style="margin-left:23%;padding:10px !important" class="alert alert-warning" role="alert">
+                    {{data.status}}...
+                </div>
+            </div>
+            <div class="login-form" method="post" action="/register" enctype="multipart/form-data">
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="number" class="form-control" disabled placeholder="{{data.username}}"
+                            name="username" id="username">
+                    </div>
+
+
+                    <div class="form-group ">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" disabled value="{{data.password}}" name="password"
+                            id="password">
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="fullname">Account balance</label>
+                        <input type="text" class="form-control" disabled placeholder="40.000.000 VND"
+                            name="account_balance" id="account_balance">
+                    </div>
+
+
+                    <div class="form-group ">
+                        <img src="{{data.font_photoPath}}" name="font_photoPath" id="font_photoPath"
+                            alt="CMND mặt trước" width="350" height="150">
+                    </div>
+
+                    <div class="form-group ">
+                        <img src="{{data.back_photoPath}}" name="back_photoPath" alt="CMND mặt trước" width="350"
+                            height="150">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}

@@ -15,6 +15,11 @@
     justify-content: center;
 }
 
+.alert{
+    text-align: center;
+    margin-bottom:0 !important;
+}
+
 input{
     resize: horizontal;
     width: 100%;

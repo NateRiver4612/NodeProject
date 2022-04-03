@@ -1,3 +1,9 @@
+{{#if message}}
+<div class="alert alert-{{message.type}} alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong>{{message.intro}}: </strong> {{message.message}}
+</div>
+{{/if}}
 <div class="login-card">
     <div class="login-container">
         <div class="title-container">
@@ -12,10 +18,10 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" id="password">
             </div>
-            {{#if message}}
-            <div class="mb-3 ">
+            {{#if flash}}
+            <div class="mb-3 " style="margin-top: 10px;">
                 <input disabled style="background-color:#f8d7db; color:#83353d !important" type="text"
-                    value="{{message}}" class="form-control">
+                    value="{{flash.message}}" class="form-control">
             </div>
             {{/if}}
             <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Submit</button>

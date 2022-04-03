@@ -41,9 +41,9 @@
                             placeholder="Upload CMND mặt trước">
                         <span class="input-group-text" id="basic-addon2">Browse</span>
                     </div>
-                    <input type="file"
+                    <input type="file" multiple="multiple"
                         onchange="document.getElementById('font_photoPath').value = this.value.replace('C:\\fakepath\\', '');"
-                        class="form-control-file" required accept="image/*" id="fieldPhoto" name="photo"
+                        class="form-control-file" required accept="image/*" id="fieldPhoto" name="font_photoPath"
                         aria-label="File browser example">
                 </div>
             </div>
@@ -55,17 +55,23 @@
                             placeholder="Upload CMND mặt sau">
                         <span class="input-group-text" id="basic-addon2">Browse</span>
                     </div>
-                    <input type="file"
+                    <input type="file" multiple="multiple"
                         onchange="document.getElementById('back_photoPath').value = this.value.replace('C:\\fakepath\\', '');"
-                        class="form-control-file" required accept="image/*" id="fieldPhoto" name="photo"
+                        class="form-control-file" required accept="image/*" id="fieldPhoto" name="back_photoPath"
                         aria-label="File browser example">
                 </div>
             </div>
 
-            <div class="mb-3">
-                <div class="form-group" style="display: flex; justify-content:end">
+            <div class="mb-3" style="display: flex;justify-content:space-between">
+                <div class="form-group">
+                    <a type="submit" href="/login" class="btn btn-secondary"><i class="fas fa-angle-left"></i> Go
+                        back
+                        to login</a>
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
+            </div>
         </form>
     </div>
 </div>
