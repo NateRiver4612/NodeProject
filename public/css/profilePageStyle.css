@@ -13,6 +13,19 @@
     border-bottom-left-radius: 10px ;
 }
 
+.input-container{
+   
+    display:flex;
+    margin-left:1px;
+    align-items:center
+}
+
+.photo-container{
+    flex:0.9; 
+    outline:5px solid grey;
+    border-radius:10px;
+}
+
 .account-container{
     display: flex;
     justify-content: center;
@@ -21,19 +34,21 @@
     margin-top:1% !important;
     justify-content: start;
     background-color: #4835d4;
-    width: fit-content;
+    width: 35%;
     color: white;
-    padding: 30px;
+    padding: 15px;
     box-sizing: border-box !important; 
     font-weight: 600;
     border-top-right-radius: 10px ;
     border-bottom-right-radius: 10px ;
 }
 
+
 .container{
     display: flex;
     justify-content: center;
     border-radius: 10px !important;
+    padding-bottom: 20px;
 }
 
 #fieldPhoto {
@@ -69,7 +84,7 @@
 }
 
 
-.register-card{
+.profile-card{
     background-color: #8fc4b7;
     display: flex;
     justify-content: center;
@@ -87,14 +102,15 @@ input{
     font-size: 18px !important;
 }
 
-.login-form{
+.profile-form{
     position: relative;
     width: 100%;
+    height: 90%;
     display: flex;
 }
 
 .form-container{
-    flex: 1;
+    width: 100%;
 }
 
 

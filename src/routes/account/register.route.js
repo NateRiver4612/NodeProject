@@ -71,7 +71,8 @@ RegisterRouter.post("/", async (req, res, next) => {
         await setUserSignIn(newUser, temp_username, temp_password);
         req.session.message = {
           type: "success",
-          message: "Register successfully",
+          message:
+            "We have sent an email include the username and password that you need to sign in",
           intro: "Registration Success",
         };
         console.log(req.session.register_message);

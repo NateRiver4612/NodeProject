@@ -13,6 +13,10 @@ async function saveUser(user) {
   );
 }
 
+async function updateResetToken(email, token) {
+  await User.updateOne({ email: email }, { reset_token: token });
+}
+
 async function setUserSignIn(user, username, password) {
   await User.updateOne(
     {
@@ -25,8 +29,8 @@ async function setUserSignIn(user, username, password) {
   );
 }
 
-async function getUser(username, password) {
-  return await User.findOne({ username: username, password: password }).lean();
+async function getUser(username) {
+  return await User.findOne({ username: username }).lean();
 }
 
 async function changeUserPassword(email, password) {
@@ -47,6 +51,15 @@ async function lastUpdate(email, date) {
   );
 }
 
+async function updateUnnormalSignIn(email, times) {
+  return await User.updateOne(
+    {
+      email: email,
+    },
+    { unnormal_signIn: times }
+  );
+}
+
 async function updateFirstSignIn(email) {
   return await User.updateOne(
     {
@@ -63,4 +76,6 @@ module.exports = {
   changeUserPassword,
   lastUpdate,
   updateFirstSignIn,
+  updateResetToken,
+  updateUnnormalSignIn,
 };
