@@ -51,12 +51,25 @@ async function lastUpdate(email, date) {
   );
 }
 
-async function updateUnnormalSignIn(email, times) {
+async function updateLocked(email, locked) {
   return await User.updateOne(
     {
       email: email,
     },
-    { unnormal_signIn: times }
+    {
+      locked: locked,
+    }
+  );
+}
+
+async function updateWrongPassword(email, times) {
+  return await User.updateOne(
+    {
+      email: email,
+    },
+    {
+      wrong_password_signIn: times,
+    }
   );
 }
 
@@ -77,5 +90,6 @@ module.exports = {
   lastUpdate,
   updateFirstSignIn,
   updateResetToken,
-  updateUnnormalSignIn,
+  updateWrongPassword,
+  updateLocked,
 };

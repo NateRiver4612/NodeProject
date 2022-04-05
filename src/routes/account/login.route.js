@@ -1,6 +1,7 @@
 const express = require("express");
 const LoginRouter = express.Router();
 const LoginValidation = require("../../validations/login.validation");
+const LoginAuthentication = require("../../authentications/login.authentication");
 const { getUser } = require("../../models/user.model");
 const { updateUnnormalSignIn } = require("../../models/user.model");
 
@@ -10,7 +11,8 @@ LoginRouter.get("/", (req, res) => {
 LoginRouter.post("/", LoginValidation, async (req, res) => {
   const { username } = req.body;
   const user = await getUser(username);
-  await updateUnnormalSignIn(user.email, 0);
+
+  await updateWrongPassword(user.email, 0);
   localStorage.setItem("user", JSON.stringify(user));
   return res.redirect("/user");
 });
