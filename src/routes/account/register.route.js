@@ -42,7 +42,6 @@ RegisterRouter.post("/", async (req, res, next) => {
         var Path = dir + "/" + key + "." + extension;
 
         newUser[key] = Path;
-
         fs.existsSync(dir) || fs.mkdirSync(dir);
         fs.renameSync(photo.filepath, Path);
       });

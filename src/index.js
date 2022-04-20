@@ -19,7 +19,6 @@ const server = http.createServer(app);
 
 async function runServer() {
   await mongoose.connect(MONGO_URL);
-  //   await uploadDssv();
   server.listen(port, () => {
     console.log(`Listening on port: ${port}`);
   });

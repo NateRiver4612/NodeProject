@@ -2,6 +2,12 @@ const express = require("express");
 const PasswordValidation = require("../../validations/password.validation");
 const path = require("path");
 const User = require("../../mongos/user.mongo");
+const formidable = require("formidable");
+
+const fs = require("fs");
+
+const dataDir = path.join(__dirname, "..", "..", "..", "public", "images");
+const CMNDPhotoDir = path.join(dataDir, "CMND");
 
 const UserRouter = express.Router();
 const {
@@ -27,6 +33,34 @@ UserRouter.get("/profile", (req, res) => {
   });
 });
 
+UserRouter.post("/profile", async (req, res) => {
+  var form = new formidable.IncomingForm();
+  form.multiples = true;
+  form.maxFileSize = 50 * 1024 * 1024;
+
+  form.parse(req, async function (err, fields, files = []) {
+    const current_user = JSON.parse(localStorage.getItem("user"));
+    Object.keys(files).map((key) => {
+      const photo = files[key];
+
+      const extension = photo["originalFilename"]
+        .toString()
+        .split(".")
+        .slice(-1)[0];
+
+      var dir = CMNDPhotoDir + "/" + current_user.email;
+      var Path = dir + "/" + key + "." + extension;
+
+      current_user[key] = Path;
+
+      fs.existsSync(dir) || fs.mkdirSync(dir);
+      fs.renameSync(photo.filepath, Path);
+    });
+    localStorage.setItem("user", JSON.stringify(current_user));
+    res.redirect("/user/profile");
+  });
+});
+
 UserRouter.get("/change_password", (req, res) => {
   const current_user = localStorage.getItem("user");
   const { firstSignIn } = JSON.parse(current_user);
@@ -35,6 +69,7 @@ UserRouter.get("/change_password", (req, res) => {
     firstSignIn,
   });
 });
+
 UserRouter.post("/change_password", PasswordValidation, async (req, res) => {
   const current_user = localStorage.getItem("user");
   const { email, username } = JSON.parse(current_user);

@@ -45,6 +45,12 @@ app.engine(
   "handlebars",
   engine({
     defaultLayout: "main",
+    helpers: {
+      username: function () {
+        const user = JSON.parse(localStorage.getItem("user"));
+        return user["username"];
+      },
+    },
   })
 );
 

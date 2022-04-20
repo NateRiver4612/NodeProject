@@ -11,7 +11,7 @@
             <div class=" form-group">
                 <h1>User Profile </h1>
             </div>
-            <div class="avatar">
+            <div class="avatar form-group">
                 <img src="../../images/avatar.jpg" height="100%" width="100%" alt="Jhon Doe" />
             </div>
             <div class="form-group " style="width: 100%;text-align:center;border:">
@@ -102,8 +102,8 @@
                         <label style="padding-bottom: 10px;" for="input-container">CMND mặt trước và mặt sau</label>
                         <div class="input-container" id="input-container">
                             <div class="photo-container">
-                                <img src="../{{data.font_photoPath}}" name="font_photoPath" id="font_photoPath"
-                                    alt="CMND mặt trước" class="img-fluid" height="150 !important">
+                                <img src="../{{data.font_photoPath}}" alt="CMND mặt trước" class="img-fluid"
+                                    height="150 !important">
                             </div>
                             <div style="flex:0.1">
                                 <button class="btn" style="color:white">
@@ -114,17 +114,64 @@
 
                         <div class="input-container" style="margin-top: 20px;">
                             <div class="photo-container">
-                                <img src="../{{data.back_photoPath}}" class="img-fluid" name="font_photoPath"
-                                    id="font_photoPath" alt="CMND mặt trước" height="150">
+                                <img src="../{{data.back_photoPath}}" class="img-fluid" alt="CMND mặt sau" height="150">
                             </div>
                             <div style="flex:0.1">
-                                <button class="btn" style="color:white">
+                                <button class="btn" data-bs-toggle="modal" data-bs-target="#updateCMDD"
+                                    style="color:white">
                                     <i class="fa fa-solid fa-pen"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="updateCMDD" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Update CMDD both side</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="login-form" method="post" action="/user/profile" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="font_photoPath" name="font_photoPath"
+                                    placeholder="Upload CMND mặt trước">
+                                <span class="input-group-text" id="basic-addon2">Browse</span>
+                            </div>
+                            <input type="file" multiple="multiple"
+                                onchange="document.getElementById('font_photoPath').value = this.value.replace('C:\\fakepath\\', '');"
+                                class="form-control-file" required accept="image/*" id="fieldPhoto"
+                                name="font_photoPath" aria-label="File browser example">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="back_photoPath" name="back_photoPath"
+                                    placeholder="Upload CMND mặt sau">
+                                <span class="input-group-text" id="basic-addon2">Browse</span>
+                            </div>
+                            <input type="file" multiple="multiple"
+                                onchange="document.getElementById('back_photoPath').value = this.value.replace('C:\\fakepath\\', '');"
+                                class="form-control-file" required accept="image/*" id="fieldPhoto"
+                                name="back_photoPath" aria-label="File browser example">
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="display: flex;justify-content:end">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -63,18 +63,19 @@ async function LoginValidation(req, res, next) {
       localStorage.setItem("user", JSON.stringify(user));
 
       return res.redirect("/user/change_password");
+    } else {
+      //This is NOT the first time user sign in
+      next();
     }
-    //This is NOT the first time user sign in
-    next();
+  } else {
+    req.session.flash = {
+      type: "danger",
+      message: "Username is not exists",
+      intro: "Login failed ",
+    };
+    console.log(req.session.flash);
+    return res.redirect("/login");
   }
-
-  req.session.flash = {
-    type: "danger",
-    message: "Username is not exists",
-    intro: "Login failed ",
-  };
-  console.log(req.session.flash);
-  return res.redirect("/login");
 }
 
 module.exports = LoginValidation;

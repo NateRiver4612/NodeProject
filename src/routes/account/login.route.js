@@ -3,7 +3,7 @@ const LoginRouter = express.Router();
 const LoginValidation = require("../../validations/login.validation");
 const LoginAuthentication = require("../../authentications/login.authentication");
 const { getUser } = require("../../models/user.model");
-const { updateUnnormalSignIn } = require("../../models/user.model");
+const { updateWrongPassword } = require("../../models/user.model");
 
 LoginRouter.get("/", (req, res) => {
   res.render("login", { style: "loginPageStyle.css" });

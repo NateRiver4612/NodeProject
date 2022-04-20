@@ -82,6 +82,18 @@ async function updateFirstSignIn(email) {
   );
 }
 
+async function updateBothSideCMND(current_user) {
+  return await User.updateOne(
+    {
+      email: current_user.email,
+    },
+    {
+      font_photoPath: current_user.update_font_photoPath,
+      back_photoPath: current_user.update_back_photoPath,
+    }
+  );
+}
+
 module.exports = {
   saveUser,
   setUserSignIn,
@@ -92,4 +104,5 @@ module.exports = {
   updateResetToken,
   updateWrongPassword,
   updateLocked,
+  updateBothSideCMND,
 };

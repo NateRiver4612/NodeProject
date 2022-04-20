@@ -13,7 +13,99 @@
     <script src="https://kit.fontawesome.com/22e801d890.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body style="padding-left: 0 !important;">
+    <nav class="navbar navbar-default navbar-expand-lg navbar-light bg-light navbar-fixed-top"
+        style="font-weight: bold;font-size:22px">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img
+                    src="https://simg.zalopay.com.vn/zlp-website/assets/logo1_ff390716a5.svg" alt=""></a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/home">Trang chủ</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Dịch vụ
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <div class="dropdown-item" style="display:flex;align-items:center">
+                                    <div class="dropdown-item-icon">
+                                        <img src="https://simg.zalopay.com.vn/zlp-website/assets/Group_1165_0dc700ebfc.png"
+                                            alt="" />
+                                    </div>
+                                    <div class=" dropdown-item-info"
+                                        style="margin-left:10px;display:flex;flex-direction:column;justify-content:center">
+                                        <h6 style="color:#747880;font-weight: bold;font-size:16px">Nạp tiền vào tài
+                                            khoản</h6>
+                                        <h7 style="opacity:0.7;font-size:14px">Miễn phí, an toàn, tiện lơi
+                                        </h7>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="dropdown-item" style="display:flex;align-items:center">
+                                    <div class="dropdown-item-icon">
+                                        <img src="https://simg.zalopay.com.vn/zlp-website/assets/Group_1162_59ca020d4a.svg"
+                                            alt="" />
+                                    </div>
+                                    <div class=" dropdown-item-info"
+                                        style="margin-left:10px;display:flex;flex-direction:column;justify-content:center">
+                                        <h6 style="color:#747880;font-weight: bold;font-size:16px">Rút tiền về thẻ tín
+                                            dụng
+                                        </h6>
+                                        <h7 style="opacity:0.7;font-size:14px">Miễn phí, an toàn, tiện lơi
+                                        </h7>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="dropdown-item" style="display:flex;align-items:center">
+                                    <div class="dropdown-item-icon">
+                                        <img src="	https://simg.zalopay.com.vn/zlp-website/assets/Group_1163_bde533b6e6.svg"
+                                            alt="" />
+                                    </div>
+                                    <div class=" dropdown-item-info"
+                                        style="margin-left:10px;display:flex;flex-direction:column;justify-content:center">
+                                        <h6 style="color:#747880;font-weight: bold;font-size:16px">Chuyển tiền qua tài
+                                            khoản</h6>
+                                        <h7 style="opacity:0.7;font-size:14px">Miễn phí, an toàn, tiện lơi
+                                        </h7>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <li>
+                                <div class="dropdown-item" style="display:flex;align-items:center">
+                                    <div class="dropdown-item-icon">
+                                        <img
+                                            src="https://simg.zalopay.com.vn/zlp-website/assets/Group_1161_63d27dbf45.svg" />
+                                    </div>
+                                    <div class="dropdown-item-info"
+                                        style="margin-left:10px;display:flex;flex-direction:column;justify-content:center">
+                                        <h6 style="color:#747880;font-weight: bold;font-size:16px">Mua thẻ điện thoại
+                                        </h6>
+                                        <h7 style="opacity:0.7;font-size:14px">Nạp ĐT - Mua thẻ ĐT - Data 3G/4G
+                                        </h7>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                {{#if username}}
+                <span style="color: #747880;">{{username}}</span>
+                {{/if}}
+            </div>
+        </div>
+    </nav>
     {{{body}}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
