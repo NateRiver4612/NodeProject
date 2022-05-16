@@ -13,7 +13,14 @@ LoginRouter.post("/", LoginValidation, async (req, res) => {
   const user = await getUser(username);
 
   await updateWrongPassword(user.email, 0);
+
+  //Set current_user
   localStorage.setItem("user", JSON.stringify(user));
+  console.log(
+    "set current_user when login",
+    JSON.parse(localStorage.getItem("user"))["username"]
+  );
+
   return res.redirect("/user");
 });
 

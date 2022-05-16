@@ -3,11 +3,12 @@
     justify-content: center;
     flex-direction: column;
     align-items: flex-start;
-    margin-top:5% !important;
+    margin-top:3% !important;
     background-color: white;
     width: 30%;
     /* padding: 40px; */
     border-radius: 7px;
+    padding: 20px;
 }
 
 #fieldPhoto {
@@ -28,7 +29,7 @@
     padding-right: 20px;
     padding-left:20px;
     border:none !important;
-    font-size:20px !important ;
+    font-size:15px !important ;
 }
 
 .form-group{
@@ -48,7 +49,7 @@
     justify-content: center;
     position: absolute;
     width: 100%;
-    margin: auto;
+    padding-bottom: 50px;
 }
 .title-container{
     padding-bottom: 50px;
@@ -57,7 +58,7 @@
 input{
     resize: horizontal;
     width: 100%;
-    font-size: 18px !important;
+    font-size: 15px !important;
 }
 
 .login-form{

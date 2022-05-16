@@ -1,6 +1,7 @@
 async function PasswordValidation(req, res, next) {
   const { new_pass_1, new_pass_2, old_pass } = req.body;
   const current_user = JSON.parse(localStorage.getItem("user"));
+
   if (old_pass && old_pass != current_user.password) {
     req.session.flash = {
       type: "danger",

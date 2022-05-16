@@ -3,10 +3,10 @@
     justify-content: center;
     flex-direction: column;
     align-items: flex-start;
-    margin-top:10% !important;
+    margin-top:8% !important;
     background-color: white;
     width: 30%;
-    padding: 40px;
+    padding: 30px;
     border-radius: 10px;
 }
 .login-card{
@@ -23,6 +23,7 @@
 input{
     resize: horizontal;
     width: 100%;
+    font-size: 15px !important;
 }
 
 .login-form{

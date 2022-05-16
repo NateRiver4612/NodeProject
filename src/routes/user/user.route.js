@@ -1,5 +1,6 @@
 const express = require("express");
 const PasswordValidation = require("../../validations/password.validation");
+const CardValidation = require("../../validations/card.validation");
 const path = require("path");
 const User = require("../../mongos/user.mongo");
 const formidable = require("formidable");
@@ -14,11 +15,28 @@ const {
   changeUserPassword,
   updateFirstSignIn,
   lastUpdate,
+  addMoney,
   getUser,
 } = require("../../models/user.model");
 
 UserRouter.get("/", (req, res) => {
-  res.redirect("/user/profile");
+  return res.redirect("/user/home");
+});
+
+//User home route
+UserRouter.get("/home", (req, res) => {
+  return res.render("user_home", {
+    style: "../../css/homePageStyle.css",
+  });
+});
+
+//Get user for the client
+UserRouter.get("/info", (req, res) => {
+  try {
+    return res.status(200).json(JSON.parse(localStorage.getItem("user")));
+  } catch (error) {
+    console.log("Error get user-info for client", error.toString);
+  }
 });
 
 UserRouter.get("/profile", (req, res) => {
@@ -27,7 +45,7 @@ UserRouter.get("/profile", (req, res) => {
   user.font_photoPath = user.font_photoPath.split("public\\")[1];
   user.back_photoPath = user.back_photoPath.split("public\\")[1];
 
-  res.render("profile", {
+  return res.render("profile", {
     style: "../../css/profilePageStyle.css",
     data: user,
   });
@@ -57,14 +75,14 @@ UserRouter.post("/profile", async (req, res) => {
       fs.renameSync(photo.filepath, Path);
     });
     localStorage.setItem("user", JSON.stringify(current_user));
-    res.redirect("/user/profile");
+    return res.redirect("/user/profile");
   });
 });
 
 UserRouter.get("/change_password", (req, res) => {
   const current_user = localStorage.getItem("user");
   const { firstSignIn } = JSON.parse(current_user);
-  res.render("change_password", {
+  return res.render("change_password", {
     style: "../../css/loginPageStyle.css",
     firstSignIn,
   });
@@ -90,7 +108,27 @@ UserRouter.post("/change_password", PasswordValidation, async (req, res) => {
     intro: "Change password succesfully",
   };
   console.log(req.session.message);
-  res.redirect("/login");
+  return res.redirect("/login");
+});
+
+UserRouter.post("/add_money", CardValidation, async (req, res) => {
+  const { money } = req.body;
+  const { email, username } = JSON.parse(localStorage.getItem("user"));
+
+  await addMoney(email, money);
+  req.session.message = {
+    type: "success",
+    message: "Nạp tiền vào tài khoản thành công",
+    intro: "Nạp tiền thành công",
+  };
+
+  const new_user = await getUser(username);
+
+  //Update current_user
+  localStorage.setItem("user", JSON.stringify(new_user));
+
+  console.log(req.session.message);
+  return res.redirect("/user/home");
 });
 
 module.exports = UserRouter;

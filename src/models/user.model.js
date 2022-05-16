@@ -13,6 +13,12 @@ async function saveUser(user) {
   );
 }
 
+async function addMoney(email, money) {
+  const { account_balance } = await User.findOne({ email: email });
+  const updateMoney = account_balance + parseInt(money) * 1000;
+  await User.updateOne({ email: email }, { account_balance: updateMoney });
+}
+
 async function updateResetToken(email, token) {
   await User.updateOne({ email: email }, { reset_token: token });
 }
@@ -105,4 +111,5 @@ module.exports = {
   updateWrongPassword,
   updateLocked,
   updateBothSideCMND,
+  addMoney,
 };
