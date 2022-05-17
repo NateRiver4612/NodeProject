@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
   address: { type: String, require },
   font_photoPath: { type: String, require },
   back_photoPath: { type: String, require },
-  status: { type: String, default: "waiting_verify" },
+  status: { type: String, default: "Pending" },
   created_date: { type: Date, default: Date.now() },
   last_update: { type: Date },
   locked: { type: Boolean, default: false },

@@ -46,7 +46,8 @@
             chuyên biệt để thỏa</h6>
         <h6>mãn mọi nhu cầu thanh toán trong cuộc sống và nhu cầu kinh doanh...</h6>
         <div class="services-container">
-            <button class="service" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+            <button class="service" data-bs-toggle="modal" data-bs-target="#add_money">
                 <div class="service-icon">
                     <img src="https://simg.zalopay.com.vn/zlp-website/assets/icon_thanhtoantaiquay_6cfbc2fce0.svg"
                         alt="" />
@@ -62,13 +63,12 @@
 
 
             <!-- Nạp tiền vào tài khoản -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="add_money" tabindex="-1" aria-labelledby="add_moneyLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Nạp tiền vào tài
-                                khoản</h5>
+                            <h5 class="modal-title" id="add_moneyLabel">Nạp tiền vào tài
+                                khoản qua thẻ ứng dụng</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form method="post" action="/user/add_money" class="modal-body">
@@ -78,8 +78,11 @@
                                 placeholder="Ngày hết hạn" name="expired">
                             <input style="margin: 5px;" required type="number" class="form-control" placeholder="Mã CVV"
                                 name="cvv">
-                            <input style="margin: 5px;" required type="number" class="form-control"
-                                placeholder="Số tiền muốn nạp (.000 đ)" name="money">
+                            <div style="margin: 5px;" class="input-group mb-3">
+                                <input required type="number" class="form-control" placeholder="Số tiền muốn nạp"
+                                    name="money">
+                                <span class="input-group-text">.000 VND</span>
+                            </div>
 
                             <div style="width: 100%; margin-top:20px;display:flex;justify-content:flex-end">
                                 <button style="margin-right: 10px;" type="button" class="btn btn-secondary"
@@ -93,20 +96,56 @@
 
 
 
-            <button class="service">
+            <button class="service" data-bs-toggle="modal" data-bs-target="#withdraw">
                 <div class="service-icon">
                     <img src="https://simg.zalopay.com.vn/zlp-website/assets/icon_hoadon_602ba6d699.svg" alt="" />
                     <i style="color: white !important;" class="large material-icons">arrow_forward</i>
                 </div>
                 <div class=" dropdown-item-info" style="display:flex;flex-direction:column;justify-content:center">
-                    <span class="service-name" style="font-weight: bold;font-size:16px">Rút tiền về tài khoản</span>
+                    <span class="service-name" style="font-weight: bold;font-size:16px">Rút tiền về thẻ tín dụng</span>
                     <span class="service-description" style="opacity:0.7;font-size:14px">Miễn phí, an toàn, tiện
                         lơi</span>
                 </div>
             </button>
 
 
+            <!-- Rút tiền về thẻ tín dụng -->
+            <div class="modal fade" id="withdraw" tabindex="-1" aria-labelledby="withdrawLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="withdrawLabel">Rút tiền về thẻ tín dụng</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post" action="/user/withdraw" class="modal-body">
+                            <input style="margin: 5px;" required type="number" class="form-control" placeholder="Số thẻ"
+                                name="card_number">
+                            <input style="margin: 5px;" required type="date" class="form-control"
+                                placeholder="Ngày hết hạn" name="expired">
+                            <input style="margin: 5px;" required type="number" class="form-control" placeholder="Mã CVV"
+                                name="cvv">
+                            {{!-- <input style="margin: 5px;" required type="number" class="form-control"
+                                placeholder="Số tiền muốn rút (.000 đ)" name="money"> --}}
 
+                            <div style="margin: 5px;" class="input-group mb-3">
+                                <input required type="number" class="form-control" placeholder="Số tiền muốn rút"
+                                    name="money">
+                                <span class="input-group-text">.000 VND</span>
+                            </div>
+
+
+                            <textarea style="margin: 5px;" type="text" class="form-control" placeholder="Ghi chú"
+                                name="note" id="note"></textarea>
+
+                            <div style="width: 100%; margin-top:20px;display:flex;justify-content:flex-end">
+                                <button style="margin-right: 10px;" type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
 
 

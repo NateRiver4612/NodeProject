@@ -13,10 +13,23 @@ async function saveUser(user) {
   );
 }
 
-async function addMoney(email, money) {
-  const { account_balance } = await User.findOne({ email: email });
+async function withdrawMoney(username, money, transaction_fee) {
+  const { account_balance } = await User.findOne({ username: username });
+  const updateMoney =
+    account_balance - parseInt(money) * 1000 - parseInt(transaction_fee);
+  await User.updateOne(
+    { username: username },
+    { account_balance: updateMoney }
+  );
+}
+
+async function addMoney(username, money) {
+  const { account_balance } = await User.findOne({ username: username });
   const updateMoney = account_balance + parseInt(money) * 1000;
-  await User.updateOne({ email: email }, { account_balance: updateMoney });
+  await User.updateOne(
+    { username: username },
+    { account_balance: updateMoney }
+  );
 }
 
 async function updateResetToken(email, token) {
@@ -48,10 +61,10 @@ async function changeUserPassword(email, password) {
   );
 }
 
-async function lastUpdate(email, date) {
+async function lastUpdate(username, date) {
   return await User.updateOne(
     {
-      email: email,
+      username: username,
     },
     { last_update: date }
   );
@@ -112,4 +125,5 @@ module.exports = {
   updateLocked,
   updateBothSideCMND,
   addMoney,
+  withdrawMoney,
 };

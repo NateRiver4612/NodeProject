@@ -1,7 +1,7 @@
 const Card = require("../mongos/card.mongo");
 
-async function CardValidation(req, res, next) {
-  const { card_number, expired, cvv } = req.body;
+async function AddMoneyValidation(req, res, next) {
+  const { card_number, expired, cvv, money } = req.body;
 
   //Check card_number
   const check_card_number = await Card.findOne({ card_number: card_number });
@@ -42,10 +42,78 @@ async function CardValidation(req, res, next) {
         console.log(req.session.message);
         return res.redirect("/user/home");
       } else {
+        //Check card_note
+        if (parseInt(money) > 1000 && card_number == "222222") {
+          req.session.message = {
+            type: "danger",
+            message: "Thẻ này chỉ được nạp tối đa 1 triệu/lần.",
+            intro: "Nạp tiền tài khoản thất bại ",
+          };
+          console.log(req.session.message);
+          return res.redirect("/user/home");
+        }
+
+        if (card_number == "333333") {
+          req.session.message = {
+            type: "danger",
+            message: "Thẻ hết tiền",
+            intro: "Nạp tiền tài khoản thất bại ",
+          };
+          console.log(req.session.message);
+          return res.redirect("/user/home");
+        }
         next();
       }
     }
   }
 }
 
-module.exports = CardValidation;
+async function WithDrawValidation(req, res, next) {
+  const { card_number, expired, cvv, money } = req.body;
+
+  //Check card_number
+  if (card_number != "111111") {
+    req.session.message = {
+      type: "danger",
+      message: "thẻ này không được hỗ trợ.",
+      intro: "Rút tiền về thẻ thất bại",
+    };
+    console.log(req.session.message);
+    return res.redirect("/user/home");
+  } else {
+    //Check expired date
+    if (expired != "2022-10-10") {
+      req.session.message = {
+        type: "danger",
+        message: "Ngày hết hạn không hợp lệ.",
+        intro: "Rút tiền về thẻ thất bại ",
+      };
+      console.log(req.session.message);
+      return res.redirect("/user/home");
+    } else {
+      //Check cvv code
+      if (cvv != "411") {
+        req.session.message = {
+          type: "danger",
+          message: "Mã CVV không hơp lệ.",
+          intro: "Rút tiền về thẻ thất bại ",
+        };
+        console.log(req.session.message);
+        return res.redirect("/user/home");
+      } else {
+        if (money % 50 != 0) {
+          req.session.message = {
+            type: "danger",
+            message: "Số tiền rút phải là bội số của 50",
+            intro: "Rút tiền về thẻ thất bại ",
+          };
+          console.log(req.session.message);
+          return res.redirect("/user/home");
+        }
+        next();
+      }
+    }
+  }
+}
+
+module.exports = { AddMoneyValidation, WithDrawValidation };
