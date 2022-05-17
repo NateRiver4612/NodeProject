@@ -7,6 +7,7 @@ const {
 const path = require("path");
 const User = require("../../mongos/user.mongo");
 const formidable = require("formidable");
+const qs = require("qs");
 
 const Recharge = require("../../mongos/recharge.mongo");
 
@@ -135,18 +136,36 @@ UserRouter.post("/change_password", PasswordValidation, async (req, res) => {
   return res.redirect("/login");
 });
 
-//Nạp tiền vào tài khoản
-UserRouter.post("/add_money", AddMoneyValidation, async (req, res) => {
-  const { money } = req.body;
+//Trình bày thông tin nạp tiền
+UserRouter.get("/add_money", async (req, res) => {
   const current_user = JSON.parse(localStorage.getItem("user"));
 
-  const { username, phone_number } = await getUser(current_user["username"]);
+  const user = await getUser(current_user["username"]);
+
+  return res.render("recharge_confirm", {
+    style: "../../css/transactionPageStyle.css",
+    data: user,
+    type: "Nạp tiền",
+  });
+});
+
+//Nạp tiền vào tài khoản
+UserRouter.post("/add_money", AddMoneyValidation, async (req, res) => {
+  var { money, card_number } = req.body;
+  const current_user = JSON.parse(localStorage.getItem("user"));
+  const { username, phone_number, account_balance } = await getUser(
+    current_user["username"]
+  );
+
+  //Process money
+  money = parseInt(money.replace(".", "")) * 1000 + account_balance;
 
   //Thêm giao dịch
-  await AddRecharge(money, username, phone_number, "success");
+  await AddRecharge(money, username, phone_number, "success", card_number);
 
   //Cộng tiền vào tải khoản người dùng
   await addMoney(username, money);
+  await lastUpdate(username, Date.now());
 
   req.session.message = {
     type: "success",
@@ -155,22 +174,40 @@ UserRouter.post("/add_money", AddMoneyValidation, async (req, res) => {
   };
   console.log(req.session.message);
 
-  await lastUpdate(username, Date.now());
   return res.redirect("/user/home");
+});
+
+//Trình bày thông tin rút tiền
+UserRouter.get("/withdraw", async (req, res) => {
+  const current_user = JSON.parse(localStorage.getItem("user"));
+
+  const user = await getUser(current_user["username"]);
+
+  return res.render("withdraw_confirm", {
+    style: "../../css/transactionPageStyle.css",
+    data: user,
+    type: "Rút tiền",
+    withdraw: true,
+  });
 });
 
 //Rút tiền về thẻ tín dụng
 UserRouter.post("/withdraw", WithDrawValidation, async (req, res) => {
-  const { money, card_number, note } = req.body;
+  var { money, card_number, note } = req.body;
   const current_user = JSON.parse(localStorage.getItem("user"));
   const { username, phone_number, account_balance } = await getUser(
     current_user["username"]
   );
 
+  //Process money
+  money = parseInt(money.replace(".", "")) * 1000;
+
+  console.log(money, account_balance);
+
   //----------------------------------------------------Duyệt bởi admin---------------------------------------
 
   //Kiểm tra số tiền vượt mức
-  if (account_balance < parseInt(money) * 1000) {
+  if (account_balance < money) {
     req.session.message = {
       type: "danger",
       message: "Số tiền vượt mức dư tài khoản",
@@ -183,7 +220,7 @@ UserRouter.post("/withdraw", WithDrawValidation, async (req, res) => {
   }
 
   //Tạo phí giao dịch
-  const transaction_fee = money * (5 / 100) * 1000;
+  const transaction_fee = money * (5 / 100);
 
   //Thêm giao dịch
   await AddWithdraw(

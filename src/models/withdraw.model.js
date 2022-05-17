@@ -18,7 +18,7 @@ async function AddWithdraw(
       time: moment().format("h:mm a"),
     },
     {
-      total: parseInt(money) * 1000,
+      total: money,
       username: username,
       phone_number: phone_number,
       date: Date.now(),

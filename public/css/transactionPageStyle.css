@@ -1,0 +1,17 @@
+.transaction-detail-container{
+    padding-top: 3%;
+    padding-left: 30% ;
+    padding-right: 30%;
+    background-color:#8fc4b7;
+}
+
+.table{
+    background-color: white;
+    z-index: 2;
+    border-radius:3px;
+
+}
+
+tr{
+    font-size: 15px !important;
+}

@@ -71,7 +71,7 @@
                                 khoản qua thẻ ứng dụng</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="post" action="/user/add_money" class="modal-body">
+                        <form method="get" action="/user/add_money" class="modal-body">
                             <input style="margin: 5px;" required type="number" class="form-control" placeholder="Số thẻ"
                                 name="card_number">
                             <input style="margin: 5px;" required type="date" class="form-control"
@@ -117,7 +117,7 @@
                             <h5 class="modal-title" id="withdrawLabel">Rút tiền về thẻ tín dụng</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="post" action="/user/withdraw" class="modal-body">
+                        <form method="get" action="/user/withdraw" class="modal-body">
                             <input style="margin: 5px;" required type="number" class="form-control" placeholder="Số thẻ"
                                 name="card_number">
                             <input style="margin: 5px;" required type="date" class="form-control"

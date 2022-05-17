@@ -1,0 +1,87 @@
+{{#if data}}
+<div class="transaction-detail-container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="font-size: 25px" scope="row">Xác nhận giao dịch - {{type}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td>
+                <tr>
+                    <th scope="row">Username</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.username}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Name</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.fullname}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Email</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.email}}</td>
+                </tr>
+            </td>
+
+            <form action="/user/add_money" method="post">
+                <td>
+                    <tr>
+                        <th scope="row">Tổng số tiền</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input style="border: none;" name="money" id="confirm-total" scope="row"></input>
+                        </th>
+                    </tr>
+                </td>
+
+                <td>
+                    <tr>
+                        <th scope="row">Credit card</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input style="border: none;" name="card_number" id="confirm-card_number"
+                                scope="row"></input>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <input style="border: none;" name="expired" id="confirm-expired" scope="row"></input>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <input style="border: none;" name="cvv" id="confirm-cvv" scope="row"></input>
+                        </th>
+                    </tr>
+
+
+                </td>
+
+
+
+                <td style="text-align:end;">
+                    <a href="/user/home" class="btn btn-secondary">Go back</a>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </td>
+            </form>
+        </tbody>
+    </table>
+
+    <script src="../js/recharge_confirm.js"></script>
+</div>
+{{/if}}

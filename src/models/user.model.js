@@ -15,8 +15,9 @@ async function saveUser(user) {
 
 async function withdrawMoney(username, money, transaction_fee) {
   const { account_balance } = await User.findOne({ username: username });
-  const updateMoney =
-    account_balance - parseInt(money) * 1000 - parseInt(transaction_fee);
+  console.log(account_balance, money, transaction_fee);
+  const updateMoney = account_balance - money - parseInt(transaction_fee);
+
   await User.updateOne(
     { username: username },
     { account_balance: updateMoney }
@@ -24,12 +25,7 @@ async function withdrawMoney(username, money, transaction_fee) {
 }
 
 async function addMoney(username, money) {
-  const { account_balance } = await User.findOne({ username: username });
-  const updateMoney = account_balance + parseInt(money) * 1000;
-  await User.updateOne(
-    { username: username },
-    { account_balance: updateMoney }
-  );
+  await User.updateOne({ username: username }, { account_balance: money });
 }
 
 async function updateResetToken(email, token) {

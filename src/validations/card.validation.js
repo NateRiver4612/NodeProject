@@ -69,7 +69,7 @@ async function AddMoneyValidation(req, res, next) {
 }
 
 async function WithDrawValidation(req, res, next) {
-  const { card_number, expired, cvv, money } = req.body;
+  var { card_number, expired, cvv, money } = req.body;
 
   //Check card_number
   if (card_number != "111111") {
@@ -101,6 +101,7 @@ async function WithDrawValidation(req, res, next) {
         console.log(req.session.message);
         return res.redirect("/user/home");
       } else {
+        money = parseInt(money.replace(".", "")) * 1000;
         if (money % 50 != 0) {
           req.session.message = {
             type: "danger",
