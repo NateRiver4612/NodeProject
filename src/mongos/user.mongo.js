@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const moment = require("moment");
 
 const UserSchema = new mongoose.Schema({
   phone_number: { type: String, require },
@@ -9,8 +10,11 @@ const UserSchema = new mongoose.Schema({
   font_photoPath: { type: String, require },
   back_photoPath: { type: String, require },
   status: { type: String, default: "Pending" },
-  created_date: { type: Date, default: Date.now() },
-  last_update: { type: Date },
+  created_date: {
+    type: String,
+    default: moment().format("MMMM Do YYYY, h:mm:ss a"),
+  },
+  last_update: { type: String },
   locked: { type: Boolean, default: false },
   firstSignIn: { type: Boolean, default: true },
   username: { type: String, require, default: "" },

@@ -4,10 +4,10 @@ const moment = require("moment");
 const WithdrawSchema = new mongoose.Schema({
   type: { type: String, default: "Rút tiền về thẻ" },
   total: Number,
-  date: { type: Date, default: Date.now() },
+  date: { type: String, default: moment().format("MMM Do YYYY") },
   time: {
     type: String,
-    default: moment().format("h:mm a"),
+    default: moment().format("h:mm:ss a"),
   },
   note: { type: String, default: "" },
   transaction_fee: Number,

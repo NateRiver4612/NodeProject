@@ -1,0 +1,137 @@
+{{#if message}}
+<div class="alert alert-{{message.type}} alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong>{{message.intro}}: </strong> {{message.message}}
+</div>
+{{/if}}
+{{#if data}}
+<div class="transaction-detail-container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="font-size: 25px" scope="row">Chi tiết giao dịch </th>
+            </tr>
+        </thead>
+        <tbody>
+            <td>
+                <tr>
+                    <th scope="row">Tài khoản</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.username}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Chủ tài khoản</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{fullname}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Số thẻ nạp</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.mobile_code}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Nhà mạng</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.network}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Mã số nhà mạng</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.network_number}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Mệnh giá</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{ data.price }}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Số lượng</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.quantity}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Tổng cộng</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.total}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Phí giao dịch</th>
+                </tr>
+                <tr>
+                    <td>
+                        0%
+                    </td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Ngày giao dịch</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.date}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Thời gian</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.time}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Trạng thái</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.status}}</td>
+                </tr>
+            </td>
+
+
+
+            <td style="text-align:end;">
+                <a href="/user/home" class="btn btn-secondary">Go back</a>
+            </td>
+        </tbody>
+    </table>
+
+    {{!--
+    <script src="../../js/transfer_confirm.js"></script> --}}
+</div>
+{{/if}}

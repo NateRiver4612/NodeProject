@@ -12,17 +12,17 @@ async function AddWithdraw(
   await Withdraw.findOneAndUpdate(
     {
       username: username,
-      date: Date.now(),
-      time: moment().format("h:mm a"),
+      date: moment().format("MMM Do YYYY"),
+      time: moment().format("h:mm:ss a"),
     },
     {
       total: money,
       username: username,
-      date: Date.now(),
+      date: moment().format("MMM Do YYYY"),
       status: status,
       card_number: card_number,
       note: { type: String, default: "" },
-      time: moment().format("h:mm a"),
+      time: moment().format("h:mm:ss a"),
       transaction_fee: transaction_fee,
       note: note,
     },

@@ -5,8 +5,8 @@ async function AddRecharge(money, username, phone_number, status, card_number) {
   await Recharge.findOneAndUpdate(
     {
       username: username,
-      date: Date.now(),
-      time: moment().format("h:mm a"),
+      date: moment().format("MMM Do YYYY"),
+      time: moment().format("h:mm:ss a"),
     },
     {
       total: parseInt(money) * 1000,
@@ -14,7 +14,7 @@ async function AddRecharge(money, username, phone_number, status, card_number) {
       date: Date.now(),
       card_number: card_number,
       status: status,
-      time: moment().format("h:mm a"),
+      time: moment().format("h:mm:ss a"),
     },
     { upsert: true }
   );

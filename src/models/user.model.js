@@ -15,7 +15,6 @@ async function saveUser(user) {
 
 async function withdrawMoney(username, money, transaction_fee) {
   const { account_balance } = await User.findOne({ username: username });
-  console.log(account_balance, money, transaction_fee);
   const updateMoney = account_balance - money - parseInt(transaction_fee);
 
   await User.updateOne(

@@ -45,6 +45,7 @@
             xây dựng
             chuyên biệt để thỏa</h6>
         <h6>mãn mọi nhu cầu thanh toán trong cuộc sống và nhu cầu kinh doanh...</h6>
+
         <div class="services-container">
 
             <button class="service" data-bs-toggle="modal" data-bs-target="#recharge">
@@ -60,7 +61,6 @@
                         lơi</span>
                 </div>
             </button>
-
 
             <!-- Nạp tiền vào tài khoản -->
             <div class="modal fade" id="recharge" tabindex="-1" aria-labelledby="rechargeLabel" aria-hidden="true">
@@ -96,6 +96,8 @@
 
 
 
+
+
             <button class="service" data-bs-toggle="modal" data-bs-target="#withdraw">
                 <div class="service-icon">
                     <img src="https://simg.zalopay.com.vn/zlp-website/assets/icon_hoadon_602ba6d699.svg" alt="" />
@@ -107,7 +109,6 @@
                         lơi</span>
                 </div>
             </button>
-
 
             <!-- Rút tiền về thẻ tín dụng -->
             <div class="modal fade" id="withdraw" tabindex="-1" aria-labelledby="withdrawLabel" aria-hidden="true">
@@ -151,8 +152,6 @@
 
 
 
-
-
             <button class="service" data-bs-toggle="modal" data-bs-target="#transfer">
                 <div class="service-icon">
                     <img src="https://simg.zalopay.com.vn/zlp-website/assets/icon_chuyentien_48a9c17e75.svg" alt="" />
@@ -164,7 +163,6 @@
                         lơi</span>
                 </div>
             </button>
-
 
             <!-- Chuyển tiền qua tài khoản -->
             <div class="modal fade" id="transfer" tabindex="-1" aria-labelledby="transferLabel" aria-hidden="true">
@@ -208,9 +206,7 @@
 
 
 
-
-
-            <button class="service">
+            <button class="service" data-bs-toggle="modal" data-bs-target="#mobile">
                 <div class="service-icon">
                     <img src="https://simg.zalopay.com.vn/zlp-website/assets/icon_dienthoai_4043b21b86.svg" alt="" />
                     <i style="color: white !important;" class="large material-icons">arrow_forward</i>
@@ -221,6 +217,60 @@
                         lơi</span>
                 </div>
             </button>
+
+
+            <!-- Mua thẻ điện thoại -->
+            <div class="modal fade" id="mobile" tabindex="-1" aria-labelledby="mobileLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="mobileLabel">Mua thẻ điện thoại</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post" action="/user/mobile" class="modal-body">
+
+                            <select id="network" name="network" class="form-select form-select-sm mb-3"
+                                aria-label=".form-select-lg example">
+                                <option selected disabled style="color: gray;opacity: 0.4"> Chọn Nhà mạng
+                                </option>
+                                <option value="viettel">Viettel</option>
+                                <option value="mobifone">Mobifone</option>
+                                <option value="vinaphone">Vinaphone</option>
+                            </select>
+
+                            <select id="price" name="price" class="form-select form-select-sm mb-3"
+                                aria-label=".form-select-lg example">
+                                <option selected disabled style="color: rgb(80, 60, 60);opacity: 0.4"> Chọn mệnh giá
+                                </option>
+                                <option value="10">10.000đ</option>
+                                <option value="20">20.000đ</option>
+                                <option value="50">50.000đ</option>
+                                <option value="100">100.000đ</option>
+                            </select>
+
+                            <select id="quantity" name="quantity" class="form-select form-select-sm mb-3"
+                                aria-label=".form-select-lg example">
+                                <option selected disabled style="color: gray;opacity: 0.4"> Chọn số lượng
+                                </option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+
+                            <div style="width: 100%; margin-top:20px;display:flex;justify-content:flex-end">
+                                <button style="margin-right: 10px;" type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 </div>
