@@ -293,7 +293,7 @@ UserRouter.get("/transfer", async (req, res) => {
 UserRouter.post("/transfer", TransferValidation, async (req, res) => {
   var { money, receiver_phone, pay_side, note } = req.body;
   const current_user = JSON.parse(localStorage.getItem("user"));
-  const { username, phone_number, account_balance } = await getUser(
+  const { username, fullname, account_balance } = await getUser(
     current_user["username"]
   );
 
@@ -311,16 +311,6 @@ UserRouter.post("/transfer", TransferValidation, async (req, res) => {
       type: "danger",
       message: "Số tiền vượt mức dư tài khoản",
       intro: "Chuyển thất bài",
-    };
-    console.log(req.session.message);
-    return res.redirect("/user/home");
-  }
-
-  if (receiver.account_balance < transaction_fee) {
-    req.session.message = {
-      type: "danger",
-      message: "Số dư tài khoản người nhận không đủ để trả phí",
-      intro: "Chuyển tiền thất bài",
     };
     console.log(req.session.message);
     return res.redirect("/user/home");
@@ -345,6 +335,15 @@ UserRouter.post("/transfer", TransferValidation, async (req, res) => {
     sender_fee = transaction_fee;
   } else {
     receiver_fee = transaction_fee;
+    if (receiver.account_balance < receiver_fee) {
+      req.session.message = {
+        type: "danger",
+        message: "Số dư tài khoản người nhận không đủ để trả phí",
+        intro: "Chuyển tiền thất bài",
+      };
+      console.log(req.session.message);
+      return res.redirect("/user/home");
+    }
   }
 
   //Trừ tiền tài khoản người gửi
@@ -352,6 +351,33 @@ UserRouter.post("/transfer", TransferValidation, async (req, res) => {
 
   //Cộng tiền tài khoản người nhận
   await receiveMoney(receiver.username, money, receiver_fee);
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
+  const output = `
+      <h1>Thông báo nhận tiền</h1>
+      <h2>Tài khoản được chuyển thêm: ${numberWithCommas(money)} VND</h2>
+      <h2>Số dư hiện tại ${numberWithCommas(receiver.account_balance)} VND</h2>
+      <h3>Thông tin người gửi </h3>
+      <h4>Tài khoản: ${username}</h4>
+      <h4>Chủ tài khoản: ${fullname}</h4>
+    `;
+
+  let mailOptions = {
+    from: "admin@gmail.com", // sender address
+    to: receiver.email, // list of receivers
+    subject: "New transaction", // Subject line
+    text: "View the transaction detail", // plain text body
+    html: output, // html body
+  };
+
+  transporter.sendMail(mailOptions, async (error, info) => {
+    if (error) {
+      return res.json({ error: error });
+    }
+  });
 
   req.session.message = {
     type: "success",
