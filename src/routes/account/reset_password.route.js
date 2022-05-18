@@ -1,7 +1,7 @@
 const express = require("express");
 const ResetPasswordRouter = express.Router();
-const TokenValidation = require("../../validations/token.validation");
-const PasswordValidation = require("../../validations/password.validation");
+const TokenValidation = require("../../validations/account/token.validation");
+const PasswordValidation = require("../../validations/account/password.validation");
 const User = require("../../mongos/user.mongo");
 const { changeUserPassword } = require("../../models/user.model");
 

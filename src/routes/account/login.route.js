@@ -1,6 +1,6 @@
 const express = require("express");
 const LoginRouter = express.Router();
-const LoginValidation = require("../../validations/login.validation");
+const LoginValidation = require("../../validations/account/login.validation");
 const LoginAuthentication = require("../../authentications/login.authentication");
 const { getUser } = require("../../models/user.model");
 const { updateWrongPassword } = require("../../models/user.model");

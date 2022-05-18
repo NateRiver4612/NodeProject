@@ -38,7 +38,7 @@ body.modal-open {
 }
 
 .photo-container{
-    flex:0.8; 
+    flex:0.9; 
     outline:5px solid grey;
     border-radius:10px;
 }
@@ -51,7 +51,7 @@ body.modal-open {
     margin-top:2% !important;
     justify-content: start;
     background-color: #4835d4;
-    width: 35%;
+    width: 30%;
     color: white;
     padding: 15px;
     padding-right: 0px !important;
@@ -117,7 +117,7 @@ body.modal-open {
 
 input{
     resize: horizontal;
-    width: 100%;
+    width: 100% ;
     font-size: 15px !important;
 }
 

@@ -47,7 +47,7 @@
         <h6>mãn mọi nhu cầu thanh toán trong cuộc sống và nhu cầu kinh doanh...</h6>
         <div class="services-container">
 
-            <button class="service" data-bs-toggle="modal" data-bs-target="#add_money">
+            <button class="service" data-bs-toggle="modal" data-bs-target="#recharge">
                 <div class="service-icon">
                     <img src="https://simg.zalopay.com.vn/zlp-website/assets/icon_thanhtoantaiquay_6cfbc2fce0.svg"
                         alt="" />
@@ -63,15 +63,15 @@
 
 
             <!-- Nạp tiền vào tài khoản -->
-            <div class="modal fade" id="add_money" tabindex="-1" aria-labelledby="add_moneyLabel" aria-hidden="true">
+            <div class="modal fade" id="recharge" tabindex="-1" aria-labelledby="rechargeLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="add_moneyLabel">Nạp tiền vào tài
+                            <h5 class="modal-title" id="rechargeLabel">Nạp tiền vào tài
                                 khoản qua thẻ ứng dụng</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="get" action="/user/add_money" class="modal-body">
+                        <form method="get" action="/user/recharge" class="modal-body">
                             <input style="margin: 5px;" required type="number" class="form-control" placeholder="Số thẻ"
                                 name="card_number">
                             <input style="margin: 5px;" required type="date" class="form-control"
@@ -153,7 +153,7 @@
 
 
 
-            <button class="service">
+            <button class="service" data-bs-toggle="modal" data-bs-target="#transfer">
                 <div class="service-icon">
                     <img src="https://simg.zalopay.com.vn/zlp-website/assets/icon_chuyentien_48a9c17e75.svg" alt="" />
                     <i style="color: white !important;" class="large material-icons">arrow_forward</i>
@@ -164,6 +164,51 @@
                         lơi</span>
                 </div>
             </button>
+
+
+            <!-- Chuyển tiền qua tài khoản -->
+            <div class="modal fade" id="transfer" tabindex="-1" aria-labelledby="transferLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="transferLabel">Chuyển tiền cùng hệ thống</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="get" action="/user/transfer" class="modal-body">
+                            <input style="margin: 5px;" required type="number" class="form-control"
+                                placeholder="Số điện thoại" name="phone_number">
+
+                            <div style="margin: 5px;" class="input-group mb-3">
+                                <input required type="number" class="form-control" placeholder="Số tiền muốn chuyển"
+                                    name="money">
+                                <span class="input-group-text">.000 VND</span>
+                            </div>
+
+                            <textarea style="margin: 5px;" type="text" class="form-control" placeholder="Ghi chú"
+                                name="note" id="note"></textarea>
+
+                            <select style="margin: 5px;" name="pay_side" name="pay_side"
+                                class="form-select form-select-sm mb-3" aria-label=".form-select-lg example">
+                                <option selected disabled style="color: gray;opacity: 0.4"> Chọn bên trả phí giao dịch
+                                    (5%)
+                                </option>
+                                <option value="sender">Người chuyển</option>
+                                <option value="receiver">Người nhận</option>
+                            </select>
+
+                            <div style="width: 100%; margin-top:20px;display:flex;justify-content:flex-end">
+                                <button style="margin-right: 10px;" type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+
 
             <button class="service">
                 <div class="service-icon">

@@ -11,12 +11,8 @@
             <div class="form-group" style="text-align:start !important;width: 100% ;">
                 <h2>User Profile </h2>
             </div>
-            <img src="https://freepikpsd.com/file/2019/10/avatar-icon-png-5-Images-PNG-Transparent.png" height="60%"
-                width="60%" alt="Jhon Doe" />
-            {{!-- <div class="avatar "
-                style="padding: none !important;width:fit-content !important;height:fit-content !important">
-                <img src="../../images/avatar.jpg" height="90%" width="90%" alt="Jhon Doe" />
-            </div> --}}
+            <img src="https://firebasestorage.googleapis.com/v0/b/my-netflix-f21d5.appspot.com/o/avatar-web.png?alt=media&token=84d2d35f-6487-4022-b0bf-3a2067fc92d5"
+                height="45%" width="45%" alt="Jhon Doe" />
             <div class="form-group " style="width: 100%;text-align:center;border:">
                 <h3 type="text" style="border:none ;font-weight: bold !important;
                     font-size:20px;
@@ -70,28 +66,28 @@
             </div>
             <div class="login-form" method="post" action="/register" enctype="multipart/form-data">
                 <div class="form-container">
-                    <div class="form-group ">
+
+                    <div style="width: 90% !important;" class="form-group ">
                         <label for="fullname">Account Balance </label>
-                        <input style="width:89%" type="number" name="account_balance" id="account_balance"
-                            class="form-control" disabled>
+                        <input type="number" name="account_balance" id="account_balance" class="form-control" disabled>
                     </div>
 
-                    <div class="form-group">
+                    <div style="width: 90% !important;" class="form-group">
                         <label for="username">Username</label>
-                        <input type="number" style="width:89%" class="form-control" disabled
-                            placeholder="{{data.username}}" name="username" id="username">
+                        <input type="number" class="form-control" disabled placeholder="{{data.username}}"
+                            name="username" id="username">
                     </div>
 
 
 
-                    <div class="form-group ">
+                    <div style="width: 100% !important;" class="form-group ">
                         <label for="password">Password</label>
                         <div class="input-container">
-                            <div style="flex:0.9">
-                                <input type="password" class="form-control" disabled value="{{data.password}}"
+                            <div style="flex:1">
+                                <input type="password" class=" form-control" disabled value="{{data.password}}"
                                     name="password" id="password">
                             </div>
-                            <div style="flex:0.1">
+                            <div style="flex:0">
                                 <a href="/user/change_password" class="btn" style="color:white">
                                     <i class="fa fa-solid fa-pen"></i>
                                 </a>

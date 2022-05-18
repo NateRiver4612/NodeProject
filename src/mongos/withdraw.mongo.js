@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const moment = require("moment");
 
 const WithdrawSchema = new mongoose.Schema({
-  type: { type: String, default: "Rút tiền" },
+  type: { type: String, default: "Rút tiền về thẻ" },
   total: Number,
   date: { type: Date, default: Date.now() },
   time: {

@@ -1,0 +1,124 @@
+{{#if message}}
+<div class="alert alert-{{message.type}} alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong>{{message.intro}}: </strong> {{message.message}}
+</div>
+{{/if}}
+{{#if data}}
+<div class="transaction-detail-container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="font-size: 25px" scope="row">Xác nhận giao dịch - {{type}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td>
+                <tr>
+                    <th scope="row">Username</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.username}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Name</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.fullname}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Email</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.email}}</td>
+                </tr>
+            </td>
+
+            <form action="/user/transfer" method="post">
+                <td>
+                    <tr>
+                        <th scope="row">Tổng số tiền</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input readonly="true" name="money" id="confirm-total" scope="row"></input>
+                        </th>
+                    </tr>
+                </td>
+
+                <td>
+                    <tr>
+                        <th scope="row">SĐT người nhận</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input readonly="true" name="receiver_phone" id="receiver_phone" scope="row"></input>
+                        </th>
+                    </tr>
+                </td>
+
+                <td>
+                    <tr>
+                        <th scope="row">Phí giao dịch</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            5%
+                        </td>
+                    </tr>
+                </td>
+
+                <td>
+                    <tr>
+                        <th scope="row">Bên trả phí</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input readonly="true" name="pay_side" id="pay_side" scope="row"></input>
+                        </td>
+                    </tr>
+                </td>
+
+                <td>
+                    <tr>
+                        <th scope="row">Nội dung</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <textarea readonly="true" name="note" id="confirm-note" scope="row"></textarea>
+                        </th>
+                    </tr>
+                </td>
+
+                <td>
+                    <tr>
+                        <th style="color: red;" scope="row">Nhập OTP</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea class="form-control" type="text" style="border: none;" name="token" id="pay_side"
+                                scope="row"></textarea>
+                        </td>
+                    </tr>
+                </td>
+
+
+
+
+                <td style="text-align:end;">
+                    <a href="/user/home" class="btn btn-secondary">Go back</a>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </td>
+            </form>
+        </tbody>
+    </table>
+
+    <script src="../../js/transfer_confirm.js"></script>
+</div>
+{{/if}}

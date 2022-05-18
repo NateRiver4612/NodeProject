@@ -11,7 +11,7 @@ async function httpSetCurrentUser() {
     const user = await response.json();
     header_profile.innerHTML = user["username"];
   } catch (error) {
-    header_profile.innerHTML = "Username";
+    header_profile.innerHTML = "Account";
   }
 }
 

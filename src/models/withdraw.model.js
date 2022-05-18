@@ -4,7 +4,6 @@ const moment = require("moment");
 async function AddWithdraw(
   money,
   username,
-  phone_number,
   status,
   transaction_fee,
   card_number,
@@ -13,14 +12,12 @@ async function AddWithdraw(
   await Withdraw.findOneAndUpdate(
     {
       username: username,
-      phone_number: phone_number,
       date: Date.now(),
       time: moment().format("h:mm a"),
     },
     {
       total: money,
       username: username,
-      phone_number: phone_number,
       date: Date.now(),
       status: status,
       card_number: card_number,

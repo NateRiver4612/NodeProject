@@ -2,7 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const RegisterRouter = express.Router();
 const { saveUser, setUserSignIn } = require("../../models/user.model");
-const RegisterValidation = require("../../validations/register.validation");
+const RegisterValidation = require("../../validations/account/register.validation");
 const transporter = require("../../../libs/mail_transporter");
 
 const path = require("path");

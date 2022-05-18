@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const moment = require("moment");
 
 const RechargeSchema = new mongoose.Schema({
-  type: { type: String, default: "Nạp tiền" },
+  type: { type: String, default: "Nạp tiền vào tài khoản" },
   total: { type: Number, default: 0 },
   date: { type: Date, default: Date.now() },
   card_number: String,
