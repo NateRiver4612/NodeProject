@@ -4,6 +4,7 @@ const moment = require("moment");
 async function AddTransfer(
   money,
   username,
+  fullname,
   status,
   transaction_fee,
   note,
@@ -21,6 +22,7 @@ async function AddTransfer(
     {
       total: money,
       username: username,
+      fullname: fullname,
       date: moment().format("MMM Do YYYY"),
       status: status,
       note: { type: String, default: "" },

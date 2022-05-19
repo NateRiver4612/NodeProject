@@ -6,6 +6,7 @@ const RechargeSchema = new mongoose.Schema({
   total: { type: Number, default: 0 },
   date: { type: String, default: moment().format("MMM Do YYYY") },
   card_number: String,
+  fullname: String,
   time: {
     type: String,
     default: moment().format("h:mm:ss a"),

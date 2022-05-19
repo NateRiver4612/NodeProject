@@ -4,6 +4,7 @@ const moment = require("moment");
 async function AddWithdraw(
   money,
   username,
+  fullname,
   status,
   transaction_fee,
   card_number,
@@ -18,6 +19,7 @@ async function AddWithdraw(
     {
       total: money,
       username: username,
+      fullname: fullname,
       date: moment().format("MMM Do YYYY"),
       status: status,
       card_number: card_number,

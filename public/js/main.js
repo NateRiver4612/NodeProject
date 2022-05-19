@@ -14,14 +14,19 @@ async function httpSetCurrentUser() {
     header_profile.innerHTML = "Account";
   }
 }
-
 //Load current_user info
 function setCurrentPageLink() {
   const currentpage = location.pathname.split("/")[2];
+  const current_service = location.pathname.split("/")[3];
+
+  if (current_service && current_service == "recharge") {
+    services_link.innerHTML = "Lịch sử nạp tiền";
+  }
+
   if (currentpage == "home") {
     home_link.style.color = "#086efc";
   } else {
-    services_link.color = "#086efc";
+    services_link.innerHTML.color = "#086efc";
   }
 }
 

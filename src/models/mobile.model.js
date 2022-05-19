@@ -9,6 +9,7 @@ async function AddMobile(
   transaction_fee,
   total,
   username,
+  fullname,
   status
 ) {
   await Mobile.findOneAndUpdate(
@@ -24,6 +25,7 @@ async function AddMobile(
       transaction_fee: transaction_fee,
       total: total,
       username: username,
+      fullname: fullname,
       status: status,
     },
     {

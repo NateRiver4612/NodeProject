@@ -12,6 +12,7 @@ const TransferSchema = new mongoose.Schema({
   note: { type: String, default: "" },
   transaction_fee: Number,
   username: String,
+  fullname: String,
   status: { type: String, default: "success" },
   receiver_fullname: String,
   receiver_username: String,

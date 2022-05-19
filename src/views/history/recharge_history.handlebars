@@ -1,0 +1,31 @@
+<div class="detail-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Mã giao dịch</th>
+                <th scope="col">Credit card</th>
+                <th scope="col">Tiền giao dịch</th>
+                <th scope="col">Ngày giao dịch</th>
+                <th scope="col">Trạng thái giao dịch</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td class="btn btn-light">{{_id}}</td>
+                <td>{{card_number}}</td>
+                <td class="total">{{total}}</td>
+                <td>{{date}}</td>
+                <td>
+                    <input id="status" disabled class="status alert-success" role="alert" value="{{status}}" />
+                </td>
+                <td>
+                    <a href="/user/history/recharge/{{_id}}" class="btn btn-primary">Chi tiết</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <script src="../../js/history.js"></script>
+</div>

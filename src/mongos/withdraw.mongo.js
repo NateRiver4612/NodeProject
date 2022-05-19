@@ -12,6 +12,7 @@ const WithdrawSchema = new mongoose.Schema({
   note: { type: String, default: "" },
   transaction_fee: Number,
   username: String,
+  fullname: String,
   status: { type: String, default: "success" },
   card_number: String,
   phone_number: String,

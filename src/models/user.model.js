@@ -35,7 +35,12 @@ async function receiveMoney(username, money, transaction_fee) {
 }
 
 async function rechargeMoney(username, money) {
-  await User.updateOne({ username: username }, { account_balance: money });
+  const { account_balance } = await User.findOne({ username: username });
+  updateMoney = money + account_balance;
+  await User.updateOne(
+    { username: username },
+    { account_balance: updateMoney }
+  );
 }
 
 async function updateResetToken(email, token) {

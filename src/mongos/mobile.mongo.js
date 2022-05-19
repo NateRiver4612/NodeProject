@@ -9,6 +9,7 @@ const MobileSchema = new mongoose.Schema({
   quantity: Number,
   transaction_fee: { type: Number, default: 0 },
   username: String,
+  fullname: String,
   total: Number,
   status: String,
   date: { type: String, default: moment().format("MMM Do YYYY") },

@@ -1,7 +1,7 @@
 const Recharge = require("../mongos/recharge.mongo");
 const moment = require("moment");
 
-async function AddRecharge(money, username, phone_number, status, card_number) {
+async function AddRecharge(money, username, fullname, status, card_number) {
   await Recharge.findOneAndUpdate(
     {
       username: username,
@@ -9,15 +9,20 @@ async function AddRecharge(money, username, phone_number, status, card_number) {
       time: moment().format("h:mm:ss a"),
     },
     {
-      total: parseInt(money) * 1000,
+      total: money,
       username: username,
-      date: Date.now(),
+      date: moment().format("MMM Do YYYY"),
       card_number: card_number,
       status: status,
+      fullname: fullname,
       time: moment().format("h:mm:ss a"),
     },
     { upsert: true }
   );
 }
 
-module.exports = { AddRecharge };
+async function GetListRecharge() {
+  return Recharge.find({}).lean();
+}
+
+module.exports = { AddRecharge, GetListRecharge };

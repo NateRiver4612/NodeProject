@@ -24,16 +24,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link " id="home-link" aria-current="page" href="home">Trang chủ</a>
+                        <a class="nav-link " id="home-link" aria-current="page" href="/user/home">Trang chủ</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="services-link" href="#" id="navbarDropdown"
+                        <span class="nav-link dropdown-toggle" id="services-link" href="#" id="navbarDropdown"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Lịch sử giao dịch
-                        </a>
+                        </span>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>
-                                <div class="dropdown-item" style="display:flex;align-items:center">
+                                <a href="/user/history/recharge" class="dropdown-item"
+                                    style="display:flex;align-items:center">
                                     <div class="dropdown-item-icon">
                                         <img src="https://simg.zalopay.com.vn/zlp-website/assets/Group_1165_0dc700ebfc.png"
                                             alt="" />
@@ -45,7 +46,7 @@
                                         <h7 style="opacity:0.7;font-size:14px">Miễn phí, an toàn, tiện lơi
                                         </h7>
                                     </div>
-                                </div>
+                                </a>
                             </li>
 
                             <li>
@@ -112,7 +113,7 @@
     </nav>
     {{{body}}}
 
-    <script src="../js/main.js"></script>
+    <script src="../../js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
