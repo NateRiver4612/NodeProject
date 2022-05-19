@@ -32,4 +32,8 @@ async function AddWithdraw(
   );
 }
 
-module.exports = { AddWithdraw };
+async function GetListWithdraw() {
+  return await Withdraw.find({}).lean();
+}
+
+module.exports = { AddWithdraw, GetListWithdraw };

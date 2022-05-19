@@ -41,13 +41,48 @@
 
             <td>
                 <tr>
-                    <th scope="row">Số tiền giao dịch</th>
+                    <th scope="row">Số tiền chuyển</th>
                 </tr>
                 <tr>
                     <td id="total" scope="row">{{data.total}}</td>
                 </tr>
             </td>
 
+            <td>
+                <tr>
+                    <th scope="row">Người nhận</th>
+                </tr>
+                <tr>
+                    <td id="fee" scope="row">{{data.receiver_fullname}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Tài khoản người nhận</th>
+                </tr>
+                <tr>
+                    <td id="fee" scope="row">{{data.receiver_username}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Phí giao dịch</th>
+                </tr>
+                <tr>
+                    <td id="fee" scope="row">{{data.transaction_fee}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Trả phí giao dịch</th>
+                </tr>
+                <tr>
+                    <td id="fee" scope="row">{{data.pay_side}}</td>
+                </tr>
+            </td>
 
             <td>
                 <tr>
@@ -69,6 +104,15 @@
 
             <td>
                 <tr>
+                    <th scope="row">Nội dung</th>
+                </tr>
+                <tr>
+                    <td><textarea disabled scope="row">{{data.note}}</textarea></td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
                     <th scope="row">Trạng thái</th>
                 </tr>
                 <tr>
@@ -79,7 +123,7 @@
 
 
             <td style="text-align:end;">
-                <a href="/user/history/recharge" class="btn btn-secondary">Go back</a>
+                <a href="/user/history/withdraw" class="btn btn-secondary">Go back</a>
             </td>
         </tbody>
     </table>

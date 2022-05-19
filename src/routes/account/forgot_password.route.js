@@ -6,7 +6,7 @@ const { updateResetToken } = require("../../models/user.model");
 const jwt = require("jsonwebtoken");
 
 ForgotPasswordRouter.get("/", (req, res) => {
-  res.render("forgot-password", { style: "loginPageStyle.css" });
+  res.render("forgot-password", { style: "style.css" });
 });
 
 ForgotPasswordRouter.post("/", (req, res) => {

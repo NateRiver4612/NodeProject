@@ -27,7 +27,7 @@ UserRouter.get("/", (req, res) => {
 //User home route
 UserRouter.get("/home", (req, res) => {
   return res.render("user_home", {
-    style: "../../css/homePageStyle.css",
+    style: "../../css/style.css",
   });
 });
 
@@ -99,7 +99,7 @@ UserRouter.get("/change_password", async (req, res) => {
   const { firstSignIn } = await getUser(current_user["username"]);
 
   return res.render("change_password", {
-    style: "../../css/loginPageStyle.css",
+    style: "../../css/style.css",
     firstSignIn,
   });
 });

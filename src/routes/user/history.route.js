@@ -1,19 +1,22 @@
 const express = require("express");
-const { GetListRecharge } = require("../../models/recharge.models");
 const ServiceHistory = express.Router();
 const Recharge = require("../../mongos/recharge.mongo");
+const Mobile = require("../../mongos/mobile.mongo");
+const Withdraw = require("../../mongos/withdraw.mongo");
+const Transfer = require("../../mongos/transfer.mongo");
 
-//Get list of transaction
+//Get list of recharge
 ServiceHistory.get("/recharge", async (req, res) => {
-  const data = await GetListRecharge();
+  const current_user = JSON.parse(localStorage.getItem("user"));
+  const data = await Recharge.find({ username: current_user.username }).lean();
 
   return res.render("history/recharge_history", {
-    style: "../../../css/historyListPageStyle.css",
+    style: "../../../css/style.css",
     data: data,
   });
 });
 
-//Get detail
+//Get detail of recharge
 ServiceHistory.get("/recharge/:id", async (req, res) => {
   const id = req.params.id;
   const data = await Recharge.findOne({ _id: id }).lean();
@@ -21,7 +24,75 @@ ServiceHistory.get("/recharge/:id", async (req, res) => {
   console.log(data.fullname);
 
   return res.render("detail/recharge_detail", {
-    style: "../../../../css/transactionDetailPageStyle.css",
+    style: "../../../../css/transactionPageStyle.css",
+    data,
+  });
+});
+
+//Get list of mobile
+ServiceHistory.get("/mobile", async (req, res) => {
+  const current_user = JSON.parse(localStorage.getItem("user"));
+  const data = await Mobile.find({ username: current_user.username }).lean();
+
+  return res.render("history/mobile_history", {
+    style: "../../../css/style.css",
+    data: data,
+  });
+});
+
+//Get detail of mobile
+ServiceHistory.get("/mobile/:id", async (req, res) => {
+  const id = req.params.id;
+  const data = await Mobile.findOne({ mobile_code: id }).lean();
+
+  console.log(data.fullname);
+
+  return res.render("detail/mobile_detail", {
+    style: "../../../../css/transactionPageStyle.css",
+    data,
+  });
+});
+
+//Get list of withdraw
+ServiceHistory.get("/withdraw", async (req, res) => {
+  const current_user = JSON.parse(localStorage.getItem("user"));
+  const data = await Withdraw.find({ username: current_user.username }).lean();
+
+  return res.render("history/withdraw_history", {
+    style: "../../../css/style.css",
+    data: data,
+  });
+});
+
+//Get detail of withdraw
+ServiceHistory.get("/withdraw/:id", async (req, res) => {
+  const id = req.params.id;
+  const data = await Withdraw.findOne({ _id: id }).lean();
+
+  return res.render("detail/withdraw_detail", {
+    style: "../../../../css/transactionPageStyle.css",
+    data,
+  });
+});
+
+//Get list of transfer
+ServiceHistory.get("/transfer", async (req, res) => {
+  const current_user = JSON.parse(localStorage.getItem("user"));
+  const data = await Transfer.find({ username: current_user.username }).lean();
+
+  return res.render("history/transfer_history", {
+    style: "../../../css/style.css",
+    data: data,
+  });
+});
+
+//Get detail of transfer
+ServiceHistory.get("/transfer/:id", async (req, res) => {
+  const id = req.params.id;
+  const data = await Transfer.findOne({ _id: id }).lean();
+
+  return res.render("detail/transfer_detail", {
+    style: "../../../../css/transactionPageStyle.css",
     data,
   });
 });

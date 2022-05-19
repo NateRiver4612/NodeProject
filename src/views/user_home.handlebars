@@ -40,19 +40,20 @@
         </button>
     </div>
     <div class="home-body">
-        <h4>ZALOPAY - VÍ ĐIỆN TỬ QUỐC DÂN TRONG ZALO</h4>
-        <h6 style="margin-top:20px !important">ZaloPay là ứng dụng thanh toán di động với nhiều tính năng độc đáo. Được
+        <h4 class="home-h4">ZALOPAY - VÍ ĐIỆN TỬ QUỐC DÂN TRONG ZALO</h4>
+        <h6 class="home-h6" style="margin-top:20px !important">ZaloPay là ứng dụng thanh toán di động với nhiều tính
+            năng độc đáo. Được
             xây dựng
             chuyên biệt để thỏa</h6>
-        <h6>mãn mọi nhu cầu thanh toán trong cuộc sống và nhu cầu kinh doanh...</h6>
+        <h6 class="home-h6">mãn mọi nhu cầu thanh toán trong cuộc sống và nhu cầu kinh doanh...</h6>
 
-        <div class="services-container">
+        <div class="home-services-container">
 
-            <button class="service" data-bs-toggle="modal" data-bs-target="#recharge">
-                <div class="service-icon">
+            <button class="home-service" data-bs-toggle="modal" data-bs-target="#recharge">
+                <div class="home-service-icon">
                     <img src="https://simg.zalopay.com.vn/zlp-website/assets/icon_thanhtoantaiquay_6cfbc2fce0.svg"
                         alt="" />
-                    <i style="color: white !important;" class="large material-icons">arrow_forward</i>
+                    <i style="color: #d6d6d6 !important;" class="large material-icons">arrow_forward</i>
                 </div>
                 <div class=" dropdown-item-info" style="display:flex;flex-direction:column;justify-content:center">
                     <span class="service-name" style="font-weight: bold;font-size:16px">Nạp tiền vào tài
@@ -71,7 +72,7 @@
                                 khoản qua thẻ ứng dụng</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="get" action="/user/service/recharge" class="modal-body">
+                        <form method="get" action="/user/recharge" class="modal-body">
                             <input style="margin: 5px;" required type="number" class="form-control" placeholder="Số thẻ"
                                 name="card_number">
                             <input style="margin: 5px;" required type="date" class="form-control"
@@ -98,10 +99,10 @@
 
 
 
-            <button class="service" data-bs-toggle="modal" data-bs-target="#withdraw">
-                <div class="service-icon">
+            <button class="home-service" data-bs-toggle="modal" data-bs-target="#withdraw">
+                <div class="home-service-icon">
                     <img src="https://simg.zalopay.com.vn/zlp-website/assets/icon_hoadon_602ba6d699.svg" alt="" />
-                    <i style="color: white !important;" class="large material-icons">arrow_forward</i>
+                    <i style="color: #d6d6d6 !important;" class="large material-icons">arrow_forward</i>
                 </div>
                 <div class=" dropdown-item-info" style="display:flex;flex-direction:column;justify-content:center">
                     <span class="service-name" style="font-weight: bold;font-size:16px">Rút tiền về thẻ tín dụng</span>
@@ -118,7 +119,7 @@
                             <h5 class="modal-title" id="withdrawLabel">Rút tiền về thẻ tín dụng</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="get" action="/user/service/withdraw" class="modal-body">
+                        <form method="get" action="/user/withdraw" class="modal-body">
                             <input style="margin: 5px;" required type="number" class="form-control" placeholder="Số thẻ"
                                 name="card_number">
                             <input style="margin: 5px;" required type="date" class="form-control"
@@ -152,10 +153,10 @@
 
 
 
-            <button class="service" data-bs-toggle="modal" data-bs-target="#transfer">
-                <div class="service-icon">
+            <button class="home-service" data-bs-toggle="modal" data-bs-target="#transfer">
+                <div class="home-service-icon">
                     <img src="https://simg.zalopay.com.vn/zlp-website/assets/icon_chuyentien_48a9c17e75.svg" alt="" />
-                    <i style="color: white !important;" class="large material-icons">arrow_forward</i>
+                    <i style="color: #d6d6d6 !important;" class="large material-icons">arrow_forward</i>
                 </div>
                 <div class=" dropdown-item-info" style="display:flex;flex-direction:column;justify-content:center">
                     <span class="service-name" style="font-weight: bold;font-size:16px">Chuyển tiền qua tài khoản</span>
@@ -172,7 +173,7 @@
                             <h5 class="modal-title" id="transferLabel">Chuyển tiền cùng hệ thống</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="get" action="/user/service/transfer" class="modal-body">
+                        <form method="get" action="/user/transfer" class="modal-body">
                             <input style="margin: 5px;" required type="number" class="form-control"
                                 placeholder="Số điện thoại" name="phone_number">
 
@@ -206,10 +207,10 @@
 
 
 
-            <button class="service" data-bs-toggle="modal" data-bs-target="#mobile">
-                <div class="service-icon">
+            <button class="home-service" data-bs-toggle="modal" data-bs-target="#mobile">
+                <div class="home-service-icon">
                     <img src="https://simg.zalopay.com.vn/zlp-website/assets/icon_dienthoai_4043b21b86.svg" alt="" />
-                    <i style="color: white !important;" class="large material-icons">arrow_forward</i>
+                    <i style="color: #d6d6d6 !important;" class="large material-icons">arrow_forward</i>
                 </div>
                 <div class=" dropdown-item-info" style="display:flex;flex-direction:column;justify-content:center">
                     <span class="service-name" style="font-weight: bold;font-size:16px">Mua thẻ điện thoại</span>
@@ -227,7 +228,7 @@
                             <h5 class="modal-title" id="mobileLabel">Mua thẻ điện thoại</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="post" action="/user/service/mobile" class="modal-body">
+                        <form method="get" action="/user/mobile" class="modal-body">
 
                             <select id="network" name="network" class="form-select form-select-sm mb-3"
                                 aria-label=".form-select-lg example">

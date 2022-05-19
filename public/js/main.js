@@ -21,12 +21,18 @@ function setCurrentPageLink() {
 
   if (current_service && current_service == "recharge") {
     services_link.innerHTML = "Lịch sử nạp tiền";
+  } else if (current_service && current_service == "mobile") {
+    services_link.innerHTML = "Lịch sử mua thẻ ĐT";
+  } else if (current_service && current_service == "withdraw") {
+    services_link.innerHTML = "Lịch sử rút tiền";
+  } else if (current_service && current_service == "transfer") {
+    services_link.innerHTML = "Lịch sử chuyển tiền";
   }
 
   if (currentpage == "home") {
     home_link.style.color = "#086efc";
   } else {
-    services_link.innerHTML.color = "#086efc";
+    services_link.color = "blue";
   }
 }
 

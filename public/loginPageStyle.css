@@ -1,4 +1,4 @@
-.login-container{
+/* .login-container{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -29,12 +29,4 @@ input{
 .login-form{
     position: relative;
     width: 100%;
-}
-
-
-/* @media screen and (max-width: 600px) {
-    .input[type=password] input[type=text] {
-      width: 40%;
-      margin-top: 0;
-    }
-  } */
+} */

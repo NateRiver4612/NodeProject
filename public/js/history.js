@@ -8,7 +8,11 @@ function numberWithCommas(x) {
 for (var i = 0; i < status_docs.length; i++) {
   const status = status_docs[i].value;
   console.log(status);
-  //   status_docs[i].className = "alert-danger";
+  if (status == "pending") {
+    status_docs[i].className = "history-status alert-warning";
+  } else if (status == "cancel") {
+    status_docs[i].className = "history-status alert-danger";
+  }
 }
 
 for (var i = 0; i < total_docs.length; i++) {

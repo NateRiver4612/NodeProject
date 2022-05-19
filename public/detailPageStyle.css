@@ -1,11 +1,11 @@
-.detail-container{
+/* .history-detail-container{
     padding-top: 3%;
     padding-left: 10%;
     padding-right: 10%;
     background-color: #8fc4b7;
 }
 
-.table {
+.history-table {
     background-color: white;
     z-index: 2;
     border-radius: 3px;
@@ -15,13 +15,11 @@ td{
     color: gray !important;
 }
 
-input{
-    border: none;
-}
 
-.status{
+.history-status{
+    border: none;
     border-radius: 5px;
     text-align: center;
     height: fit-content;
     padding: 5px
-}
+} */

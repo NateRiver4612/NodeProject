@@ -1,0 +1,128 @@
+/* CSS FOR ACCOUNT PAGES */
+.login-container-account {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 8% !important;
+    background-color: white;
+    width: 30%;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.login-card-account {
+    background-color: #8fc4b7;
+    display: flex;
+    justify-content: center;
+}
+
+.alert {
+    text-align: center;
+    margin-bottom: 0 !important;
+}
+
+.input-account {
+    resize: horizontal;
+    width: 100%;
+    font-size: 15px !important;
+}
+
+.login-form {
+    position: relative;
+    width: 100%;
+}
+
+
+/* CSS for history pages */
+.history-detail-container {
+    padding-top: 3%;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: #8fc4b7;
+}
+
+.history-table {
+    background-color: white;
+    z-index: 2;
+    border-radius: 3px;
+}
+
+td {
+    color: gray !important;
+}
+
+
+.history-status {
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    height: fit-content;
+    padding: 5px
+}
+
+
+
+/* CSS FOR HOME PAGES */
+.home-container {
+    height: fit-content;
+    background-color: white;
+}
+
+.home-body {
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+.home-h4 {
+    font-weight: 700 !important;
+    margin-top: 70px !important;
+}
+
+.alert {
+    text-align: center;
+    margin-bottom: 0 !important;
+    font-size: 15px !important;
+}
+
+.home-h6 {
+    font-weight: 500 !important;
+    color: gray !important;
+    font-size: 14px !important;
+}
+
+.home-service-icon {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.home-services-container {
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px;
+    padding-left: 250px;
+    padding-right: 200px;
+}
+
+.home-service {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #d6d6d6;
+    text-align: start !important;
+    border-radius: 10px;
+    border: none !important;
+}
+
+.home-service:hover {
+    background-color: #086efc;
+    color: white !important;
+}

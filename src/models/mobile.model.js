@@ -38,7 +38,12 @@ async function GetMobile(mobile_code) {
   return await Mobile.findOne({ mobile_code: mobile_code }).lean();
 }
 
+async function GetListMobile() {
+  return await Mobile.find({}).lean();
+}
+
 module.exports = {
   AddMobile,
   GetMobile,
+  GetListMobile,
 };

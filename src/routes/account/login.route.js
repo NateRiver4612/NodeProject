@@ -6,7 +6,7 @@ const { getUser } = require("../../models/user.model");
 const { updateWrongPassword } = require("../../models/user.model");
 
 LoginRouter.get("/", (req, res) => {
-  res.render("login", { style: "loginPageStyle.css" });
+  res.render("login", { style: "style.css" });
 });
 LoginRouter.post("/", LoginValidation, async (req, res) => {
   const { username } = req.body;

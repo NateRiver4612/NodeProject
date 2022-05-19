@@ -8,7 +8,7 @@ const { changeUserPassword } = require("../../models/user.model");
 ResetPasswordRouter.get("/", (req, res) => {
   res.render("reset-password", {
     token: req.params.id,
-    style: "loginPageStyle.css",
+    style: "style.css",
   });
 });
 

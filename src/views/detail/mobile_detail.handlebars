@@ -63,7 +63,7 @@
                     <th scope="row">Mệnh giá</th>
                 </tr>
                 <tr>
-                    <td scope="row">{{ data.price }}</td>
+                    <td id="price" scope="row">{{ data.price }}</td>
                 </tr>
             </td>
 
@@ -81,7 +81,7 @@
                     <th scope="row">Tổng cộng</th>
                 </tr>
                 <tr>
-                    <td scope="row">{{data.total}}</td>
+                    <td id="total" scope="row">{{data.total}}</td>
                 </tr>
             </td>
 
@@ -126,10 +126,12 @@
 
 
             <td style="text-align:end;">
-                <a href="/user/home" class="btn btn-secondary">Go back</a>
+                <a href="/user/history/mobile" class="btn btn-secondary">Go back</a>
             </td>
         </tbody>
     </table>
 
+
+    <script src="/js/detail.js"></script>
 </div>
 {{/if}}
