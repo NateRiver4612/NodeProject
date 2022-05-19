@@ -24,7 +24,7 @@ ServiceHistory.get("/recharge/:id", async (req, res) => {
   console.log(data.fullname);
 
   return res.render("detail/recharge_detail", {
-    style: "../../../../css/transactionPageStyle.css",
+    style: "../../../../css/style.css",
     data,
   });
 });
@@ -48,7 +48,7 @@ ServiceHistory.get("/mobile/:id", async (req, res) => {
   console.log(data.fullname);
 
   return res.render("detail/mobile_detail", {
-    style: "../../../../css/transactionPageStyle.css",
+    style: "../../../../css/style.css",
     data,
   });
 });
@@ -70,7 +70,7 @@ ServiceHistory.get("/withdraw/:id", async (req, res) => {
   const data = await Withdraw.findOne({ _id: id }).lean();
 
   return res.render("detail/withdraw_detail", {
-    style: "../../../../css/transactionPageStyle.css",
+    style: "../../../../css/style.css",
     data,
   });
 });
@@ -92,7 +92,7 @@ ServiceHistory.get("/transfer/:id", async (req, res) => {
   const data = await Transfer.findOne({ _id: id }).lean();
 
   return res.render("detail/transfer_detail", {
-    style: "../../../../css/transactionPageStyle.css",
+    style: "../../../../css/style.css",
     data,
   });
 });

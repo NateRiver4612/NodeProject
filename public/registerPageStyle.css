@@ -11,7 +11,7 @@
     padding: 20px;
 }
 
-#fieldPhoto {
+#register-fieldPhoto {
     display: inline-block;
     position: absolute;
     z-index: 1;
@@ -25,14 +25,14 @@
 
 
 
-.btn{
+.register-btn{
     padding-right: 20px;
     padding-left:20px;
     border:none !important;
     font-size:15px !important ;
 }
 
-.form-group{
+.register-form-group{
     padding: 10px;
     position: relative;
 }
@@ -51,17 +51,14 @@
     width: 100%;
     padding-bottom: 50px;
 }
-.title-container{
-    padding-bottom: 50px;
-}
 
-input{
+.register-input{
     resize: horizontal;
     width: 100%;
     font-size: 15px !important;
 }
 
-.login-form{
+.register-form{
     position: relative;
     width: 100%;
 }

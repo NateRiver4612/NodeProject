@@ -30,7 +30,7 @@ UserService.get("/recharge", async (req, res) => {
   const user = await getUser(current_user["username"]);
 
   return res.render("confirm/recharge_confirm", {
-    style: "../../../css/transactionPageStyle.css",
+    style: "../../../css/style.css",
     data: user,
     type: "Nạp tiền",
   });
@@ -71,7 +71,7 @@ UserService.get("/withdraw", async (req, res) => {
   const user = await getUser(current_user["username"]);
 
   return res.render("confirm/withdraw_confirm", {
-    style: "../../../css/transactionPageStyle.css",
+    style: "../../../css/style.css",
     data: user,
     type: "Rút tiền",
   });
@@ -170,7 +170,7 @@ UserService.get("/transfer", async (req, res) => {
     };
 
     return res.render("confirm/transfer_confirm", {
-      style: "../../../css/transactionPageStyle.css",
+      style: "../../../css/style.css",
       data: user,
       type: "Chuyển tiền",
       message,
@@ -349,7 +349,7 @@ UserService.post("/mobile", async (req, res) => {
   const data = await GetMobile(mobile_number);
 
   return res.render("detail/mobile_detail", {
-    style: "../../../css/transactionPageStyle.css",
+    style: "../../../css/style.css",
     data,
     fullname,
   });

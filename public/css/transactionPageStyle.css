@@ -5,7 +5,7 @@
     background-color:#8fc4b7;
 }
 
-.table{
+.transaction-table{
     background-color: white;
     z-index: 2;
     border-radius:3px;
@@ -18,18 +18,12 @@
     font-size: 15px !important;
 }
 
-input:focus{
-    outline: none;
-}
-input{
-    border: none;
-}
 
-textarea:focus{
+.transaction-textarea:focus{
     outline: none;
 }
 
-textarea{
+.transaction-textarea{
     width: 100%;
     border: none;
 }

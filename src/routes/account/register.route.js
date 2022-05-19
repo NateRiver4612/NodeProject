@@ -17,7 +17,7 @@ const User = require("../../mongos/user.mongo");
 const formidable = require("formidable");
 
 RegisterRouter.get("/", (req, res) => {
-  res.render("register", { style: "registerPageStyle.css" });
+  res.render("register", { style: "style.css" });
 });
 
 RegisterRouter.post("/", async (req, res, next) => {

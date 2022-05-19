@@ -6,14 +6,14 @@
 {{/if}}
 {{#if data}}
 <div class="profile-card">
-    <div class="container">
+    <div class="profile-wrapper">
         <div class="profile-container">
-            <div class="form-group" style="text-align:start !important;width: 100% ;">
+            <div class="profile-form-group" style="text-align:start !important;width: 100% ;">
                 <h2>User Profile </h2>
             </div>
             <img src="https://firebasestorage.googleapis.com/v0/b/my-netflix-f21d5.appspot.com/o/avatar-web.png?alt=media&token=84d2d35f-6487-4022-b0bf-3a2067fc92d5"
                 height="45%" width="45%" alt="Jhon Doe" />
-            <div class="form-group " style="width: 100%;text-align:center;border:">
+            <div class="profile-form-group " style="width: 100%;text-align:center;border:">
                 <h3 type="text" style="border:none ;font-weight: bold !important;
                     font-size:20px;
                     color:#2D354A;
@@ -21,27 +21,27 @@
                     {{data.fullname}}</h3>
             </div>
             <div class="profile-form" method="post" action="/register" enctype="multipart/form-data">
-                <div class="form-container">
-                    <div class="form-group">
+                <div class="profile-form-container">
+                    <div class="profile-form-group">
                         <label for="phone_number">Phone Number</label>
-                        <input type="number" class="form-control" disabled placeholder="{{data.phone_number}}"
-                            name="phone_number" id="phone_number">
+                        <input type="number" class="profile-input form-control" disabled
+                            placeholder="{{data.phone_number}}" name="phone_number" id="phone_number">
                     </div>
 
 
-                    <div class="form-group ">
+                    <div class="profile-form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" disabled placeholder="{{data.email}}" name="email"
-                            id="email">
+                        <input type="email" class="profile-input form-control" disabled placeholder="{{data.email}}"
+                            name="email" id="email">
                     </div>
 
-                    <div class="form-group ">
+                    <div class="profile-form-group">
                         <label for="birthdate">Birthdate</label>
                         <input placeholder={{data.birthdate}} disabled class="form-control" type="text"
                             onfocus="(this.type='date')" id="date" name="birthdate" id="birthdate">
                     </div>
 
-                    <div class="form-group ">
+                    <div class="profile-form-group">
                         <label for="address">Address</label>
                         <textarea type="text" class="form-control" disabled placeholder="{{data.address}}"
                             name="address" id="address"></textarea>
@@ -50,44 +50,45 @@
             </div>
             <div class="logout-container"
                 style="display:flex; width: 100%;padding-top: 20px ; height:10%; justify-content:center ;align-items:flex-end ">
-                <a class="btn btn-danger" href="/logout">
+                <a class="profile-btn btn btn-danger" href="/logout">
                     Log out <i class="fa fa-sign-out" aria-hidden="true"></i>
                 </a>
             </div>
         </div>
-        <div class="account-container">
+        <div class="profile-account-container">
             <div style="padding-bottom:15px;display:flex;align-items:center;justify-content:space-between"
-                class=" form-group">
+                class=" profile-form-group">
                 <h3 style="padding-right: 10%;">Account </h3>
-                <div class="status alert-warning" role="alert">
+                <div class="profile-status alert-warning" role="alert">
                     {{data.status}}...
                 </div>
             </div>
             <div class="login-form" method="post" action="/register" enctype="multipart/form-data">
-                <div class="form-container">
+                <div class="profile-form-container">
 
-                    <div style="width: 90% !important;" class="form-group ">
+                    <div style="width: 90% !important;" class="profile-form-group">
                         <label for="fullname">Account Balance </label>
-                        <input type="number" name="account_balance" id="account_balance" class="form-control" disabled>
+                        <input type="number" name="account_balance" id="account_balance"
+                            class="profile-input form-control" disabled>
                     </div>
 
-                    <div style="width: 90% !important;" class="form-group">
+                    <div style="width: 90% !important;" class="profile-form-group">
                         <label for="username">Username</label>
-                        <input type="number" class="form-control" disabled placeholder="{{data.username}}"
+                        <input type="number" class="profile-input form-control" disabled placeholder="{{data.username}}"
                             name="username" id="username">
                     </div>
 
 
 
-                    <div style="width: 100% !important;" class="form-group ">
+                    <div style="width: 100% !important;" class="profile-form-group">
                         <label for="password">Password</label>
-                        <div class="input-container">
+                        <div class="profile-input-container">
                             <div style="flex:1">
-                                <input type="password" class=" form-control" disabled value="{{data.password}}"
-                                    name="password" id="password">
+                                <input type="password" class="profile-input form-control" disabled
+                                    value="{{data.password}}" name="password" id="password">
                             </div>
                             <div style="flex:0">
-                                <a href="/user/change_password" class="btn" style="color:white">
+                                <a href="/user/change_password" class="profile-btn btn" style="color:white">
                                     <i class="fa fa-solid fa-pen"></i>
                                 </a>
                             </div>
@@ -96,28 +97,29 @@
 
 
 
-                    <div class="form-group ">
-                        <label style="padding-bottom: 10px;" for="input-container">CMND mặt trước và mặt sau</label>
+                    <div class="profile-form-group">
+                        <label style="padding-bottom: 10px;" for="profile-input-container">CMND mặt trước và mặt
+                            sau</label>
 
-                        <div class="input-container" id="input-container">
-                            <div class="photo-container">
+                        <div class="profile-input-container" id="profile-input-container">
+                            <div class="profile-photo-container">
                                 <img src="../{{data.font_photoPath}}" alt="CMND mặt trước" class="img-fluid"
                                     height="120 !important">
                             </div>
                             <div style="flex:0.1">
-                                <button class="btn" style="color:white" data-bs-toggle="modal"
+                                <button class="profile-btn btn" style="color:white" data-bs-toggle="modal"
                                     data-bs-target="#updateCMDD">
                                     <i class="fa fa-solid fa-pen"></i>
                                 </button>
                             </div>
                         </div>
 
-                        <div class="input-container" style="margin-top: 20px;">
-                            <div class="photo-container">
+                        <div class="profile-input-container" style="margin-top: 20px;">
+                            <div class="profile-photo-container">
                                 <img src="../{{data.back_photoPath}}" class="img-fluid" alt="CMND mặt sau" height="120">
                             </div>
                             <div style="flex:0.1">
-                                <button class="btn" data-bs-toggle="modal" data-bs-target="#updateCMDD"
+                                <button class="profile-btn btn" data-bs-toggle="modal" data-bs-target="#updateCMDD"
                                     style="color:white">
                                     <i class="fa fa-solid fa-pen"></i>
                                 </button>
@@ -141,35 +143,35 @@
             <div class="modal-body">
                 <form class="login-form" method="post" action="/user/profile" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <div class="form-group">
+                        <div class="profile-form-group">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="font_photoPath" name="font_photoPath"
-                                    placeholder="Upload CMND mặt trước">
+                                <input type="text" class="profile-input form-control" id="font_photoPath"
+                                    name="font_photoPath" placeholder="Upload CMND mặt trước">
                                 <span class="input-group-text" id="basic-addon2">Browse</span>
                             </div>
                             <input type="file" multiple="multiple"
                                 onchange="document.getElementById('font_photoPath').value = this.value.replace('C:\\fakepath\\', '');"
-                                class="form-control-file" required accept="image/*" id="fieldPhoto"
-                                name="font_photoPath" aria-label="File browser example">
+                                class="profile-input form-control-file" required accept="image/*"
+                                id="profile-fieldPhoto" name="font_photoPath" aria-label="File browser example">
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <div class="form-group">
+                        <div class="profile-form-group">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="back_photoPath" name="back_photoPath"
-                                    placeholder="Upload CMND mặt sau">
+                                <input type="text" class="profile-input form-control" id="back_photoPath"
+                                    name="back_photoPath" placeholder="Upload CMND mặt sau">
                                 <span class="input-group-text" id="basic-addon2">Browse</span>
                             </div>
                             <input type="file" multiple="multiple"
                                 onchange="document.getElementById('back_photoPath').value = this.value.replace('C:\\fakepath\\', '');"
-                                class="form-control-file" required accept="image/*" id="fieldPhoto"
-                                name="back_photoPath" aria-label="File browser example">
+                                class="profile-input form-control-file" required accept="image/*"
+                                id="profile-fieldPhoto" name="back_photoPath" aria-label="File browser example">
                         </div>
                     </div>
 
-                    <div class="form-group" style="display: flex;justify-content:end">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="profile-form-group" style="display: flex;justify-content:end">
+                        <button type="submit" class="profile-btn btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>

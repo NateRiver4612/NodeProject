@@ -53,7 +53,7 @@ UserRouter.get("/profile", async (req, res) => {
   user.back_photoPath = user.back_photoPath.split("public\\")[1];
 
   return res.render("profile", {
-    style: "../../css/profilePageStyle.css",
+    style: "../../css/style.css",
     data: user,
   });
 });

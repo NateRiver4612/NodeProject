@@ -1,4 +1,4 @@
-.profile-container{
+/* .profile-container{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -14,36 +14,37 @@
 }
 
 
-#fieldPhoto {
+#profile-fieldPhoto {
     display: inline-block;
     position: absolute;
     z-index: 1;
-    width: 70%;
-    height: 50px;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
     opacity: 0;
     cursor: pointer;
 }
 
+
 body.modal-open {
     overflow: auto!important;
     padding: 0px!important;
 }
 
-.input-container{
+.profile-input-container{
     display:flex;
     margin-left:1px;
     align-items:center
 }
 
-.photo-container{
+.profile-photo-container{
     flex:0.9; 
     outline:5px solid grey;
     border-radius:10px;
 }
 
-.status{
+.profile-status{
     position: relative;
     border: none !important;
     font-size: 12px !important;
@@ -51,7 +52,7 @@ body.modal-open {
     border-radius: 2px;
 }
 
-.account-container{
+.profile-account-container{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -70,40 +71,28 @@ body.modal-open {
 }
 
 
-.container{
+.profile-wrapper{
     display: flex;
     justify-content: center;
     border-radius: 10px !important;
     padding-bottom: 20px;
 }
 
-#fieldPhoto {
-    display: inline-block;
-    position: absolute;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    cursor: pointer;
-}
 
 
-
-
-.btn{
+.profile-btn{
     padding-right: 20px;
     padding-left:20px;
     border:none !important;
     font-size:15px !important ;
 }
 
-.form-group{
+.profile-form-group{
     padding: 8px;
     position: relative;
     height: fit-content;
 }
+
 
 .alert{
     text-align: center;
@@ -119,12 +108,9 @@ body.modal-open {
     width: 100%;
     margin: auto;
 }
-.title-container{
-    padding-bottom: 50px;
-}
 
-input{
-    resize: horizontal;
+.profile-input{
+    resize: horizontal !important;
     width: 100% ;
     font-size: 15px !important;
 }
@@ -136,15 +122,6 @@ input{
     display: flex;
 }
 
-.form-container{
+.profile-form-container{
     width: 100%;
-}
-
-
-
-/* @media screen and (max-width: 600px) {
-    .input[type=password] input[type=text] {
-      width: 40%;
-      margin-top: 0;
-    }
-  } */
+} */

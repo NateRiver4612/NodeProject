@@ -1,4 +1,4 @@
-/* .home-container{
+.home-container{
     height: fit-content;
     background-color: white;
 }
@@ -58,4 +58,4 @@ h6 {
 .service:hover{
     background-color:#086efc;
     color: white !important;
-} */
+}
