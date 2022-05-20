@@ -5,10 +5,18 @@ const Mobile = require("../../mongos/mobile.mongo");
 const Withdraw = require("../../mongos/withdraw.mongo");
 const Transfer = require("../../mongos/transfer.mongo");
 
+function toDate(string) {
+  return new Date(string.toString().replace("th", ""));
+}
+
 //Get list of recharge
 ServiceHistory.get("/recharge", async (req, res) => {
   const current_user = JSON.parse(localStorage.getItem("user"));
   const data = await Recharge.find({ username: current_user.username }).lean();
+
+  data.sort(function (a, b) {
+    return toDate(b.date) - toDate(a.date);
+  });
 
   return res.render("history/recharge_history", {
     style: "../../../css/style.css",
@@ -21,8 +29,6 @@ ServiceHistory.get("/recharge/:id", async (req, res) => {
   const id = req.params.id;
   const data = await Recharge.findOne({ _id: id }).lean();
 
-  console.log(data.fullname);
-
   return res.render("detail/recharge_detail", {
     style: "../../../../css/style.css",
     data,
@@ -33,6 +39,10 @@ ServiceHistory.get("/recharge/:id", async (req, res) => {
 ServiceHistory.get("/mobile", async (req, res) => {
   const current_user = JSON.parse(localStorage.getItem("user"));
   const data = await Mobile.find({ username: current_user.username }).lean();
+
+  data.sort(function (a, b) {
+    return toDate(b.date) - toDate(a.date);
+  });
 
   return res.render("history/mobile_history", {
     style: "../../../css/style.css",
@@ -58,6 +68,10 @@ ServiceHistory.get("/withdraw", async (req, res) => {
   const current_user = JSON.parse(localStorage.getItem("user"));
   const data = await Withdraw.find({ username: current_user.username }).lean();
 
+  data.sort(function (a, b) {
+    return toDate(b.date) - toDate(a.date);
+  });
+
   return res.render("history/withdraw_history", {
     style: "../../../css/style.css",
     data: data,
@@ -79,6 +93,10 @@ ServiceHistory.get("/withdraw/:id", async (req, res) => {
 ServiceHistory.get("/transfer", async (req, res) => {
   const current_user = JSON.parse(localStorage.getItem("user"));
   const data = await Transfer.find({ username: current_user.username }).lean();
+
+  data.sort(function (a, b) {
+    return toDate(b.date) - toDate(a.date);
+  });
 
   return res.render("history/transfer_history", {
     style: "../../../css/style.css",

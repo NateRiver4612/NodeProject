@@ -353,7 +353,7 @@ body.modal-open {
 }
 
 .transaction-textarea {
-    width: 100%;
+    width: 100% !important;
     border: none;
 }
 
@@ -363,4 +363,9 @@ td {
 
 tr {
     font-size: 15px !important;
+}
+
+.confirm-input {
+    border: none;
+    color: gray !important;
 }

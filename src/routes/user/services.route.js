@@ -256,6 +256,7 @@ UserService.post("/transfer", TransferValidation, async (req, res) => {
       <h3>Thông tin người gửi </h3>
       <h4>Tài khoản: ${username}</h4>
       <h4>Chủ tài khoản: ${fullname}</h4>
+      <h4>Nội dung: ${note ? note : ""}</h4>
     `;
 
   let mailOptions = {
@@ -305,6 +306,7 @@ UserService.post("/mobile", async (req, res) => {
   var { network, price, quantity } = req.body;
   const current_user = JSON.parse(localStorage.getItem("user"));
   const { username, fullname } = await getUser(current_user["username"]);
+  console.log("Hello");
 
   var mobile_number;
   var network_number;

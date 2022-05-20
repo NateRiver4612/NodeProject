@@ -4,9 +4,10 @@
     <strong>{{message.intro}}: </strong> {{message.message}}
 </div>
 {{/if}}
+
 {{#if data}}
 <div class="transaction-detail-container">
-    <table class="table table-striped">
+    <table class="transaction-table table table-striped">
         <thead>
             <tr>
                 <th style="font-size: 25px" scope="row">Xác nhận giao dịch - {{type}}</th>
@@ -47,7 +48,8 @@
                     </tr>
                     <tr>
                         <th>
-                            <input readonly="true" name="money" id="confirm-total" scope="row"></input>
+                            <input class="confirm-input" readonly="true" name="money" id="confirm-total"
+                                scope="row"></input>
                         </th>
                     </tr>
                 </td>
@@ -58,7 +60,8 @@
                     </tr>
                     <tr>
                         <th>
-                            <input readonly="true" name="receiver_phone" id="receiver_phone" scope="row"></input>
+                            <input class="confirm-input" readonly="true" name="receiver_phone" id="receiver_phone"
+                                scope="row"></input>
                         </th>
                     </tr>
                 </td>
@@ -80,7 +83,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <input readonly="true" name="pay_side" id="pay_side" scope="row"></input>
+                            <input class="confirm-input" readonly="true" name="pay_side" id="pay_side"
+                                scope="row"></input>
                         </td>
                     </tr>
                 </td>
@@ -91,7 +95,8 @@
                     </tr>
                     <tr>
                         <th>
-                            <textarea readonly="true" name="note" id="confirm-note" scope="row"></textarea>
+                            <textarea class="confirm-input  form-control" style="border: none;" readonly="true"
+                                name="note" id="confirm-note" scope="row"></textarea>
                         </th>
                     </tr>
                 </td>
@@ -102,8 +107,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <textarea class="form-control" type="text" style="border: none;" name="token" id="pay_side"
-                                scope="row"></textarea>
+                            <textarea class="confirm-input form-control" type="text" style="border: none;" name="token"
+                                id="pay_side" scope="row"></textarea>
                         </td>
                     </tr>
                 </td>
@@ -119,6 +124,6 @@
         </tbody>
     </table>
 
-    <script src="/js/transfer_confirm.js"></script>
+    <script src="/js/main.js"></script>
 </div>
 {{/if}}

@@ -72,7 +72,7 @@
                                 khoản qua thẻ ứng dụng</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="get" action="/user/recharge" class="modal-body">
+                        <form method="get" action="/user/service/recharge" class="modal-body">
                             <input style="margin: 5px;" required type="number" class="form-control" placeholder="Số thẻ"
                                 name="card_number">
                             <input style="margin: 5px;" required type="date" class="form-control"
@@ -119,7 +119,7 @@
                             <h5 class="modal-title" id="withdrawLabel">Rút tiền về thẻ tín dụng</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="get" action="/user/withdraw" class="modal-body">
+                        <form method="get" action="/user/service/withdraw" class="modal-body">
                             <input style="margin: 5px;" required type="number" class="form-control" placeholder="Số thẻ"
                                 name="card_number">
                             <input style="margin: 5px;" required type="date" class="form-control"
@@ -173,7 +173,7 @@
                             <h5 class="modal-title" id="transferLabel">Chuyển tiền cùng hệ thống</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="get" action="/user/transfer" class="modal-body">
+                        <form method="get" action="/user/service/transfer" class="modal-body">
                             <input style="margin: 5px;" required type="number" class="form-control"
                                 placeholder="Số điện thoại" name="phone_number">
 
@@ -228,7 +228,7 @@
                             <h5 class="modal-title" id="mobileLabel">Mua thẻ điện thoại</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="get" action="/user/mobile" class="modal-body">
+                        <form method="post" action="/user/service/mobile" class="modal-body">
 
                             <select id="network" name="network" class="form-select form-select-sm mb-3"
                                 aria-label=".form-select-lg example">

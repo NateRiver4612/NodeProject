@@ -42,15 +42,6 @@
 
             <td>
                 <tr>
-                    <th scope="row">Credit card</th>
-                </tr>
-                <tr>
-                    <td scope="row">{{data.card_number}}</td>
-                </tr>
-            </td>
-
-            <td>
-                <tr>
                     <th scope="row">Số tiền chuyển</th>
                 </tr>
                 <tr>
@@ -63,7 +54,7 @@
                     <th scope="row">Người nhận</th>
                 </tr>
                 <tr>
-                    <td id="fee" scope="row">{{data.receiver_fullname}}</td>
+                    <td scope="row">{{data.receiver_fullname}}</td>
                 </tr>
             </td>
 
@@ -72,7 +63,7 @@
                     <th scope="row">Tài khoản người nhận</th>
                 </tr>
                 <tr>
-                    <td id="fee" scope="row">{{data.receiver_username}}</td>
+                    <td scope="row">{{data.receiver_username}}</td>
                 </tr>
             </td>
 
@@ -90,7 +81,7 @@
                     <th scope="row">Trả phí giao dịch</th>
                 </tr>
                 <tr>
-                    <td id="fee" scope="row">{{data.pay_side}}</td>
+                    <td scope="row">{{data.pay_side}}</td>
                 </tr>
             </td>
 
@@ -138,6 +129,6 @@
         </tbody>
     </table>
 
-    <script src="/js/detail.js"></script>
+    <script src="/js/main.js"></script>
 </div>
 {{/if}}

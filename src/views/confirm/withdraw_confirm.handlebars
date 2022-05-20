@@ -1,6 +1,6 @@
 {{#if data}}
 <div class="transaction-detail-container">
-    <table class="table table-striped">
+    <table class="transaction-table table table-striped">
         <thead>
             <tr>
                 <th style="font-size: 25px" scope="row">Xác nhận giao dịch - {{type}}</th>
@@ -41,7 +41,8 @@
                     </tr>
                     <tr>
                         <th>
-                            <input style="border: none;" name="money" id="confirm-total" scope="row"></input>
+                            <input class="confirm-input" style="border: none;" name="money" id="confirm-total"
+                                scope="row"></input>
                         </th>
                     </tr>
                 </td>
@@ -63,20 +64,22 @@
                     </tr>
                     <tr>
                         <th>
-                            <input style="border: none;" name="card_number" id="confirm-card_number"
+                            <input class="confirm-input" style="border: none;" name="card_number"
+                                id="confirm-card_number" scope="row"></input>
+                        </th>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <input class="confirm-input" style="border: none;" name="expired" id="confirm-expired"
                                 scope="row"></input>
                         </th>
                     </tr>
 
                     <tr>
                         <th>
-                            <input style="border: none;" name="expired" id="confirm-expired" scope="row"></input>
-                        </th>
-                    </tr>
-
-                    <tr>
-                        <th>
-                            <input style="border: none;" name="cvv" id="confirm-cvv" scope="row"></input>
+                            <input class="confirm-input" style="border: none;" name="cvv" id="confirm-cvv"
+                                scope="row"></input>
                         </th>
                     </tr>
 
@@ -86,8 +89,8 @@
                     </tr>
                     <tr>
                         <th>
-                            <textarea style="border: none; width: 100%;" name="note" id="confirm-note"
-                                scope="row"></textarea>
+                            <textarea class="confirm-input" style="border: none !important; width: 100%;" name="note"
+                                id="confirm-note" scope="row"></textarea>
                         </th>
                     </tr>
                 </td>
@@ -104,6 +107,6 @@
         </tbody>
     </table>
 
-    <script src="/js/withdraw_confirm.js"></script>
+    <script src="/js/main.js"></script>
 </div>
 {{/if}}

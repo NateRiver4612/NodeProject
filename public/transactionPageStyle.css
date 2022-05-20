@@ -35,3 +35,7 @@ td{
 tr{
     font-size: 15px !important;
 }
+
+th{
+    color: gray !important;
+}
