@@ -32,29 +32,16 @@ async function httpSetCurrentUser() {
     const user = await response.json();
     header_profile.innerHTML = user["username"];
   } catch (error) {
-    header_profile.innerHTML = "Account";
+    if (UrlArr[1] == "admin") {
+      header_profile.innerHTML = `Log out`;
+    } else {
+      header_profile.innerHTML = "Account";
+    }
   }
 }
 //Load current_user info
 
 httpSetCurrentUser();
-
-//XỬ LÍ JSS TRANG CHỦ
-// if (page == "home") {
-//   //Load current_user info
-//   async function httpSetCurrentUser() {
-//     try {
-//       const response = await fetch(`http://localhost:8000/user/info`);
-//       const user = await response.json();
-//       header_profile.innerHTML = user["username"];
-//     } catch (error) {
-//       header_profile.innerHTML = "Account";
-//     }
-//   }
-//   //Load current_user info
-
-//   httpSetCurrentUser();
-// }
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -79,8 +66,15 @@ if (UrlArr[4]) {
   }
 }
 
-//JSS FOR HISTORY
+//JSS FOR PROFILE
+if (page == "profile" || UrlArr[1] == "admin") {
+  const account_balance = document.getElementById("account_balance");
+  account_balance.placeholder = `${numberWithCommas(
+    account_balance.placeholder
+  )} VND`;
+}
 if (page == "history") {
+  //JSS FOR HISTORY
   var status_docs = document.getElementsByClassName("history-status");
   var total_docs = document.getElementsByClassName("total");
 
@@ -102,7 +96,7 @@ if (page == "history") {
 //JSS FOR CONFIRM TRANSACTIONS PAGES
 if (UrlArr[3]) {
   //RECHARGE TRANSACTION
-  if (page == "service" && urlArr[3] == "recharge") {
+  if (page == "service" && UrlArr[3] == "recharge") {
     const confirm_total = document.getElementById("confirm-total");
     const confirm_card_number = document.getElementById("confirm-card_number");
     const confirm_expired = document.getElementById("confirm-expired");
@@ -165,10 +159,11 @@ if (UrlArr[3]) {
     const note = searchArr[2].split("=")[1].replaceAll("+", " ");
     const pay_side = searchArr[3].split("=")[1];
 
+    console.log(pay_side);
+
     confirm_total.value = numberWithCommas(parseInt(money) * 1000);
     confirm_note.value = note;
     phone_number_doc.value = phone_number;
-    fee_doc.innerHTML = numberWithCommas(fee_doc.innerHTML);
     pay_side_doc.value = pay_side == "sender" ? "Người chuyển" : "Người nhận";
   }
 }

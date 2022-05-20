@@ -2,7 +2,7 @@ const http = require("http");
 const mongoose = require("mongoose");
 // const { uploadDssv } = require("./models/user.model");
 const { saveCard } = require("./models/card.model");
-
+const { createAdmin } = require("./models/admin.model");
 const app = require("./app");
 const port = process.env.PORT;
 const MONGO_URL =
@@ -50,6 +50,8 @@ async function runServer() {
   server.listen(port, () => {
     console.log(`Listening on port: ${port}`);
   });
+
+  await createAdmin();
   await loadCards();
 }
 

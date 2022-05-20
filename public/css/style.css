@@ -357,6 +357,10 @@ body.modal-open {
     border: none;
 }
 
+.transaction-textarea:focus {
+    outline: none;
+}
+
 td {
     color: gray !important;
 }
@@ -366,6 +370,10 @@ tr {
 }
 
 .confirm-input {
-    border: none;
+    border: none !important;
     color: gray !important;
+}
+
+.confirm-input:focus{
+    outline: none;;
 }

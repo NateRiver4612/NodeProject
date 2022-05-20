@@ -49,11 +49,15 @@
                 </div>
             </div>
             <div class="logout-container"
-                style="display:flex; width: 100%;padding-top: 20px ; height:10%; justify-content:center ;align-items:flex-end ">
-                <a class="profile-btn btn btn-danger" href="/logout">
-                    Log out <i class="fa fa-sign-out" aria-hidden="true"></i>
+                style="display:flex; width: 100%;padding-top: 20px ; height:10%; justify-content:space-between ;align-items:flex-end ">
+                <a class="profile-btn btn btn-danger" href="">
+                    Cancel <i class="fa fa-sign-out" aria-hidden="true"></i>
+                </a>
+                <a class="profile-btn btn btn-success" href="">
+                    Activate <i class="fa fa-sign-out" aria-hidden="true"></i>
                 </a>
             </div>
+
         </div>
         <div class="profile-account-container">
             <div style="padding-bottom:15px;display:flex;align-items:center;justify-content:space-between"
@@ -83,14 +87,9 @@
                     <div style="width: 100% !important;" class="profile-form-group">
                         <label for="password">Password</label>
                         <div class="profile-input-container">
-                            <div style="flex:1">
+                            <div style="flex:0.9">
                                 <input type="password" class="profile-input form-control" disabled
                                     value="{{data.password}}" name="password" id="password">
-                            </div>
-                            <div style="flex:0">
-                                <a href="/user/change_password" class="profile-btn btn" style="color:white">
-                                    <i class="fa fa-solid fa-pen"></i>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -103,26 +102,15 @@
 
                         <div class="profile-input-container" id="profile-input-container">
                             <div class="profile-photo-container">
-                                <img src="../{{data.font_photoPath}}" alt="CMND mặt trước" class="img-fluid"
+                                <img src="../../../{{data.font_photoPath}}" alt="CMND mặt trước" class="img-fluid"
                                     height="120 !important">
-                            </div>
-                            <div style="flex:0.1">
-                                <button class="profile-btn btn" style="color:white" data-bs-toggle="modal"
-                                    data-bs-target="#updateCMDD">
-                                    <i class="fa fa-solid fa-pen"></i>
-                                </button>
                             </div>
                         </div>
 
                         <div class="profile-input-container" style="margin-top: 20px;">
                             <div class="profile-photo-container">
-                                <img src="../{{data.back_photoPath}}" class="img-fluid" alt="CMND mặt sau" height="120">
-                            </div>
-                            <div style="flex:0.1">
-                                <button class="profile-btn btn" data-bs-toggle="modal" data-bs-target="#updateCMDD"
-                                    style="color:white">
-                                    <i class="fa fa-solid fa-pen"></i>
-                                </button>
+                                <img src="../../../{{data.back_photoPath}}" class="img-fluid" alt="CMND mặt sau"
+                                    height="120">
                             </div>
                         </div>
                     </div>
@@ -130,55 +118,7 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="updateCMDD" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Update CMDD both side</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="login-form" method="post" action="/user/profile" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <div class="profile-form-group">
-                            <div class="input-group">
-                                <input type="text" class="profile-input form-control" id="font_photoPath"
-                                    name="font_photoPath" placeholder="Upload CMND mặt trước">
-                                <span class="input-group-text" id="basic-addon2">Browse</span>
-                            </div>
-                            <input type="file" multiple="multiple"
-                                onchange="document.getElementById('font_photoPath').value = this.value.replace('C:\\fakepath\\', '');"
-                                class="profile-input form-control-file" required accept="image/*"
-                                id="profile-fieldPhoto" name="font_photoPath" aria-label="File browser example">
-                        </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <div class="profile-form-group">
-                            <div class="input-group">
-                                <input type="text" class="profile-input form-control" id="back_photoPath"
-                                    name="back_photoPath" placeholder="Upload CMND mặt sau">
-                                <span class="input-group-text" id="basic-addon2">Browse</span>
-                            </div>
-                            <input type="file" multiple="multiple"
-                                onchange="document.getElementById('back_photoPath').value = this.value.replace('C:\\fakepath\\', '');"
-                                class="profile-input form-control-file" required accept="image/*"
-                                id="profile-fieldPhoto" name="back_photoPath" aria-label="File browser example">
-                        </div>
-                    </div>
-
-                    <div class="profile-form-group" style="display: flex;justify-content:end">
-                        <button type="submit" class="profile-btn btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <script src="../js/main.js"></script>
+    <script src="../../../js/main.js"></script>
 </div>
 {{/if}}

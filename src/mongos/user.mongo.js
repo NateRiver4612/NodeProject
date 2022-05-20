@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
   address: { type: String, require },
   font_photoPath: { type: String, require },
   back_photoPath: { type: String, require },
-  status: { type: String, default: "Pending" },
+  status: { type: String, default: "pending" },
   created_date: {
     type: String,
     default: moment().format("MMMM Do YYYY, h:mm:ss a"),

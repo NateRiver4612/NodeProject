@@ -7,6 +7,8 @@ const favicon = require("serve-favicon");
 const RegisterRouter = require("./routes/account/register.route");
 const LoginRouter = require("./routes/account/login.route");
 const UserRouter = require("./routes/user/user.route");
+const AdminRouter = require("./routes/admin/admin.route");
+
 const LogoutRouter = require("./routes/account/logout.route");
 const ForgotPasswordRouter = require("./routes/account/forgot_password.route");
 const ResetPasswordRouter = require("./routes/account/reset_password.route");
@@ -47,11 +49,6 @@ app.engine(
   "handlebars",
   engine({
     defaultLayout: "main",
-    // helpers: {
-    //   name: localStorage.getItem("user")
-    //     ? JSON.parse(localStorage.getItem("user"))["username"]
-    //     : "Account",
-    // },
   })
 );
 
@@ -67,9 +64,10 @@ app.use("/user", LoginAuthentication, UserRouter);
 app.use("/logout", LoginAuthentication, LogoutRouter);
 app.use("/forgot-password", ForgotPasswordRouter);
 app.use("/reset-password", ResetPasswordRouter);
+app.use("/admin", AdminRouter);
 
 app.get("/", LoginAuthentication, (req, res) => {
-  res.redirect("/user");
+  res.redirect("/login");
 });
 
 app.use(function (req, res, next) {

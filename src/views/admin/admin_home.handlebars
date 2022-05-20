@@ -1,0 +1,68 @@
+{{#if message}}
+<div class="alert alert-{{message.type}} alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong>{{message.intro}}: </strong> {{message.message}}
+</div>
+{{/if}}
+
+<div class="admin-home-container">
+    <div class="admin-racharge-table-container">
+        <h3 style="color: white">Danh sách tài khoản</h3>
+        <table id="admin-racharge-table" class="admin-racharge-table table">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Thể loại</th>
+                    <th scope="col">Miêu tả</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td><a href="admin/accounts/pending">Danh sách tài khoản đang chờ kích hoạt</a></td>
+                    <td>Tài khoản mới tạo hoặc mới được bổ sung CMND</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td><a href="admin/accounts/activated">Danh sách tài khoản đã kích hoạt</a></td>
+                    <td>Sắp xếp giảm dần theo ngày tạo</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td><a href="admin/accounts/canceled">Danh sách tài khoản đã bị vô hiệu hóa</a></td>
+                    <td>Do không đồng ý kích hoạt</td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td><a href="admin/accounts/locked">Danh sách tài khoản đang bị khóa vô thời hạn</a></td>
+                    <td>Do nhập đăng nhập sai nhiều lần</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="admin-racharge-table-container">
+        <h3 style="color: white">Danh sách giao dịch</h3>
+        <table id="admin-racharge-table" class="admin-racharge-table table">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Thể loại</th>
+                    <th scope="col">Miêu tả</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td><a href="accounts/pending">Danh sách chuyển tiền</a></td>
+                    <td>Giao dịch trên 5 triệu đồng</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td><a href="accounts/activated">Danh sách rút tiền</a></td>
+                    <td>Giao dịch trên 5 triệu đồng</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

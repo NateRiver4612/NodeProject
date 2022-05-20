@@ -8,7 +8,8 @@ const User = require("../../mongos/user.mongo");
 async function LoginValidation(req, res, next) {
   const { username, password } = req.body;
   const user = await getUser(username);
-  if (user) {
+
+  if (user && user.role == "user") {
     const { firstSignIn, locked } = user;
     //Handle if account is locked
     if (locked) {
@@ -67,6 +68,8 @@ async function LoginValidation(req, res, next) {
       //This is NOT the first time user sign in
       next();
     }
+  } else if (user.role == "admin") {
+    next();
   } else {
     req.session.flash = {
       type: "danger",

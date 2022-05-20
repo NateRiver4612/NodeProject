@@ -5,8 +5,9 @@ const Mobile = require("../../mongos/mobile.mongo");
 const Withdraw = require("../../mongos/withdraw.mongo");
 const Transfer = require("../../mongos/transfer.mongo");
 
-function toDate(string) {
-  return new Date(string.toString().replace("th", ""));
+function toDate(date, time) {
+  const restult = date + " " + time;
+  return new Date(restult.toString().replace("th", ""));
 }
 
 //Get list of recharge
@@ -15,7 +16,7 @@ ServiceHistory.get("/recharge", async (req, res) => {
   const data = await Recharge.find({ username: current_user.username }).lean();
 
   data.sort(function (a, b) {
-    return toDate(b.date) - toDate(a.date);
+    return toDate(b.date, b.time) - toDate(a.date, a.time);
   });
 
   return res.render("history/recharge_history", {
@@ -41,7 +42,7 @@ ServiceHistory.get("/mobile", async (req, res) => {
   const data = await Mobile.find({ username: current_user.username }).lean();
 
   data.sort(function (a, b) {
-    return toDate(b.date) - toDate(a.date);
+    return toDate(b.date, b.time) - toDate(a.date, a.time);
   });
 
   return res.render("history/mobile_history", {
@@ -69,7 +70,7 @@ ServiceHistory.get("/withdraw", async (req, res) => {
   const data = await Withdraw.find({ username: current_user.username }).lean();
 
   data.sort(function (a, b) {
-    return toDate(b.date) - toDate(a.date);
+    return toDate(b.date, b.time) - toDate(a.date, a.time);
   });
 
   return res.render("history/withdraw_history", {
@@ -95,7 +96,7 @@ ServiceHistory.get("/transfer", async (req, res) => {
   const data = await Transfer.find({ username: current_user.username }).lean();
 
   data.sort(function (a, b) {
-    return toDate(b.date) - toDate(a.date);
+    return toDate(b.date, b.time) - toDate(a.date, a.time);
   });
 
   return res.render("history/transfer_history", {
