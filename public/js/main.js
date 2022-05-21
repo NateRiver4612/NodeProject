@@ -69,6 +69,15 @@ if (UrlArr[4]) {
 //JSS FOR PROFILE
 if (page == "profile" || UrlArr[1] == "admin") {
   const account_balance = document.getElementById("account_balance");
+  const user_profile_status = document.getElementById("user_profile_status");
+
+  const status = user_profile_status.ariaPlaceholder;
+
+  if (status == "activated") {
+    user_profile_status.className = "profile-status alert-success";
+  } else if (status == "canceled") {
+    user_profile_status.className = "profile-status alert-danger";
+  }
   account_balance.placeholder = `${numberWithCommas(
     account_balance.placeholder
   )} VND`;
@@ -83,8 +92,10 @@ if (page == "history") {
 
     if (status == "pending") {
       status_docs[i].className = "history-status status alert-warning";
-    } else if (status == "cancel") {
+    } else if (status == "canceled") {
       status_docs[i].className = "history-status status alert-danger";
+    } else if (status == "activated") {
+      status_docs[i].className = "history-status status alert-success";
     }
   }
 

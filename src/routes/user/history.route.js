@@ -7,7 +7,7 @@ const Transfer = require("../../mongos/transfer.mongo");
 
 function toDate(date, time) {
   const restult = date + " " + time;
-  return new Date(restult.toString().replace("th", ""));
+  return new Date(restult.toString().replace("st", ""));
 }
 
 //Get list of recharge
@@ -55,8 +55,6 @@ ServiceHistory.get("/mobile", async (req, res) => {
 ServiceHistory.get("/mobile/:id", async (req, res) => {
   const id = req.params.id;
   const data = await Mobile.findOne({ mobile_code: id }).lean();
-
-  console.log(data.fullname);
 
   return res.render("detail/mobile_detail", {
     style: "../../../../css/style.css",

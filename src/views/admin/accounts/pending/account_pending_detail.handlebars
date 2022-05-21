@@ -50,12 +50,100 @@
             </div>
             <div class="logout-container"
                 style="display:flex; width: 100%;padding-top: 20px ; height:10%; justify-content:space-between ;align-items:flex-end ">
-                <a class="profile-btn btn btn-danger" href="">
-                    Cancel <i class="fa fa-sign-out" aria-hidden="true"></i>
-                </a>
-                <a class="profile-btn btn btn-success" href="">
-                    Activate <i class="fa fa-sign-out" aria-hidden="true"></i>
-                </a>
+                <button class="profile-btn btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancel_user">
+                    Cancel
+                </button>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="cancel_user" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="cancel_userLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="cancel_userLabel">Confirm cancel user</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form method="post" action="/admin/accounts/pending/{{data._id}}/cancel">
+                                <div class="modal-body">
+                                    Are you certain to cancel this user
+                                </div>
+                                <input name="admin_account_id" type="hidden" value="{{data._id}}">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                    <button type="submit" class="btn btn-primary">Yes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                {{!-- REQUEST BUTTON --}}
+                <button style="color: white;" class="profile-btn btn btn-warning" data-bs-toggle="modal"
+                    data-bs-target="#request_user">
+                    Request
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="request_user" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="request_userLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="request_userLabel">Confirm activate user</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form method="post" action="/admin/accounts/pending/{{data._id}}/request">
+                                <div class="modal-body">
+                                    Write down your request to user
+                                </div>
+                                <input name="admin_account_request" required class="form-control">
+                                <input name="admin_account_id" value="{{data._id}}">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                    <button type="submit" class="btn btn-primary">Yes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                {{!-- ACTIVATE BUTTON --}}
+                <button class="profile-btn btn btn-success" data-bs-toggle="modal" data-bs-target="#activate_user">
+                    Activate
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="activate_user" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="activate_userLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="activate_userLabel">Confirm activate user</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form method="post" action="/admin/accounts/pending/{{data._id}}/activate">
+                                <div class="modal-body">
+                                    Are you certain to activate this user
+                                </div>
+                                <input name="admin_account_id" type="hidden" value="{{data._id}}">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                    <button type="submit" class="btn btn-primary">Yes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
         </div>
@@ -63,7 +151,8 @@
             <div style="padding-bottom:15px;display:flex;align-items:center;justify-content:space-between"
                 class=" profile-form-group">
                 <h3 style="padding-right: 10%;">Account </h3>
-                <div class="profile-status alert-warning" role="alert">
+                <div id="user_profile_status" class="profile-status  alert-warning" aria-placeholder="{{data.status}}"
+                    role="alert">
                     {{data.status}}
                 </div>
             </div>

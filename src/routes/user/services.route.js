@@ -105,16 +105,29 @@ UserService.post("/withdraw", WithDrawValidation, async (req, res) => {
     return res.redirect("/user/home");
   }
 
-  //Lưu giao dịch
-  await AddWithdraw(
-    money,
-    username,
-    fullname,
-    "success",
-    transaction_fee,
-    card_number,
-    note
-  );
+  if (money > 5000000) {
+    //Lưu giao dịch
+    await AddWithdraw(
+      money,
+      username,
+      fullname,
+      "pending",
+      transaction_fee,
+      card_number,
+      note
+    );
+  } else {
+    //Lưu giao dịch
+    await AddWithdraw(
+      money,
+      username,
+      fullname,
+      "activated",
+      transaction_fee,
+      card_number,
+      note
+    );
+  }
 
   //Rút tiền người dùng
   await withdrawMoney(username, money, transaction_fee);
@@ -150,7 +163,7 @@ UserService.get("/transfer", async (req, res) => {
     `;
 
   let mailOptions = {
-    from: "admin@gmail.com", // sender address
+    from: "sinhvien@phongdaotao.com", // sender address
     to: user.email, // list of receivers
     subject: "Confirm your transaction", // Subject line
     text: "Follow the instruction", // plain text body
@@ -199,24 +212,39 @@ UserService.post("/transfer", TransferValidation, async (req, res) => {
     req.session.message = {
       type: "danger",
       message: "Số tiền vượt mức dư tài khoản",
-      intro: "Chuyển thất bài",
+      intro: "Chuyển tiền thất bài",
     };
     console.log(req.session.message);
     return res.redirect("/user/home");
   }
 
-  //Lưu giao dịch
-  await AddTransfer(
-    money,
-    username,
-    fullname,
-    "success",
-    transaction_fee,
-    note,
-    receiver.username,
-    receiver.fullname,
-    pay_side
-  );
+  if (money > 5000000) {
+    //Lưu giao dịch
+    await AddTransfer(
+      money,
+      username,
+      fullname,
+      "pending",
+      transaction_fee,
+      note,
+      receiver.username,
+      receiver.fullname,
+      pay_side
+    );
+  } else {
+    //Lưu giao dịch
+    await AddTransfer(
+      money,
+      username,
+      fullname,
+      "activated",
+      transaction_fee,
+      note,
+      receiver.username,
+      receiver.fullname,
+      pay_side
+    );
+  }
 
   var sender_fee = 0;
   var receiver_fee = 0;

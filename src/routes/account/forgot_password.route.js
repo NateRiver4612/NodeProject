@@ -35,7 +35,7 @@ ForgotPasswordRouter.post("/", (req, res) => {
     `;
 
     let mailOptions = {
-      from: "admin@gmail.com", // sender address
+      from: "sinhvien@phongdaotao.com ", // sender address
       to: req.body.email, // list of receivers
       subject: "Reset your password", // Subject line
       text: "Follow the instruction", // plain text body

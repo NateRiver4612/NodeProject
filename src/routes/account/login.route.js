@@ -16,7 +16,6 @@ LoginRouter.get("/", (req, res) => {
 LoginRouter.post("/", LoginValidation, async (req, res) => {
   const { username } = req.body;
   const user = await getUser(username);
-  console.log(username);
 
   await updateWrongPassword(user.email, 0);
 

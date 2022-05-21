@@ -2,6 +2,7 @@ const {
   getUser,
   updateWrongPassword,
   updateLocked,
+  lastUpdate,
 } = require("../../models/user.model");
 const User = require("../../mongos/user.mongo");
 
@@ -29,7 +30,7 @@ async function LoginValidation(req, res, next) {
 
       if (wrong_password_signIn >= 3) {
         await updateLocked(user.email, true);
-
+        await lastUpdate();
         req.session.message = {
           type: "danger",
           message: `Account has been locked due to security reason, contact the admin for support`,

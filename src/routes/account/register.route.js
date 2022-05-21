@@ -55,14 +55,14 @@ RegisterRouter.post("/", async (req, res, next) => {
       `;
 
       const mailOptions = {
-        from: "admin@gmail.com", // sender address
+        from: "sinhvien@phongdaotao.com", // sender address
         to: newUser.email, // list of receivers
         subject: "Your login information", // Subject line
         text: "This is your temporary username and password", // plain text body
         html: output, // html body
       };
 
-      transporter.sendMail(mailOptions, async (error, info) => {
+      await transporter.sendMail(mailOptions, async (error, info) => {
         if (error) {
           return console.log(error);
         }

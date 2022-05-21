@@ -1,0 +1,28 @@
+<div class="admin-home-container">
+    <div class="admin-racharge-table-container">
+        <h3 style="color: white">Danh sách tài khoản chờ kích hoạt</h3>
+        <table id="admin-racharge-table" class="admin-racharge-table table">
+            <thead>
+                <tr>
+                    <th scope="col">Tài khoản</th>
+                    <th scope="col">Chủ tài khoản</th>
+                    <th scope="col">Ngày khởi tạo</th>
+                    <th scope="col">Bị khóa vô thời hạn</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <th scope="row">{{username}}</th>
+                    <td>{{fullname}}</td>
+                    <td>{{created_date}}</td>
+                    <td>{{locked}}</td>
+                    <td>
+                        <a href="/admin/accounts/locked/{{_id}}">Chi tiết</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

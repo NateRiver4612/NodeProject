@@ -124,11 +124,23 @@ async function updateBothSideCMND(current_user) {
   );
 }
 
+async function updateStatus(username, status) {
+  return await User.updateOne(
+    {
+      username: username,
+    },
+    {
+      status: status,
+    }
+  );
+}
+
 module.exports = {
   saveUser,
   setUserSignIn,
   getUser,
   changeUserPassword,
+  updateStatus,
   lastUpdate,
   updateFirstSignIn,
   updateResetToken,

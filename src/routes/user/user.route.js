@@ -2,6 +2,8 @@ const express = require("express");
 const PasswordValidation = require("../../validations/account/password.validation");
 const moment = require("moment");
 
+const StatusValidation = require("../../validations/account/status.validation");
+
 const path = require("path");
 const formidable = require("formidable");
 
@@ -15,6 +17,7 @@ const {
   updateFirstSignIn,
   lastUpdate,
   getUser,
+  updateStatus,
 } = require("../../models/user.model");
 
 const UserService = require("./services.route");
@@ -83,10 +86,13 @@ UserRouter.post("/profile", async (req, res) => {
       fs.renameSync(photo.filepath, Path);
     });
     localStorage.setItem("user", JSON.stringify(current_user));
+
     await lastUpdate(
       current_user["username"],
       moment().format("MMMM Do YYYY, h:mm:ss a")
     );
+
+    await updateStatus(current_user["username"], "pending");
 
     return res.redirect("/user/profile");
   });
@@ -116,10 +122,7 @@ UserRouter.post("/change_password", PasswordValidation, async (req, res) => {
   await lastUpdate(email, moment().format("MMMM Do YYYY, h:mm:ss a"));
   await updateFirstSignIn(email);
 
-  const newUser = await getUser(username, new_pass_2);
-  localStorage.setItem("user", JSON.stringify(newUser));
-
-  console.log(JSON.parse(localStorage.getItem("user")));
+  localStorage.clear();
 
   req.session.message = {
     type: "success",
@@ -131,7 +134,7 @@ UserRouter.post("/change_password", PasswordValidation, async (req, res) => {
 });
 
 //Cung cấp dịch vụ cho người dùng
-UserRouter.use("/service", UserService);
+UserRouter.use("/service", StatusValidation, UserService);
 
 //Thống kê giao dịch
 UserRouter.use("/history", ServiceHistory);
