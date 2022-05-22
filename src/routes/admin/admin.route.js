@@ -1,5 +1,6 @@
 const express = require("express");
 const AccountsRoute = require("./account.route");
+const ServicesRoute = require("./service.route");
 
 const AdminRouter = express.Router();
 
@@ -18,5 +19,7 @@ AdminRouter.get("/logout", (req, res) => {
 });
 
 AdminRouter.use("/accounts", AccountsRoute);
+
+AdminRouter.use("/services", ServicesRoute);
 
 module.exports = AdminRouter;

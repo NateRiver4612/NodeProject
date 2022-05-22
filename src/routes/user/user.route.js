@@ -122,15 +122,13 @@ UserRouter.post("/change_password", PasswordValidation, async (req, res) => {
   await lastUpdate(email, moment().format("MMMM Do YYYY, h:mm:ss a"));
   await updateFirstSignIn(email);
 
-  localStorage.clear();
-
   req.session.message = {
     type: "success",
     message: "You have change your password succesfully",
     intro: "Change password succesfully",
   };
   console.log(req.session.message);
-  return res.redirect("/login");
+  return res.redirect("/user/profile");
 });
 
 //Cung cấp dịch vụ cho người dùng

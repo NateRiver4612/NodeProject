@@ -16,7 +16,7 @@ ForgotPasswordRouter.post("/", (req, res) => {
     if (err || !user) {
       req.session.flash = {
         type: "danger",
-        message: "User email is not exist ",
+        message: "Địa chỉ gmail không tồn tại",
         intro: "Reset password failed ",
       };
       console.log(req.session.flash);
@@ -28,8 +28,8 @@ ForgotPasswordRouter.post("/", (req, res) => {
     });
 
     const output = `
-      <h1>You have 1 minute before this token is expired</h1>
-      <h2>Please keep the Token secure and follow instructions of the link below</h2>
+      <h1>Bạn có 1 phút trước khi token hết hạn</h1>
+      <h2>Giữ token an toàn và sử dụng cho yêu cầu dưới link bên dưới</h2>
       <p>Token: ${token}</p>
       <p>Link: http://localhost:8000/reset-password</p>
     `;
@@ -37,8 +37,8 @@ ForgotPasswordRouter.post("/", (req, res) => {
     let mailOptions = {
       from: "sinhvien@phongdaotao.com ", // sender address
       to: req.body.email, // list of receivers
-      subject: "Reset your password", // Subject line
-      text: "Follow the instruction", // plain text body
+      subject: "Reset password", // Subject line
+      text: "Làm theo yêu cầu", // plain text body
       html: output, // html body
     };
 
@@ -51,7 +51,7 @@ ForgotPasswordRouter.post("/", (req, res) => {
       req.session.message = {
         type: "success",
         message:
-          "Please kindly follow the instructions that given in the email we have sent you",
+          "Hướng dẫn các bước thực hiện đã được gửi qua email người dùng",
         intro: "Email sent",
       };
       console.log(req.session.message);

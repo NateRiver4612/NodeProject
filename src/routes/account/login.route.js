@@ -28,7 +28,7 @@ LoginRouter.post("/", LoginValidation, async (req, res) => {
   if (user.role == "admin") {
     req.session.flash = {
       type: "success",
-      message: "You sign in as an Admin",
+      message: "Đăng nhập dưới danh Admin",
       intro: "Welcome",
     };
     console.log(req.session.flash);

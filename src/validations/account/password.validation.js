@@ -5,7 +5,7 @@ async function PasswordValidation(req, res, next) {
   if (old_pass && old_pass != current_user.password) {
     req.session.flash = {
       type: "danger",
-      message: "Current password is not exists!",
+      message: "Mật khẩu hiện tại không tồn tại!",
       intro: "Change password failed",
     };
     console.log(req.session.flash);
@@ -13,7 +13,7 @@ async function PasswordValidation(req, res, next) {
   } else if (new_pass_1 != new_pass_2) {
     req.session.flash = {
       type: "danger",
-      message: "Confirm your password correctly!",
+      message: "Xác minh mật khẩu không chính xác!",
       intro: "Change password failed",
     };
     console.log(req.session.flash);
@@ -21,7 +21,7 @@ async function PasswordValidation(req, res, next) {
   } else if (new_pass_1.length < 6 || new_pass_2.length < 6) {
     req.session.flash = {
       type: "danger",
-      message: "Password have at least 6 characters",
+      message: "Mật khẩu phải ít nhất 6 kí tự",
       intro: "Change password failed",
     };
     console.log(req.session.flash);

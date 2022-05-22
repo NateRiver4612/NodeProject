@@ -67,22 +67,27 @@ if (UrlArr[4]) {
 }
 
 //JSS FOR PROFILE
-if (page == "profile" || UrlArr[1] == "admin") {
+if (page == "profile" || (UrlArr[1] == "admin" && UrlArr[4])) {
   const account_balance = document.getElementById("account_balance");
   const user_profile_status = document.getElementById("user_profile_status");
+  console.log("fuckk");
 
-  const status = user_profile_status.ariaPlaceholder;
+  const status = user_profile_status ? user_profile_status.ariaPlaceholder : "";
 
   if (status == "activated") {
     user_profile_status.className = "profile-status alert-success";
   } else if (status == "canceled") {
     user_profile_status.className = "profile-status alert-danger";
+  } else if (status == "locked") {
+    user_profile_status.className = "profile-status alert-dark";
   }
-  account_balance.placeholder = `${numberWithCommas(
-    account_balance.placeholder
-  )} VND`;
+  if (account_balance) {
+    account_balance.placeholder = `${numberWithCommas(
+      account_balance.placeholder
+    )} VND`;
+  }
 }
-if (page == "history") {
+if (page == "history" || (UrlArr[1] == "admin" && UrlArr[3])) {
   //JSS FOR HISTORY
   var status_docs = document.getElementsByClassName("history-status");
   var total_docs = document.getElementsByClassName("total");

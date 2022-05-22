@@ -4,6 +4,11 @@ const { getAccounts, getAccount } = require("../../models/admin.model");
 const User = require("../../mongos/user.mongo");
 const AccountsRoute = express.Router();
 
+function toDate(date) {
+  const result = date;
+  return new Date(result.toString().replace("st", "").replaceAll("nd", ""));
+}
+
 AccountsRoute.get("/", (req, res) => {
   return res.send("Hello");
 });
@@ -11,6 +16,11 @@ AccountsRoute.get("/", (req, res) => {
 //--------------------------------------------------ROUTE FOR PENDING ACCOUNTS-----------------------------------------
 AccountsRoute.get("/pending", async (req, res) => {
   const data = await getAccounts("pending");
+
+  data.sort(function (a, b) {
+    console.log(toDate(b.created_date));
+    return toDate(b.created_date) - toDate(a.created_date);
+  });
 
   return res.render("admin/accounts/pending/account_pending", {
     layout: "admin",
@@ -74,11 +84,6 @@ AccountsRoute.post("/pending/:id/cancel", async (req, res) => {
   }
 });
 
-function toDate(date) {
-  const result = date;
-  return new Date(result.toString().replace("st", ""));
-}
-
 //--------------------------------------------------ROUTE FOR ACTIVATED ACCOUNTS-----------------------------------------
 AccountsRoute.get("/activated", async (req, res) => {
   const data = await getAccounts("activated");
@@ -141,7 +146,7 @@ AccountsRoute.get("/canceled/:id", async (req, res) => {
   });
 });
 
-//--------------------------------------------------ROUTE FOR ACTIVATED ACCOUNTS-----------------------------------------
+//--------------------------------------------------ROUTE FOR UNLOCK ACCOUNTS-----------------------------------------
 AccountsRoute.get("/locked", async (req, res) => {
   const data = await User.find({ locked: true }).lean();
 
@@ -178,8 +183,9 @@ AccountsRoute.post("/locked/:id/unlock", async (req, res) => {
   try {
     await User.findOneAndUpdate(
       { _id: admin_account_id },
-      { locked: false, wrong_password_signIn: 0 }
+      { locked: false, wrong_password_signIn: 0, status: "activated" }
     );
+
     return res.redirect("/admin/accounts/locked");
   } catch (e) {
     return res.send(e);

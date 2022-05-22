@@ -8,7 +8,7 @@ async function TokenValidation(req, res, next) {
         req.session.message = {
           type: "danger",
           message:
-            "Your token is incorrect or expired, please re-register to get new token",
+            "Token của bạn đã hết hạn hoặc không hợp lệ, vui lòng thực hiện lại thao tác",
           intro: "Reset password failed ",
         };
         console.log(req.session.message);
@@ -19,7 +19,7 @@ async function TokenValidation(req, res, next) {
   } else {
     req.session.flash = {
       type: "danger",
-      message: "Your token is can not be empty",
+      message: "Token không được để trống",
       intro: "Reset password failed ",
     };
     console.log(req.session.flash);

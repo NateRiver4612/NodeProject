@@ -1,0 +1,180 @@
+{{#if message}}
+<div class="alert alert-{{message.type}} alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong>{{message.intro}}: </strong> {{message.message}}
+</div>
+{{/if}}
+{{#if data}}
+<div class="transaction-detail-container">
+    <table class="transaction-table table table-striped">
+        <thead>
+            <tr>
+                <th style="font-size: 25px" scope="row">Chi tiết giao dịch </th>
+            </tr>
+        </thead>
+        <tbody>
+            <td>
+                <tr>
+                    <th scope="row">Mã giao dịch</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data._id}}</td>
+                </tr>
+            </td>
+            <td>
+                <tr>
+                    <th scope="row">Tài khoản</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.username}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Chủ tài khoản</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.fullname}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Credit card</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.card_number}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Số tiền giao dịch</th>
+                </tr>
+                <tr>
+                    <td id="total" scope="row">{{data.total}}</td>
+                </tr>
+            </td>
+
+
+            <td>
+                <tr>
+                    <th scope="row">Phí giao dịch</th>
+                </tr>
+                <tr>
+                    <td id="fee" scope="row">{{data.transaction_fee}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Ngày giao dịch</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.date}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Thời gian</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.time}}</td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Nội dung</th>
+                </tr>
+                <tr>
+                    <td><textarea readonly="true" class="confirm-input transaction-textarea" disabled
+                            scope="row">{{data.note}}</textarea></td>
+                </tr>
+            </td>
+
+            <td>
+                <tr>
+                    <th scope="row">Trạng thái</th>
+                </tr>
+                <tr>
+                    <td scope="row">{{data.status}}</td>
+                </tr>
+            </td>
+
+
+
+            <td class="logout-container"
+                style="display:flex; width: 100%;padding-top: 20px ; height:10%; justify-content:space-between ;align-items:flex-end ">
+                <button class="profile-btn btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancel_user">
+                    Cancel
+                </button>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="cancel_user" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="cancel_userLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="cancel_userLabel">Confirm cancel transaction</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form method="post" action="/admin/services/withdraw/{{data._id}}/cancel">
+                                <div class="modal-body">
+                                    Một khi từ chối kích hoạt, giao dịch sẽ không được thực hiện
+                                </div>
+                                <input name="admin_account_id" type="hidden" value="{{data._id}}">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                    <button type="submit" class="btn btn-primary">Yes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                {{!-- ACTIVATE BUTTON --}}
+                <button class="profile-btn btn btn-success" data-bs-toggle="modal" data-bs-target="#activate_user">
+                    Activate
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="activate_user" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="activate_userLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="activate_userLabel">Confirm activate transaction</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form method="post" action="/admin/services/withdraw/{{data._id}}/activate">
+                                <div class="modal-body">
+                                    Một khi activate giao dịch sẽ được thực hiện
+                                </div>
+                                <input name="admin_transaction_id" type="hidden" value="{{data._id}}">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                    <button type="submit" class="btn btn-primary">Yes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+            </td>
+        </tbody>
+    </table>
+
+    <script src="/js/main.js"></script>
+</div>
+{{/if}}

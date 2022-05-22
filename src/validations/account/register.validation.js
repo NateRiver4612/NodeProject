@@ -41,7 +41,7 @@ async function RegisterValidation(err, req, fields) {
   if ((await isEmailValid(email)) === false) {
     req.session.message = {
       type: "danger",
-      message: "Email address is not valid",
+      message: "Địa chỉ email không hợp lệ",
       intro: "Registration failed",
     };
 
@@ -50,7 +50,7 @@ async function RegisterValidation(err, req, fields) {
   } else if (isVietnamesePhoneNumber(phone_number) === false) {
     req.session.message = {
       type: "danger",
-      message: "Phone number is not valid or not in VietNam",
+      message: "Số điện thoại không hợp lệ",
       intro: "Registration failed",
     };
     console.log(req.session.message);
@@ -58,7 +58,7 @@ async function RegisterValidation(err, req, fields) {
   } else if (await isEmailUserExist(email)) {
     req.session.message = {
       type: "danger",
-      message: "User with this email is already exists",
+      message: "Email đã được sử dụng để đăng ký",
       intro: "Registration failed",
     };
 
@@ -67,7 +67,7 @@ async function RegisterValidation(err, req, fields) {
   } else if (await isPhoneNumberUserExist(phone_number)) {
     req.session.message = {
       type: "danger",
-      message: "User with this phone number is already exists",
+      message: "Số điện thoại đã được sử dụng",
       intro: "Registration failed",
     };
 

@@ -7,7 +7,8 @@ const Transfer = require("../../mongos/transfer.mongo");
 
 function toDate(date, time) {
   const restult = date + " " + time;
-  return new Date(restult.toString().replace("st", ""));
+
+  return new Date(restult.toString().replaceAll("nd", "").replaceAll("st", ""));
 }
 
 //Get list of recharge
@@ -68,6 +69,7 @@ ServiceHistory.get("/withdraw", async (req, res) => {
   const data = await Withdraw.find({ username: current_user.username }).lean();
 
   data.sort(function (a, b) {
+    console.log(toDate(b.date, b.time));
     return toDate(b.date, b.time) - toDate(a.date, a.time);
   });
 

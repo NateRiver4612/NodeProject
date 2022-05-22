@@ -1,0 +1,41 @@
+{{#if message}}
+<div class="alert alert-{{message.type}} alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong>{{message.intro}}: </strong> {{message.message}}
+</div>
+{{/if}}
+<div class="history-detail-container">
+    <table class="table history-table">
+        <thead>
+            <tr>
+                <th scope="col">Mã giao dịch</th>
+                <th scope="col">Credit card</th>
+                <th scope="col">Tài khoản</th>
+                <th scope="col">Chủ tài khoản</th>
+                <th scope="col">Tiền giao dịch</th>
+                <th scope="col">Ngày giao dịch</th>
+                <th scope="col">Trạng thái giao dịch</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td class="btn btn-light">{{_id}}</td>
+                <td>{{card_number}}</td>
+                <td>{{username}}</td>
+                <td>{{fullname}}</td>
+                <td class="total">{{total}}</td>
+                <td>{{date}}</td>
+                <td>
+                    <input id="status" disabled class="history-status alert-success" role="alert" value="{{status}}" />
+                </td>
+                <td>
+                    <a href="/admin/services/withdraw/{{_id}}" class="btn btn-primary">Chi tiết</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <script src="../../../js/main.js"></script>
+</div>

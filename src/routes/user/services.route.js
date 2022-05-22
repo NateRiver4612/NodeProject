@@ -91,8 +91,6 @@ UserService.post("/withdraw", WithDrawValidation, async (req, res) => {
   //Tạo phí giao dịch
   const transaction_fee = money * (5 / 100);
 
-  //----------------------------------------------------Duyệt bởi admin---------------------------------------
-
   //Kiểm tra số tiền vượt mức
   if (account_balance < money + transaction_fee) {
     req.session.message = {
@@ -105,6 +103,7 @@ UserService.post("/withdraw", WithDrawValidation, async (req, res) => {
     return res.redirect("/user/home");
   }
 
+  //----------------------------------------------------Duyệt bởi admin---------------------------------------
   if (money > 5000000) {
     //Lưu giao dịch
     await AddWithdraw(
@@ -116,18 +115,26 @@ UserService.post("/withdraw", WithDrawValidation, async (req, res) => {
       card_number,
       note
     );
-  } else {
-    //Lưu giao dịch
-    await AddWithdraw(
-      money,
-      username,
-      fullname,
-      "activated",
-      transaction_fee,
-      card_number,
-      note
-    );
+    req.session.message = {
+      type: "warning",
+      message: "Giao dịch trên 5 triệu động sẽ được cập nhật bởi admin ",
+      intro: "Chờ duyệt",
+    };
+    console.log(req.session.message);
+
+    return res.redirect("/user/home");
   }
+
+  //Lưu giao dịch
+  await AddWithdraw(
+    money,
+    username,
+    fullname,
+    "activated",
+    transaction_fee,
+    card_number,
+    note
+  );
 
   //Rút tiền người dùng
   await withdrawMoney(username, money, transaction_fee);
@@ -288,10 +295,10 @@ UserService.post("/transfer", TransferValidation, async (req, res) => {
     `;
 
   let mailOptions = {
-    from: "admin@gmail.com", // sender address
+    from: "sinhvien@phongdaotao.com", // sender address
     to: receiver.email, // list of receivers
-    subject: "New transaction", // Subject line
-    text: "View the transaction detail", // plain text body
+    subject: "Có giao dịch mới", // Subject line
+    text: "Xem thông tin chi tiết giao dịch", // plain text body
     html: output, // html body
   };
 

@@ -2,6 +2,7 @@ const {
   getUser,
   updateWrongPassword,
   updateLocked,
+  updateStatus,
   lastUpdate,
 } = require("../../models/user.model");
 const User = require("../../mongos/user.mongo");
@@ -11,12 +12,20 @@ async function LoginValidation(req, res, next) {
   const user = await getUser(username);
 
   if (user && user.role == "user") {
-    const { firstSignIn, locked } = user;
+    const { firstSignIn, locked, status } = user;
     //Handle if account is locked
     if (locked) {
       req.session.message = {
         type: "danger",
-        message: `Account has been locked  due to security reason, contact the admin for support`,
+        message: `Tài khoản bị khóa do đăng nhập sai nhiều lần`,
+        intro: "Login failed ",
+      };
+      console.log(req.session.message);
+      return res.redirect("/login");
+    } else if (status == "canceled") {
+      req.session.message = {
+        type: "danger",
+        message: `Tài khoản đã bị vô hiệu quá vui lòng liên hệ tổng đài 18001080`,
         intro: "Login failed ",
       };
       console.log(req.session.message);
@@ -31,9 +40,10 @@ async function LoginValidation(req, res, next) {
       if (wrong_password_signIn >= 3) {
         await updateLocked(user.email, true);
         await lastUpdate();
+        await updateStatus(username, "locked");
         req.session.message = {
           type: "danger",
-          message: `Account has been locked due to security reason, contact the admin for support`,
+          message: `Tài khoản bị khóa do đăng nhập sai nhiều lần`,
           intro: "Login failed ",
         };
 
@@ -42,7 +52,7 @@ async function LoginValidation(req, res, next) {
       } else if (wrong_password_signIn < 3) {
         req.session.flash = {
           type: "danger",
-          message: `You have ${3 - wrong_password_signIn} times to try`,
+          message: `Bạn còn ${3 - wrong_password_signIn} lần để thử`,
           intro: "Login failed ",
         };
 
@@ -56,8 +66,7 @@ async function LoginValidation(req, res, next) {
       //This is the first time user sign in
       req.session.message = {
         type: "warning",
-        message:
-          "This is the first time sign in you must change your password!",
+        message: "Lần đầu tiên đăng nhập, người dùng bắt buộc đổi mật khẩu",
         intro: "Require",
       };
       console.log(req.session.message);
@@ -74,7 +83,7 @@ async function LoginValidation(req, res, next) {
   } else {
     req.session.flash = {
       type: "danger",
-      message: "Username is not exists",
+      message: "Tài khoản không tồn tái",
       intro: "Login failed ",
     };
     console.log(req.session.flash);
