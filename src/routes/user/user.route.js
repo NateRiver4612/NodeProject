@@ -69,6 +69,7 @@ UserRouter.post("/profile", async (req, res) => {
 
   form.parse(req, async function (err, fields, files = []) {
     const current_user = JSON.parse(localStorage.getItem("user"));
+
     Object.keys(files).map((key) => {
       const photo = files[key];
 
@@ -87,10 +88,7 @@ UserRouter.post("/profile", async (req, res) => {
     });
     localStorage.setItem("user", JSON.stringify(current_user));
 
-    await lastUpdate(
-      current_user["username"],
-      moment().format("MMMM Do YYYY, h:mm:ss a")
-    );
+    await lastUpdate(current_user["username"]);
 
     await updateStatus(current_user["username"], "pending");
 
@@ -119,7 +117,7 @@ UserRouter.post("/change_password", PasswordValidation, async (req, res) => {
   const { new_pass_2 } = req.body;
 
   await changeUserPassword(email, new_pass_2);
-  await lastUpdate(email, moment().format("MMMM Do YYYY, h:mm:ss a"));
+  await lastUpdate(username);
   await updateFirstSignIn(email);
 
   req.session.message = {
@@ -128,7 +126,7 @@ UserRouter.post("/change_password", PasswordValidation, async (req, res) => {
     intro: "Change password succesfully",
   };
   console.log(req.session.message);
-  return res.redirect("/user/profile");
+  return res.redirect("/login");
 });
 
 //Cung cấp dịch vụ cho người dùng

@@ -52,7 +52,7 @@ UserService.post("/recharge", RechargeValidation, async (req, res) => {
 
   //Cộng tiền vào tải khoản người dùng
   await rechargeMoney(username, money);
-  await lastUpdate(username, moment().format("MMMM Do YYYY, h:mm:ss a"));
+  await lastUpdate(username);
 
   req.session.message = {
     type: "success",
@@ -146,7 +146,7 @@ UserService.post("/withdraw", WithDrawValidation, async (req, res) => {
   };
   console.log(req.session.message);
 
-  await lastUpdate(username, moment().format("MMMM Do YYYY, h:mm:ss a"));
+  await lastUpdate(username);
   return res.redirect("/user/profile");
 });
 
@@ -164,8 +164,8 @@ UserService.get("/transfer", async (req, res) => {
   );
 
   const output = `
-      <h1>You have 1 minute before this token is expired</h1>
-      <h2>Please keep the Token secure and follow instructions</h2>
+      <h1>Token có giá trị trong 1 phút</h1>
+      <h2>Làm ơn giữ token kín đáo và làm theo yêu cầu</h2>
       <p>Token: ${token}</p>
     `;
 
@@ -185,7 +185,7 @@ UserService.get("/transfer", async (req, res) => {
     message = {
       type: "success",
       message:
-        "Use Token we have sent you through gmail to confirm your transaction, you have 1 minute",
+        "Bạn có 1 phút sử dụng token mà chúng tôi vừa gửi trong email để xác nhận giao dịch",
       intro: "Email sent",
     };
 
@@ -225,34 +225,6 @@ UserService.post("/transfer", TransferValidation, async (req, res) => {
     return res.redirect("/user/home");
   }
 
-  if (money > 5000000) {
-    //Lưu giao dịch
-    await AddTransfer(
-      money,
-      username,
-      fullname,
-      "pending",
-      transaction_fee,
-      note,
-      receiver.username,
-      receiver.fullname,
-      pay_side
-    );
-  } else {
-    //Lưu giao dịch
-    await AddTransfer(
-      money,
-      username,
-      fullname,
-      "activated",
-      transaction_fee,
-      note,
-      receiver.username,
-      receiver.fullname,
-      pay_side
-    );
-  }
-
   var sender_fee = 0;
   var receiver_fee = 0;
 
@@ -270,6 +242,42 @@ UserService.post("/transfer", TransferValidation, async (req, res) => {
       return res.redirect("/user/home");
     }
   }
+
+  if (money > 5000000) {
+    //Lưu giao dịch
+    await AddTransfer(
+      money,
+      username,
+      fullname,
+      "pending",
+      transaction_fee,
+      note,
+      receiver.username,
+      receiver.fullname,
+      pay_side
+    );
+    req.session.message = {
+      type: "warning",
+      message: "Giao dịch trên 5 triệu động sẽ được cập nhật bởi admin ",
+      intro: "Chờ duyệt",
+    };
+    console.log(req.session.message);
+
+    return res.redirect("/user/home");
+  }
+
+  //Lưu giao dịch
+  await AddTransfer(
+    money,
+    username,
+    fullname,
+    "activated",
+    transaction_fee,
+    note,
+    receiver.username,
+    receiver.fullname,
+    pay_side
+  );
 
   //Trừ tiền tài khoản người gửi
   await withdrawMoney(username, money, sender_fee);
@@ -315,11 +323,8 @@ UserService.post("/transfer", TransferValidation, async (req, res) => {
   };
   console.log(req.session.message);
 
-  await lastUpdate(username, moment().format("MMMM Do YYYY, h:mm:ss a"));
-  await lastUpdate(
-    receiver.username,
-    moment().format("MMMM Do YYYY, h:mm:ss a")
-  );
+  await lastUpdate(username);
+  await lastUpdate(receiver.username);
   return res.redirect("/user/profile");
 });
 
@@ -380,7 +385,7 @@ UserService.post("/mobile", async (req, res) => {
 
   //Trừ tiền tài khoản người dùng
   await withdrawMoney(username, total, transaction_fee);
-  await lastUpdate(username, moment().format("MMMM Do YYYY, h:mm:ss a"));
+  await lastUpdate(username);
 
   //Lấy thông tin giao dịch
   const data = await GetMobile(mobile_number);

@@ -49,7 +49,7 @@ async function TransferValidation(req, res, next) {
   } else {
     req.session.flash = {
       type: "danger",
-      message: "Token khôn được để trống",
+      message: "Token không được để trống",
       intro: "Reset password failed ",
     };
     console.log(req.session.flash);

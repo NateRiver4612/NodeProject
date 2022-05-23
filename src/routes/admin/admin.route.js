@@ -7,7 +7,7 @@ const AdminRouter = express.Router();
 AdminRouter.get("/", (req, res) => {
   return res.render("admin/admin_home", {
     layout: "admin",
-    style: "./adminPageStyle.css",
+    style: "./style.css",
   });
 });
 

@@ -57,8 +57,8 @@ RegisterRouter.post("/", async (req, res, next) => {
       const mailOptions = {
         from: "sinhvien@phongdaotao.com", // sender address
         to: newUser.email, // list of receivers
-        subject: "Your login information", // Subject line
-        text: "This is your temporary username and password", // plain text body
+        subject: "Thông tin đăng nhập", // Subject line
+        text: "Đây là tài khoản và mật khẩu tạm thời", // plain text body
         html: output, // html body
       };
 
@@ -71,8 +71,8 @@ RegisterRouter.post("/", async (req, res, next) => {
         req.session.message = {
           type: "success",
           message:
-            "We have sent an email include the username and password that you need to sign in",
-          intro: "Registration Success",
+            "Chúng tôi đã gửi một email bao gồm thông tin đăng nhập tạm thời cho bạn",
+          intro: "Đăng ký Success",
         };
         console.log(req.session.register_message);
 

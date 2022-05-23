@@ -377,3 +377,27 @@ tr {
 .confirm-input:focus{
     outline: none;;
 }
+
+/* ---------------------------------------------------CSS FOR TRANSACTION DETAIL PAGES -----------------------------------------------*/
+.admin-racharge-table {
+    width: 50% !important;
+    background-color: white;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.admin-home-container {
+    background-color: #8fc4b7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-racharge-table-container {
+    margin-top: 5% !important;
+    width: 100%;
+    display: flex;
+    background-color: #8fc4b7;
+    flex-direction: column;
+    align-items: center;
+}

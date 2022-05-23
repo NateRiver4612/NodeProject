@@ -1,4 +1,4 @@
-.register-container{
+/* .register-container{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -6,7 +6,6 @@
     margin-top:3% !important;
     background-color: white;
     width: 30%;
-    /* padding: 40px; */
     border-radius: 7px;
     padding: 20px;
 }
@@ -61,7 +60,7 @@
 .register-form{
     position: relative;
     width: 100%;
-}
+} */
 
 
 /* @media screen and (max-width: 600px) {

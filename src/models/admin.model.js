@@ -1,5 +1,6 @@
 const User = require("../mongos/user.mongo");
 const Withdraw = require("../mongos/withdraw.mongo");
+const Transfer = require("../mongos/transfer.mongo");
 
 async function getAccounts(status) {
   return await User.find({ status: status }).lean();
@@ -30,10 +31,20 @@ async function getWithdraw(id) {
   return await Withdraw.findOne({ _id: id }).lean();
 }
 
+async function getTransfers() {
+  return await Transfer.find({ status: "pending" }).lean();
+}
+
+async function getTransfer(id) {
+  return await Transfer.findOne({ _id: id }).lean();
+}
+
 module.exports = {
   getAccounts,
   getWithdraws,
   getWithdraw,
+  getTransfers,
+  getTransfer,
   createAdmin,
   getAccount,
 };

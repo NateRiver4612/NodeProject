@@ -10,6 +10,7 @@ const User = require("../../mongos/user.mongo");
 async function LoginValidation(req, res, next) {
   const { username, password } = req.body;
   const user = await getUser(username);
+  console.log("Username", username);
 
   if (user && user.role == "user") {
     const { firstSignIn, locked, status } = user;
@@ -39,8 +40,9 @@ async function LoginValidation(req, res, next) {
 
       if (wrong_password_signIn >= 3) {
         await updateLocked(user.email, true);
-        await lastUpdate();
-        await updateStatus(username, "locked");
+        await lastUpdate(username);
+        const { last_update } = await getUser(username);
+        await updateStatus(username, `locked at ${last_update}`);
         req.session.message = {
           type: "danger",
           message: `Tài khoản bị khóa do đăng nhập sai nhiều lần`,

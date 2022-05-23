@@ -27,7 +27,7 @@ ResetPasswordRouter.post(
       await changeUserPassword(user.email, new_pass_2);
       req.session.message = {
         type: "success",
-        message: "You have reset your password succesfully",
+        message: "Tài khoản đã được reset mật khẩu thành công",
         intro: "Reset password succesfully",
       };
       res.redirect("/login");

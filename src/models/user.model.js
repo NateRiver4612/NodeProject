@@ -1,4 +1,5 @@
 const User = require("../mongos/user.mongo");
+const moment = require("moment");
 
 async function saveUser(user) {
   await User.findOneAndUpdate(
@@ -72,12 +73,12 @@ async function changeUserPassword(email, password) {
   );
 }
 
-async function lastUpdate(username, date) {
+async function lastUpdate(username) {
   return await User.updateOne(
     {
       username: username,
     },
-    { last_update: date }
+    { last_update: moment().format("MMMM Do YYYY, h:mm:ss a") }
   );
 }
 

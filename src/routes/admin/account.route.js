@@ -24,7 +24,7 @@ AccountsRoute.get("/pending", async (req, res) => {
 
   return res.render("admin/accounts/pending/account_pending", {
     layout: "admin",
-    style: "../../../css/adminPageStyle.css",
+    style: "../../../css/style.css",
     data,
   });
 });
@@ -39,7 +39,7 @@ AccountsRoute.get("/pending/:id", async (req, res) => {
 
   return res.render("admin/accounts/pending/account_pending_detail", {
     layout: "admin",
-    style: "../../../../css/adminPageStyle.css",
+    style: "../../../../css/style.css",
     data,
   });
 });
@@ -95,7 +95,7 @@ AccountsRoute.get("/activated", async (req, res) => {
 
   return res.render("admin/accounts/activated/account_activated", {
     layout: "admin",
-    style: "../../../css/adminPageStyle.css",
+    style: "../../../css/style.css",
     data,
   });
 });
@@ -110,7 +110,7 @@ AccountsRoute.get("/activated/:id", async (req, res) => {
 
   return res.render("admin/accounts/activated/account_activated_detail", {
     layout: "admin",
-    style: "../../../../css/adminPageStyle.css",
+    style: "../../../../css/style.css",
     data,
   });
 });
@@ -126,7 +126,7 @@ AccountsRoute.get("/canceled", async (req, res) => {
 
   return res.render("admin/accounts/canceled/account_canceled", {
     layout: "admin",
-    style: "../../../css/adminPageStyle.css",
+    style: "../../../css/style.css",
     data,
   });
 });
@@ -141,7 +141,7 @@ AccountsRoute.get("/canceled/:id", async (req, res) => {
 
   return res.render("admin/accounts/canceled/account_canceled_detail", {
     layout: "admin",
-    style: "../../../../css/adminPageStyle.css",
+    style: "../../../../css/style.css",
     data,
   });
 });
@@ -157,7 +157,7 @@ AccountsRoute.get("/locked", async (req, res) => {
 
   return res.render("admin/accounts/locked/account_locked", {
     layout: "admin",
-    style: "../../../css/adminPageStyle.css",
+    style: "../../../css/style.css",
     data,
   });
 });
@@ -172,7 +172,7 @@ AccountsRoute.get("/locked/:id", async (req, res) => {
 
   return res.render("admin/accounts/locked/account_locked_detail", {
     layout: "admin",
-    style: "../../../../css/adminPageStyle.css",
+    style: "../../../../css/style.css",
     data,
   });
 });

@@ -12,7 +12,7 @@
                 <tr>
                     <th scope="col">Tài khoản</th>
                     <th scope="col">Chủ tài khoản</th>
-                    <th scope="col">Ngày khởi tạo</th>
+                    <th scope="col">Thời gian bị khóa</th>
                     <th scope="col">Bị khóa vô thời hạn</th>
                 </tr>
             </thead>
@@ -21,7 +21,7 @@
                 <tr>
                     <th scope="row">{{username}}</th>
                     <td>{{fullname}}</td>
-                    <td>{{created_date}}</td>
+                    <td>{{last_update}}</td>
                     <td>{{locked}}</td>
                     <td>
                         <a href="/admin/accounts/locked/{{_id}}">Chi tiết</a>

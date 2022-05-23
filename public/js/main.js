@@ -9,13 +9,25 @@ const services_link = document.getElementById("services-link");
 const currentpage = location.pathname.split("/")[2];
 const current_service = location.pathname.split("/")[3];
 
-if (current_service && current_service == "recharge") {
+if (current_service && current_service == "recharge" && UrlArr[1] == "user") {
   services_link.innerHTML = "Lịch sử nạp tiền";
-} else if (current_service && current_service == "mobile") {
+} else if (
+  current_service &&
+  current_service == "mobile" &&
+  UrlArr[1] == "user"
+) {
   services_link.innerHTML = "Lịch sử mua thẻ ĐT";
-} else if (current_service && current_service == "withdraw") {
+} else if (
+  current_service &&
+  current_service == "withdraw" &&
+  UrlArr[1] == "user"
+) {
   services_link.innerHTML = "Lịch sử rút tiền";
-} else if (current_service && current_service == "transfer") {
+} else if (
+  current_service &&
+  current_service == "transfer" &&
+  UrlArr[1] == "user"
+) {
   services_link.innerHTML = "Lịch sử chuyển tiền";
 }
 
@@ -70,7 +82,6 @@ if (UrlArr[4]) {
 if (page == "profile" || (UrlArr[1] == "admin" && UrlArr[4])) {
   const account_balance = document.getElementById("account_balance");
   const user_profile_status = document.getElementById("user_profile_status");
-  console.log("fuckk");
 
   const status = user_profile_status ? user_profile_status.ariaPlaceholder : "";
 
@@ -78,7 +89,7 @@ if (page == "profile" || (UrlArr[1] == "admin" && UrlArr[4])) {
     user_profile_status.className = "profile-status alert-success";
   } else if (status == "canceled") {
     user_profile_status.className = "profile-status alert-danger";
-  } else if (status == "locked") {
+  } else if (status.includes("locked")) {
     user_profile_status.className = "profile-status alert-dark";
   }
   if (account_balance) {
