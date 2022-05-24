@@ -52,6 +52,7 @@ async function runServer() {
   });
 
   await createAdmin();
+  console.log("Create admin");
   await loadCards();
 }
 

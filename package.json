@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.5",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
     "bootstrap-icons": "^1.8.2",
     "cookie-parser": "^1.4.4",

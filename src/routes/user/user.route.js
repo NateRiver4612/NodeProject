@@ -1,7 +1,11 @@
 const express = require("express");
 const PasswordValidation = require("../../validations/account/password.validation");
 const moment = require("moment");
+const saltRounds = 10;
+const LoginAuthentication = require("../../authentications/login.authentication");
+const { updateBothSideCMND } = require("../../models/user.model");
 
+const bcrypt = require("bcrypt");
 const StatusValidation = require("../../validations/account/status.validation");
 
 const path = require("path");
@@ -28,7 +32,7 @@ UserRouter.get("/", (req, res) => {
 });
 
 //User home route
-UserRouter.get("/home", (req, res) => {
+UserRouter.get("/home", LoginAuthentication, (req, res) => {
   return res.render("user_home", {
     style: "../../css/style.css",
   });
@@ -38,15 +42,15 @@ UserRouter.get("/home", (req, res) => {
 UserRouter.get("/info", async (req, res) => {
   try {
     const current_user = JSON.parse(localStorage.getItem("user"));
-    const user = await getUser(current_user["username"]);
+    const user = await getUser(current_user ? current_user["username"] : "");
     return res.status(200).json(user);
   } catch (error) {
-    console.log("Error get user-info for client", error.toString);
+    console.log("Error get user-info for client", error.toString());
   }
 });
 
 //Trả về thông tin người dùng
-UserRouter.get("/profile", async (req, res) => {
+UserRouter.get("/profile", LoginAuthentication, async (req, res) => {
   const current_user = JSON.parse(localStorage.getItem("user"));
 
   const user = await getUser(current_user["username"]);
@@ -68,7 +72,7 @@ UserRouter.post("/profile", async (req, res) => {
   form.maxFileSize = 50 * 1024 * 1024;
 
   form.parse(req, async function (err, fields, files = []) {
-    const current_user = JSON.parse(localStorage.getItem("user"));
+    var current_user = JSON.parse(localStorage.getItem("user"));
 
     Object.keys(files).map((key) => {
       const photo = files[key];
@@ -86,11 +90,17 @@ UserRouter.post("/profile", async (req, res) => {
       fs.existsSync(dir) || fs.mkdirSync(dir);
       fs.renameSync(photo.filepath, Path);
     });
+
     localStorage.setItem("user", JSON.stringify(current_user));
 
-    await lastUpdate(current_user["username"]);
+    const { username, font_photoPath, back_photoPath } = JSON.parse(
+      localStorage.getItem("user")
+    );
 
-    await updateStatus(current_user["username"], "pending");
+    await updateBothSideCMND(username, font_photoPath, back_photoPath);
+    await lastUpdate(username);
+
+    await updateStatus(username, "pending");
 
     return res.redirect("/user/profile");
   });
@@ -114,11 +124,18 @@ UserRouter.post("/change_password", PasswordValidation, async (req, res) => {
 
   const { email, username } = await getUser(current_user["username"]);
 
-  const { new_pass_2 } = req.body;
+  var { new_pass_2 } = req.body;
 
-  await changeUserPassword(email, new_pass_2);
+  bcrypt.hash(new_pass_2, saltRounds, async function (err, hash) {
+    // Store hash in your password DB.
+    await changeUserPassword(email, hash);
+  });
+
   await lastUpdate(username);
   await updateFirstSignIn(email);
+
+  //update current_user
+  // localStorage.setItem("user", JSON.stringify(user));
 
   req.session.message = {
     type: "success",
@@ -126,13 +143,13 @@ UserRouter.post("/change_password", PasswordValidation, async (req, res) => {
     intro: "Change password succesfully",
   };
   console.log(req.session.message);
-  return res.redirect("/login");
+  return res.redirect("/user/home");
 });
 
 //Cung cấp dịch vụ cho người dùng
 UserRouter.use("/service", StatusValidation, UserService);
 
 //Thống kê giao dịch
-UserRouter.use("/history", ServiceHistory);
+UserRouter.use("/history", LoginAuthentication, ServiceHistory);
 
 module.exports = UserRouter;

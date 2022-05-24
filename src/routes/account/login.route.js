@@ -1,8 +1,9 @@
 const express = require("express");
 const LoginRouter = express.Router();
 const LoginValidation = require("../../validations/account/login.validation");
-const { getUser } = require("../../models/user.model");
+const { getUser, updateLocked } = require("../../models/user.model");
 const { updateWrongPassword } = require("../../models/user.model");
+const bcrypt = require("bcrypt");
 
 LoginRouter.get("/", (req, res) => {
   const current_user = JSON.parse(localStorage.getItem("user"));
@@ -17,8 +18,8 @@ LoginRouter.post("/", LoginValidation, async (req, res) => {
   const { username } = req.body;
   const user = await getUser(username);
 
-  await updateWrongPassword(user.email, 0);
-
+  await updateWrongPassword(user.username, 0);
+  await updateLocked(user.username, false);
   //Set current_user
   localStorage.setItem("user", JSON.stringify(user));
   console.log(

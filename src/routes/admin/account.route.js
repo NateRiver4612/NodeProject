@@ -6,7 +6,13 @@ const AccountsRoute = express.Router();
 
 function toDate(date) {
   const result = date;
-  return new Date(result.toString().replace("st", "").replaceAll("nd", ""));
+  return new Date(
+    result
+      .toString()
+      .replace("st", "")
+      .replaceAll("nd", "")
+      .replaceAll("rd", "")
+  );
 }
 
 AccountsRoute.get("/", (req, res) => {

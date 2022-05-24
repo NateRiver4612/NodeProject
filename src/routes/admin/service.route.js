@@ -20,7 +20,13 @@ const User = require("../../mongos/user.mongo");
 
 function toDate(date, time) {
   const restult = date + " " + time;
-  return new Date(restult.toString().replace("st", "").replaceAll("nd", ""));
+  return new Date(
+    restult
+      .toString()
+      .replace("st", "")
+      .replaceAll("nd", "")
+      .replaceAll("rd", "")
+  );
 }
 
 function numberWithCommas(x) {
@@ -76,6 +82,10 @@ ServicesRoute.post("/withdraw/:id/activate", async (req, res) => {
       <h1>Cập nhật giao dịch</h1>
       <h2>Admin đã duyệt giao dịch rút tiền</h2>
       <h2>Tài khoản đã rút ra: ${numberWithCommas(data.total)} VND về thẻ</h2>
+      <h2>Mã giao dịch: ${data._id} </h2>
+      <h2>Ngày giao dịch: ${data.date} </h2>
+      <h2>Thời gian giao dịch: ${data.time} </h2>
+      <h2>Nội dung giao dịch: ${data.note} </h2>
       <h2>Số dư hiện tại ${numberWithCommas(user.account_balance)} VND</h2>
     `;
 
@@ -103,6 +113,55 @@ ServicesRoute.post("/withdraw/:id/activate", async (req, res) => {
   return res.redirect("/admin/services/withdraw");
 });
 
+ServicesRoute.post("/withdraw/:id/cancel", async (req, res) => {
+  const { admin_transaction_id } = req.body;
+  console.log(admin_transaction_id);
+  const data = await getWithdraw(admin_transaction_id);
+
+  //Update transaction status
+  await Withdraw.updateOne(
+    { _id: admin_transaction_id },
+    { status: "canceled" }
+  );
+
+  const user = await getUser(data.username);
+
+  const output = `
+      <h1>Cập nhật giao dịch</h1>
+      <h2>Admin đã hủy giao dịch rút tiền</h2>
+      <h2>Tài khoản không thể thực hiên giao dịch này</h2>
+      <h2>Mã giao dịch: ${data._id} </h2>
+      <h2>Ngày giao dịch: ${data.date} </h2>
+      <h2>Thời gian giao dịch: ${data.time} </h2>
+      <h2>Nội dung giao dịch: ${data.note} </h2>
+      <h2>Số dư hiện tại ${numberWithCommas(user.account_balance)} VND</h2>
+    `;
+
+  let mailOptions = {
+    from: "sinhvien@phongdaotao.com", // sender address
+    to: user.email,
+    subject: "Thông báo giao dịch", // Subject line
+    text: "Xem thông tin chi tiết giao dịch", // plain text body
+    html: output, // html body
+  };
+
+  await transporter.sendMail(mailOptions, async (error, info) => {
+    if (error) {
+      return res.json({ error: error });
+    }
+  });
+
+  req.session.message = {
+    type: "warning",
+    message: "Giao dịch đã thực thi thành công",
+    intro: "Đã duyệt thành công",
+  };
+  console.log(req.session.message);
+
+  return res.redirect("/admin/services/withdraw");
+});
+
+//--------------------------------------------------ROUTE FOR WITHDRAW SERVICE-----------------------------------------
 ServicesRoute.get("/transfer", async (req, res) => {
   const data = await getTransfers();
 
@@ -166,6 +225,10 @@ ServicesRoute.post("/transfer/:id/activate", async (req, res) => {
       <h2>Tài khoản đã chuyển: ${numberWithCommas(data.total)} VND đến ${
     data.receiver_fullname
   } thành công</h2>
+      <h2>Mã giao dịch: ${data._id} </h2>
+      <h2>Ngày giao dịch: ${data.date} </h2>
+      <h2>Thời gian giao dịch: ${data.time} </h2>
+      <h2>Nội dung giao dịch: ${data.note} </h2>
       <h2>Số dư hiện tại ${numberWithCommas(user.account_balance)} VND</h2>
     `;
 
@@ -183,6 +246,10 @@ ServicesRoute.post("/transfer/:id/activate", async (req, res) => {
       <h1>Thông báo nhận tiền</h1>
       <h2>Tài khoản được chuyển thêm: ${numberWithCommas(data.total)} VND</h2>
       <h2>Số dư hiện tại ${numberWithCommas(receiver.account_balance)} VND</h2>
+      <h2>Mã giao dịch: ${data._id} </h2>
+      <h2>Ngày giao dịch: ${data.date} </h2>
+      <h2>Thời gian giao dịch: ${data.time} </h2>
+      <h2>Nội dung giao dịch: ${data.note} </h2>
       <h3>Thông tin người gửi </h3>
       <h4>Tài khoản: ${data.username}</h4>
       <h4>Chủ tài khoản: ${data.fullname}</h4>
@@ -211,6 +278,54 @@ ServicesRoute.post("/transfer/:id/activate", async (req, res) => {
 
   await lastUpdate(data.username);
   await lastUpdate(receiver.username);
+  req.session.message = {
+    type: "warning",
+    message: "Giao dịch đã thực thi thành công",
+    intro: "Đã duyệt thành công",
+  };
+  console.log(req.session.message);
+
+  return res.redirect("/admin/services/transfer");
+});
+
+ServicesRoute.post("/transfer/:id/cancel", async (req, res) => {
+  const { admin_transaction_id } = req.body;
+  const data = await getTransfer(admin_transaction_id);
+
+  //Update transaction status
+  await Transfer.updateOne(
+    { _id: admin_transaction_id },
+    { status: "canceled" }
+  );
+
+  //Thực hiện gửi gmail thông báo đã duyệt cho người gửi
+  const user = await getUser(data.username);
+
+  const outputSender = `
+      <h1>Cập nhật giao dịch</h1>
+      <h2>Admin đã hủy giao dịch chuyển tiền</h2>
+      <h2>Tài khoản không thể thực hiên giao dịch này</h2>
+      <h2>Mã giao dịch: ${data._id} </h2>
+      <h2>Ngày giao dịch: ${data.date} </h2>
+      <h2>Thời gian giao dịch: ${data.time} </h2>
+      <h2>Nội dung giao dịch: ${data.note} </h2>
+      <h2>Số dư hiện tại ${numberWithCommas(user.account_balance)} VND</h2>
+    `;
+
+  let mailSenderOptions = {
+    from: "sinhvien@phongdaotao.com", // sender address
+    to: user.email,
+    subject: "Thông báo giao dịch", // Subject line
+    text: "Xem thông tin chi tiết giao dịch", // plain text body
+    html: outputSender, // html body
+  };
+
+  transporter.sendMail(mailSenderOptions, async (error, info) => {
+    if (error) {
+      return res.json({ error: error });
+    }
+  });
+
   req.session.message = {
     type: "warning",
     message: "Giao dịch đã thực thi thành công",

@@ -146,6 +146,7 @@
                                 <div class="modal-body">
                                     Một khi từ chối kích hoạt, giao dịch sẽ không được thực hiện
                                 </div>
+                                <input name="admin_transaction_id" type="hidden" value="{{data._id}}">
                                 <input name="admin_account_id" type="hidden" value="{{data._id}}">
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
@@ -180,6 +181,7 @@
                                     Một khi activate giao dịch sẽ được thực hiện
                                 </div>
                                 <input name="admin_transaction_id" type="hidden" value="{{data._id}}">
+                                <input name="admin_account_id" type="hidden" value="{{data._id}}">
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
                                     <button type="submit" class="btn btn-primary">Yes</button>

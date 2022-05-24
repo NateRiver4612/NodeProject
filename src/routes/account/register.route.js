@@ -4,6 +4,9 @@ const RegisterRouter = express.Router();
 const { saveUser, setUserSignIn } = require("../../models/user.model");
 const RegisterValidation = require("../../validations/account/register.validation");
 const transporter = require("../../../libs/mail_transporter");
+const saltRounds = 10;
+
+const bcrypt = require("bcrypt");
 
 const path = require("path");
 const fs = require("fs");
@@ -30,6 +33,7 @@ RegisterRouter.post("/", async (req, res, next) => {
       return res.redirect(303, "/register");
     } else {
       const newUser = fields;
+
       Object.keys(files).map((key) => {
         const photo = files[key];
 
@@ -62,7 +66,7 @@ RegisterRouter.post("/", async (req, res, next) => {
         html: output, // html body
       };
 
-      await transporter.sendMail(mailOptions, async (error, info) => {
+      transporter.sendMail(mailOptions, async (error, info) => {
         if (error) {
           return console.log(error);
         }

@@ -4,6 +4,8 @@ const TokenValidation = require("../../validations/account/token.validation");
 const PasswordValidation = require("../../validations/account/password.validation");
 const User = require("../../mongos/user.mongo");
 const { changeUserPassword } = require("../../models/user.model");
+const saltRounds = 10;
+const bcrypt = require("bcrypt");
 
 ResetPasswordRouter.get("/", (req, res) => {
   res.render("reset-password", {
@@ -24,7 +26,10 @@ ResetPasswordRouter.post(
       if (err || !user) {
         return res.status(400).json({ error: "User email is not exists" });
       }
-      await changeUserPassword(user.email, new_pass_2);
+      bcrypt.hash(new_pass_2, saltRounds, async function (err, hash) {
+        // Store hash in your password DB.
+        await changeUserPassword(user.email, hash);
+      });
       req.session.message = {
         type: "success",
         message: "Tài khoản đã được reset mật khẩu thành công",

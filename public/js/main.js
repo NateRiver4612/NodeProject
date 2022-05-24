@@ -3,6 +3,8 @@ const UrlArr = window.location.pathname.split("/");
 const page = UrlArr[2];
 
 const header_profile = document.getElementById("header-profile");
+const admin_header_profile = document.getElementById("admin-header-profile");
+
 const home_link = document.getElementById("home-link");
 const services_link = document.getElementById("services-link");
 
@@ -39,16 +41,16 @@ if (currentpage == "home") {
 
 //Load current_user info
 async function httpSetCurrentUser() {
-  try {
-    const response = await fetch(`http://localhost:8000/user/info`);
-    const user = await response.json();
-    header_profile.innerHTML = user["username"];
-  } catch (error) {
-    if (UrlArr[1] == "admin") {
-      header_profile.innerHTML = `Log out`;
-    } else {
-      header_profile.innerHTML = "Account";
-    }
+  const response = await fetch(`http://localhost:8000/user/info`);
+  const user = await response.json();
+  if (admin_header_profile) {
+    admin_header_profile.innerHTML = `Log out`;
+  }
+
+  if (user) {
+    header_profile ? (header_profile.innerHTML = user["username"]) : "";
+  } else {
+    header_profile ? (header_profile.innerHTML = "Account") : "";
   }
 }
 //Load current_user info

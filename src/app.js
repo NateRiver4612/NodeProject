@@ -60,8 +60,8 @@ app.use(express.static(path.join(__dirname, "..", "/public")));
 
 app.use("/login", LoginRouter);
 app.use("/register", RegisterRouter);
-app.use("/user", LoginAuthentication, UserRouter);
-app.use("/logout", LoginAuthentication, LogoutRouter);
+app.use("/user", UserRouter);
+app.use("/logout", LogoutRouter);
 app.use("/forgot-password", ForgotPasswordRouter);
 app.use("/reset-password", ResetPasswordRouter);
 app.use("/admin", AdminRouter);

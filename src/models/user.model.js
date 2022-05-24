@@ -82,10 +82,10 @@ async function lastUpdate(username) {
   );
 }
 
-async function updateLocked(email, locked) {
+async function updateLocked(username, locked) {
   return await User.updateOne(
     {
-      email: email,
+      username: username,
     },
     {
       locked: locked,
@@ -93,10 +93,10 @@ async function updateLocked(email, locked) {
   );
 }
 
-async function updateWrongPassword(email, times) {
+async function updateWrongPassword(username, times) {
   return await User.updateOne(
     {
-      email: email,
+      username: username,
     },
     {
       wrong_password_signIn: times,
@@ -113,14 +113,14 @@ async function updateFirstSignIn(email) {
   );
 }
 
-async function updateBothSideCMND(current_user) {
-  return await User.updateOne(
+async function updateBothSideCMND(username, font_photoPath, back_photoPath) {
+  return await User.findOneAndUpdate(
     {
-      email: current_user.email,
+      username: username,
     },
     {
-      font_photoPath: current_user.update_font_photoPath,
-      back_photoPath: current_user.update_back_photoPath,
+      font_photoPath: font_photoPath,
+      back_photoPath: back_photoPath,
     }
   );
 }

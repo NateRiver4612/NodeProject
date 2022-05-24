@@ -7,8 +7,17 @@ const Transfer = require("../../mongos/transfer.mongo");
 
 function toDate(date, time) {
   const restult = date + " " + time;
-
-  return new Date(restult.toString().replaceAll("nd", "").replaceAll("st", ""));
+  // console.log(restult);
+  // console.log(
+  //   new Date(restult.toString().replaceAll("nd", "").replaceAll("st", ""))
+  // );
+  return new Date(
+    restult
+      .toString()
+      .replaceAll("nd", "")
+      .replaceAll("st", "")
+      .replaceAll("rd", "")
+  );
 }
 
 //Get list of recharge
