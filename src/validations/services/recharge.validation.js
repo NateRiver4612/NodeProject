@@ -64,19 +64,6 @@ async function RechargeValidation(req, res, next) {
           return res.redirect("/user/home");
         }
 
-        money = parseInt(money.replaceAll(".", ""));
-        console.log(money);
-
-        if (money % 50000 != 0) {
-          req.session.message = {
-            type: "danger",
-            message: "Số tiền nạp phải là bội số của 50",
-            intro: "Nạp tiền thất bại ",
-          };
-          console.log(req.session.message);
-          return res.redirect("/user/home");
-        }
-
         next();
       }
     }

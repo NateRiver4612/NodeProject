@@ -2,9 +2,10 @@ const jwt = require("jsonwebtoken");
 const User = require("../../mongos/user.mongo");
 
 async function TransferValidation(req, res, next) {
+  var { token, receiver_phone, money } = req.body;
+
   //Validate token
   if (token) {
-    const { token, receiver_phone, money } = req.body;
     jwt.verify(token, "accountactivatekey123", async (err, decodedData) => {
       if (err) {
         req.session.message = {
@@ -45,17 +46,15 @@ async function TransferValidation(req, res, next) {
 
       money = parseInt(money.replaceAll(".", ""));
       console.log(money);
-
       if (money % 50000 != 0) {
         req.session.message = {
           type: "danger",
-          message: "Số tiền chuyển phải là bội số của 50",
-          intro: "Chuyển tiền thất bại ",
+          message: "Số tiền rút phải là bội số của 50",
+          intro: "Rút tiền về thẻ thất bại ",
         };
         console.log(req.session.message);
         return res.redirect("/user/home");
       }
-
       next();
     });
   } else {
