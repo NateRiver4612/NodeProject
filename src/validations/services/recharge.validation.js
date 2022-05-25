@@ -19,6 +19,7 @@ async function RechargeValidation(req, res, next) {
     const check_expired = await Card.findOne({
       expired: expired,
     });
+    console.log(expired);
 
     if (check_expired == null) {
       req.session.message = {

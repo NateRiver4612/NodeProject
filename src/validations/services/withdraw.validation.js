@@ -33,8 +33,9 @@ async function WithDrawValidation(req, res, next) {
         console.log(req.session.message);
         return res.redirect("/user/home");
       } else {
-        money = parseInt(money.replace(".", "")) * 1000;
-        if (money % 50 != 0) {
+        money = parseInt(money.replace(".", ""));
+        console.log(money);
+        if (money % 50000 != 0) {
           req.session.message = {
             type: "danger",
             message: "Số tiền rút phải là bội số của 50",
