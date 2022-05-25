@@ -186,9 +186,9 @@
                             <textarea style="margin: 5px;" type="text" required class="form-control"
                                 placeholder="Ghi chú" name="note" id="note"></textarea>
 
-                            <select style="margin: 5px;" name="pay_side" name="pay_side"
+                            <select required style="margin: 5px;" name="pay_side" name="pay_side"
                                 class="form-select form-select-sm mb-3" aria-label=".form-select-lg example">
-                                <option selected disabled style="color: gray;opacity: 0.4"> Chọn bên trả phí giao dịch
+                                <option disabled style="color: gray;opacity: 0.4"> Chọn bên trả phí giao dịch
                                     (5%)
                                 </option>
                                 <option value="sender">Người chuyển</option>
@@ -230,18 +230,18 @@
                         </div>
                         <form method="post" action="/user/service/mobile" class="modal-body">
 
-                            <select id="network" name="network" class="form-select form-select-sm mb-3"
+                            <select id="network" required name="network" class="form-select form-select-sm mb-3"
                                 aria-label=".form-select-lg example">
-                                <option selected disabled style="color: gray;opacity: 0.4"> Chọn Nhà mạng
+                                <option disabled style="color: gray;opacity: 0.4"> Chọn Nhà mạng
                                 </option>
                                 <option value="viettel">Viettel</option>
                                 <option value="mobifone">Mobifone</option>
                                 <option value="vinaphone">Vinaphone</option>
                             </select>
 
-                            <select id="price" name="price" class="form-select form-select-sm mb-3"
+                            <select id="price" required name="price" class="form-select form-select-sm mb-3"
                                 aria-label=".form-select-lg example">
-                                <option selected disabled style="color: rgb(80, 60, 60);opacity: 0.4"> Chọn mệnh giá
+                                <option disabled style="color: rgb(80, 60, 60);opacity: 0.4"> Chọn mệnh giá
                                 </option>
                                 <option value="10">10.000đ</option>
                                 <option value="20">20.000đ</option>
@@ -249,9 +249,9 @@
                                 <option value="100">100.000đ</option>
                             </select>
 
-                            <select id="quantity" name="quantity" class="form-select form-select-sm mb-3"
+                            <select id="quantity" required name="quantity" class="form-select form-select-sm mb-3"
                                 aria-label=".form-select-lg example">
-                                <option selected disabled style="color: gray;opacity: 0.4"> Chọn số lượng
+                                <option disabled style="color: gray;opacity: 0.4"> Chọn số lượng
                                 </option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>

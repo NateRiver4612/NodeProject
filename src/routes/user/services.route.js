@@ -349,7 +349,9 @@ function makecode() {
 UserService.post("/mobile", async (req, res) => {
   var { network, price, quantity } = req.body;
   const current_user = JSON.parse(localStorage.getItem("user"));
-  const { username, fullname } = await getUser(current_user["username"]);
+  const { username, fullname, account_balance } = await getUser(
+    current_user["username"]
+  );
   console.log("Hello");
 
   var mobile_number;
@@ -372,6 +374,16 @@ UserService.post("/mobile", async (req, res) => {
   //Process money
   price = parseInt(price) * 1000;
   const total = price * parseInt(quantity);
+
+  if (account_balance < total) {
+    req.session.message = {
+      type: "danger",
+      message: "Số dư tài khoản không đủ thực hiện giao dịch",
+      intro: "Chuyển tiền thất bài",
+    };
+    console.log(req.session.message);
+    return res.redirect("/user/home");
+  }
 
   //Lưu giao dịch
   await AddMobile(
