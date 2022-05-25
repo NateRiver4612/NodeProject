@@ -23,7 +23,7 @@ function toDate(date, time) {
   return new Date(
     restult
       .toString()
-      .replace("st", "")
+      .replaceAll("st", "")
       .replaceAll("nd", "")
       .replaceAll("rd", "")
   );

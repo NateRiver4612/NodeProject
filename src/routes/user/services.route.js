@@ -45,7 +45,7 @@ UserService.post("/recharge", RechargeValidation, async (req, res) => {
   );
 
   //Process money
-  money = parseInt(money.replace(".", "")) * 1000;
+  money = parseInt(money.replaceAll(".", ""));
 
   //Thêm giao dịch
   await AddRecharge(money, username, fullname, "success", card_number);
@@ -86,8 +86,8 @@ UserService.post("/withdraw", WithDrawValidation, async (req, res) => {
   );
 
   //Process money
-  money = parseInt(money.replace(".", "")) * 1000;
-
+  money = parseInt(money.replaceAll(".", ""));
+  console.log(account_balance, money);
   //Tạo phí giao dịch
   const transaction_fee = money * (5 / 100);
 
@@ -209,7 +209,7 @@ UserService.post("/transfer", TransferValidation, async (req, res) => {
   var receiver = await User.findOne({ phone_number: receiver_phone });
 
   //Process money
-  money = parseInt(money.replace(".", "")) * 1000;
+  money = parseInt(money.replaceAll(".", ""));
 
   //Tạo phí giao dịch
   const transaction_fee = money * (5 / 100);
@@ -372,7 +372,7 @@ UserService.post("/mobile", async (req, res) => {
   const transaction_fee = 0;
 
   //Process money
-  price = parseInt(price) * 1000;
+  price = parseInt(price);
   const total = price * parseInt(quantity);
 
   if (account_balance < total) {

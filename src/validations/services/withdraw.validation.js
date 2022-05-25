@@ -33,7 +33,7 @@ async function WithDrawValidation(req, res, next) {
         console.log(req.session.message);
         return res.redirect("/user/home");
       } else {
-        money = parseInt(money.replace(".", ""));
+        money = parseInt(money.replaceAll(".", ""));
         console.log(money);
         if (money % 50000 != 0) {
           req.session.message = {

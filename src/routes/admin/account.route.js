@@ -9,7 +9,7 @@ function toDate(date) {
   return new Date(
     result
       .toString()
-      .replace("st", "")
+      .replaceAll("st", "")
       .replaceAll("nd", "")
       .replaceAll("rd", "")
   );
