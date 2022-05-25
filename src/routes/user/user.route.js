@@ -27,7 +27,7 @@ const {
 const UserService = require("./services.route");
 const ServiceHistory = require("./history.route");
 
-UserRouter.get("/", (req, res) => {
+UserRouter.get("/", LoginAuthentication, (req, res) => {
   return res.redirect("/user/home");
 });
 

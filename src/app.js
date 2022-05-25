@@ -75,7 +75,7 @@ app.use(function (req, res, next) {
 
   // respond with html page
   if (req.accepts("html")) {
-    res.render("404", { style: "404PageStyle.css", url: req.url });
+    res.render("404", { style: "style.css", url: req.url });
     return;
   }
 
