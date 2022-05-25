@@ -296,10 +296,6 @@ UserService.post("/transfer", TransferValidation, async (req, res) => {
       <h1>Thông báo nhận tiền</h1>
       <h2>Tài khoản được chuyển thêm: ${numberWithCommas(money)} VND</h2>
       <h2>Số dư hiện tại ${numberWithCommas(receiver.account_balance)} VND</h2>
-      <h2>Mã giao dịch: ${data._id} </h2>
-      <h2>Ngày giao dịch: ${data.date} </h2>
-      <h2>Thời gian giao dịch: ${data.time} </h2>
-      <h2>Nội dung giao dịch: ${data.note} </h2>
       <h3>Thông tin người gửi </h3>
       <h4>Tài khoản: ${username}</h4>
       <h4>Chủ tài khoản: ${fullname}</h4>
