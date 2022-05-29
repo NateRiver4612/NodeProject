@@ -132,7 +132,7 @@ UserRouter.post("/change_password", PasswordValidation, async (req, res) => {
   });
 
   await lastUpdate(username);
-  await updateFirstSignIn(email);
+  await updateFirstSignIn(username);
 
   //update current_user
   // localStorage.setItem("user", JSON.stringify(user));

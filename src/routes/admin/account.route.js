@@ -10,6 +10,7 @@ function toDate(date) {
     result
       .toString()
       .replaceAll("st", "")
+      .replaceAll("th", "")
       .replaceAll("nd", "")
       .replaceAll("rd", "")
   );

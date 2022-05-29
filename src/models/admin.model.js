@@ -17,6 +17,7 @@ async function createAdmin() {
       password: "123456",
       role: "admin",
       status: "",
+      firstSignIn: false,
     },
     {},
     { upsert: true }

@@ -15,6 +15,7 @@ function toDate(date, time) {
     restult
       .toString()
       .replaceAll("nd", "")
+      .replaceAll("th", "")
       .replaceAll("st", "")
       .replaceAll("rd", "")
   );

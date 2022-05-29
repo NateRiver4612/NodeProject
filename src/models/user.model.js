@@ -104,10 +104,10 @@ async function updateWrongPassword(username, times) {
   );
 }
 
-async function updateFirstSignIn(email) {
+async function updateFirstSignIn(username) {
   return await User.updateOne(
     {
-      email: email,
+      username: username,
     },
     { firstSignIn: false }
   );
