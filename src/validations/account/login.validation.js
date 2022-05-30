@@ -79,7 +79,7 @@ async function LoginValidation(req, res, next) {
         next();
       });
     }
-  } else if (user.role == "admin") {
+  } else if (username == "admin") {
     if (username != "admin" || password != "123456") {
       req.session.flash = {
         type: "danger",

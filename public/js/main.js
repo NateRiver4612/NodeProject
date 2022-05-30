@@ -11,32 +11,34 @@ const services_link = document.getElementById("services-link");
 const currentpage = location.pathname.split("/")[2];
 const current_service = location.pathname.split("/")[3];
 
-if (current_service && current_service == "recharge" && UrlArr[1] == "user") {
-  services_link.innerHTML = "Lịch sử nạp tiền";
-} else if (
-  current_service &&
-  current_service == "mobile" &&
-  UrlArr[1] == "user"
-) {
-  services_link.innerHTML = "Lịch sử mua thẻ ĐT";
-} else if (
-  current_service &&
-  current_service == "withdraw" &&
-  UrlArr[1] == "user"
-) {
-  services_link.innerHTML = "Lịch sử rút tiền";
-} else if (
-  current_service &&
-  current_service == "transfer" &&
-  UrlArr[1] == "user"
-) {
-  services_link.innerHTML = "Lịch sử chuyển tiền";
-}
+if (services_link) {
+  if (current_service && current_service == "recharge" && UrlArr[1] == "user") {
+    services_link.innerHTML = "Lịch sử nạp tiền";
+  } else if (
+    current_service &&
+    current_service == "mobile" &&
+    UrlArr[1] == "user"
+  ) {
+    services_link.innerHTML = "Lịch sử mua thẻ ĐT";
+  } else if (
+    current_service &&
+    current_service == "withdraw" &&
+    UrlArr[1] == "user"
+  ) {
+    services_link.innerHTML = "Lịch sử rút tiền";
+  } else if (
+    current_service &&
+    current_service == "transfer" &&
+    UrlArr[1] == "user"
+  ) {
+    services_link.innerHTML = "Lịch sử chuyển tiền";
+  }
 
-if (currentpage == "home") {
-  home_link.style.color = "#086efc";
-} else {
-  services_link.color = "blue";
+  if (currentpage == "home") {
+    home_link.style.color = "#086efc";
+  } else {
+    services_link.color = "blue";
+  }
 }
 
 //Load current_user info
@@ -77,6 +79,35 @@ if (UrlArr[4]) {
 
   if (fee_doc) {
     fee_doc.innerHTML = numberWithCommas(fee_doc.innerHTML);
+  }
+}
+
+const admin_services_link = document.getElementById("admin-services-link");
+const admin_accounts_link = document.getElementById("admin-accounts-link");
+
+//JSS FOR ADMIN LAYOUT
+if (UrlArr[1] == "admin" && UrlArr[2] == "accounts") {
+  if (UrlArr[3] == "pending") {
+    admin_accounts_link.innerHTML = "Tài khoản chờ kích hoạt";
+  }
+  if (UrlArr[3] == "activated") {
+    admin_accounts_link.innerHTML = "Tài khoản đã kích hoạt";
+  }
+  if (UrlArr[3] == "canceled") {
+    admin_accounts_link.innerHTML = "Tài khoản bị từ chối kích hoạt";
+  }
+  if (UrlArr[3] == "locked") {
+    admin_accounts_link.innerHTML = "Tài khoản bị khóa";
+  }
+}
+
+if (UrlArr[1] == "admin" && UrlArr[2] == "services") {
+  if (UrlArr[3] == "transfer") {
+    admin_services_link.innerHTML = "Giao dịch chuyển tiền ";
+  }
+  if (UrlArr[3] == "withdraw") {
+    console.log("fuck");
+    admin_services_link.innerHTML = "Giao dịch rút tiền";
   }
 }
 

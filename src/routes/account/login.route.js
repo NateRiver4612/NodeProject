@@ -18,8 +18,10 @@ LoginRouter.post("/", LoginValidation, async (req, res) => {
   const { username } = req.body;
   const user = await getUser(username);
 
-  await updateWrongPassword(user.username, 0);
-  await updateLocked(user.username, false);
+  if (user && user.role == "user") {
+    await updateWrongPassword(user.username, 0);
+    await updateLocked(user.username, false);
+  }
   //Set current_user
   localStorage.setItem("user", JSON.stringify(user));
   console.log(
