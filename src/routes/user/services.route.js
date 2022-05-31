@@ -214,22 +214,21 @@ UserService.post("/transfer", TransferValidation, async (req, res) => {
   //Tạo phí giao dịch
   const transaction_fee = money * (5 / 100);
 
-  //Kiểm tra số tiền vượt mức
-  if (account_balance < money + transaction_fee) {
-    req.session.message = {
-      type: "danger",
-      message: "Số tiền vượt mức dư tài khoản",
-      intro: "Chuyển tiền thất bài",
-    };
-    console.log(req.session.message);
-    return res.redirect("/user/home");
-  }
-
   var sender_fee = 0;
   var receiver_fee = 0;
 
   if (pay_side == "Người chuyển") {
     sender_fee = transaction_fee;
+    //Kiểm tra số tiền vượt mức
+    if (account_balance < money + sender_fee) {
+      req.session.message = {
+        type: "danger",
+        message: "Số tiền vượt mức dư tài khoản",
+        intro: "Chuyển tiền thất bài",
+      };
+      console.log(req.session.message);
+      return res.redirect("/user/home");
+    }
   } else {
     receiver_fee = transaction_fee;
     if (receiver.account_balance < receiver_fee) {
