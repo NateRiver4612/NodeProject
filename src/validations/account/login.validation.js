@@ -53,7 +53,7 @@ async function LoginValidation(req, res, next) {
           await updateWrongPassword(user.username, wrong_password_signIn);
           console.log(wrong_password_signIn);
           if (wrong_password_signIn >= 3) {
-            await updateLocked(user.email, true);
+            await updateLocked(user.username, true);
             await lastUpdate(username);
             const { last_update } = await getUser(username);
             await updateStatus(username, `locked at ${last_update}`);
