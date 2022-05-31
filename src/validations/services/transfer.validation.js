@@ -49,8 +49,8 @@ async function TransferValidation(req, res, next) {
       if (money % 50000 != 0) {
         req.session.message = {
           type: "danger",
-          message: "Số tiền rút phải là bội số của 50",
-          intro: "Rút tiền về thẻ thất bại ",
+          message: "Số tiền chuyển phải là bội số của 50",
+          intro: "Chuyển tiền qua tài khoản thất bại ",
         };
         console.log(req.session.message);
         return res.redirect("/user/home");

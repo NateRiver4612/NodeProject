@@ -215,7 +215,7 @@ UserService.post("/transfer", TransferValidation, async (req, res) => {
   const transaction_fee = money * (5 / 100);
 
   //Kiểm tra số tiền vượt mức
-  if (account_balance < money) {
+  if (account_balance < money + transaction_fee) {
     req.session.message = {
       type: "danger",
       message: "Số tiền vượt mức dư tài khoản",

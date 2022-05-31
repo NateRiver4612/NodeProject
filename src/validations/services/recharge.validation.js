@@ -1,7 +1,7 @@
 const Card = require("../../mongos/card.mongo");
 
 async function RechargeValidation(req, res, next) {
-  const { card_number, expired, cvv, money } = req.body;
+  var { card_number, expired, cvv, money } = req.body;
 
   //Check card_number
   const check_card_number = await Card.findOne({ card_number: card_number });
@@ -59,6 +59,17 @@ async function RechargeValidation(req, res, next) {
             type: "danger",
             message: "Thẻ hết tiền",
             intro: "Nạp tiền tài khoản thất bại ",
+          };
+          console.log(req.session.message);
+          return res.redirect("/user/home");
+        }
+        money = parseInt(money.replaceAll(".", ""));
+        console.log(money);
+        if (money < 50000) {
+          req.session.message = {
+            type: "danger",
+            message: "Nạp tiền tối thiểu 50.000",
+            intro: "Nạp tiền thất bại ",
           };
           console.log(req.session.message);
           return res.redirect("/user/home");
