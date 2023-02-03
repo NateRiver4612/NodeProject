@@ -87,8 +87,9 @@ UserRouter.post("/profile", async (req, res) => {
 
       current_user[key] = Path;
 
-      fs.existsSync(dir) || fs.mkdirSync(dir, { recursive: true }, (err) => {});
-      fs.renameSync(photo.filepath, Path);
+      fs.existsSync(dir, { recursive: true }, (err) => {}) ||
+        fs.mkdirSync(dir, { recursive: true }, (err) => {});
+      fs.renameSync(photo.filepath, Path, { recursive: true }, (err) => {});
     });
 
     localStorage.setItem("user", JSON.stringify(current_user));
