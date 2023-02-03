@@ -59,8 +59,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.use("/login", LoginRouter);
-app.use("/register", RegisterRouter);
-app.use("/user", UserRouter);
+// app.use("/register", RegisterRouter);
+// app.use("/user", UserRouter);
 app.use("/logout", LogoutRouter);
 app.use("/forgot-password", ForgotPasswordRouter);
 app.use("/reset-password", ResetPasswordRouter);
