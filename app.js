@@ -58,13 +58,13 @@ app.set("views", path.join(__dirname, "src", "views"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "/public")));
 
-app.use("/login", LoginRouter);
+// app.use("/login", LoginRouter);
 // app.use("/register", RegisterRouter);
 // app.use("/user", UserRouter);
-app.use("/logout", LogoutRouter);
-app.use("/forgot-password", ForgotPasswordRouter);
-app.use("/reset-password", ResetPasswordRouter);
-app.use("/admin", AdminRouter);
+// app.use("/logout", LogoutRouter);
+// app.use("/forgot-password", ForgotPasswordRouter);
+// app.use("/reset-password", ResetPasswordRouter);
+// app.use("/admin", AdminRouter);
 
 app.get("/", LoginAuthentication, (req, res) => {
   res.redirect("/login");
