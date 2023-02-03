@@ -87,7 +87,7 @@ UserRouter.post("/profile", async (req, res) => {
 
       current_user[key] = Path;
 
-      fs.existsSync(dir) || fs.mkdirSync(dir);
+      fs.existsSync(dir) || fs.mkdirSync(dir, { recursive: true }, (err) => {});
       fs.renameSync(photo.filepath, Path);
     });
 
