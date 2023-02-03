@@ -2,9 +2,9 @@
    "version": 2,
    "name": "my-bank",
    "builds": [
-      { "src": "index.js", "use": "@vercel/node" }
+      { "src": "./index.js", "use": "@vercel/node" }
    ],
    "routes": [
-      { "src": "/api/(.*)", "dest": "/api" }
+      { "src": "/(.*)", "dest": "/" }
    ]
 }
