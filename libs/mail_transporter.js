@@ -2,19 +2,6 @@ const nodemailer = require("nodemailer");
 
 const { google } = require("googleapis");
 
-// const transporter = nodemailer.createTransport({
-//   host: "mail.phongdaotao.com",
-//   port: 587,
-//   secureConnection: false,
-//   auth: {
-//     user: "sinhvien@phongdaotao.com", // generated ethereal user
-//     pass: "svtdtu", // generated ethereal password
-//   },
-//   tls: {
-//     rejectUnauthorized: false,
-//   },
-// });
-
 // These id's and secrets should come from .env file.
 const CLIENT_ID =
   "431679885294-arf4gk2tj6c9tamib36jabq0mbc838tt.apps.googleusercontent.com";
@@ -25,7 +12,7 @@ const REDIRECT_URI = "https://developers.google.com/oauthplayground";
 //   "1//04YPs9dKBNuPsCgYIARAAGAQSNwF-L9IrsRINs9dqHv5jUw4X-9ipursYxJZrqLMiUbfKBlPLeEkMlFxYoCCCEHOpCtXNP5dg9ss";
 
 const REFRESH_TOKEN =
-  "1//04a5KCAHBUeFyCgYIARAAGAQSNwF-L9IrO79EaHNbDWW85FSrdwUgZhrvjsesRNmvXa1hkwX3RYRSzROqZ4XNYb0RKHxplo5piG8";
+  "1//04xNlJt7ARv4aCgYIARAAGAQSNwF-L9IruigLBQiVgyA6fs4X2dzKoT6594rp7yx2DjJPcR1AHdaN8XEt4K2SUNRhyRdQxWFPB3s";
 
 // const REFRESH_TOKEN =
 //   "1//04E1sM5Jd-qJTCgYIARAAGAQSNwF-L9IrBwfB6OvM6z7yDXuMN8T0pvNARNLNSFGtfsYgFopCMnv-SNfA54rMgwAAo-JjNeqbtz8";
