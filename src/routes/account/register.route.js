@@ -13,9 +13,9 @@ const fs = require("fs");
 const dataDir = path.join(__dirname, "..", "..", "..", "public", "images");
 const CMNDPhotoDir = path.join(dataDir, "CMND");
 
-fs.existsSync(dataDir) ||
+fs.existsSync(dataDir, { recursive: true }, (err) => {}) ||
   fs.mkdirSync(dataDir, { recursive: true }, (err) => {});
-fs.existsSync(CMNDPhotoDir) ||
+fs.existsSync(CMNDPhotoDir, { recursive: true }, (err) => {}) ||
   fs.mkdirSync(CMNDPhotoDir, { recursive: true }, (err) => {});
 
 const User = require("../../mongos/user.mongo");
@@ -48,7 +48,7 @@ RegisterRouter.post("/", async (req, res, next) => {
         var Path = dir + "/" + key + "." + extension;
 
         newUser[key] = Path;
-        fs.existsSync(dir) ||
+        fs.existsSync(dir, { recursive: true }, (err) => {}) ||
           fs.mkdirSync(dir, { recursive: true }, (err) => {});
         fs.renameSync(photo.filepath, Path);
       });
