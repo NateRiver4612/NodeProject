@@ -1,8 +1,8 @@
 const http = require("http");
 const mongoose = require("mongoose");
 // const { uploadDssv } = require("./models/user.model");
-const { saveCard } = require("./models/card.model");
-const { createAdmin } = require("./models/admin.model");
+const { saveCard } = require("./src/models/card.model");
+const { createAdmin } = require("./src/models/admin.model");
 const app = require("./app");
 const port = process.env.PORT;
 const MONGO_URL =

@@ -4,18 +4,18 @@ const { engine } = require("express-handlebars");
 const app = express();
 const favicon = require("serve-favicon");
 
-const RegisterRouter = require("./routes/account/register.route");
-const LoginRouter = require("./routes/account/login.route");
-const UserRouter = require("./routes/user/user.route");
-const AdminRouter = require("./routes/admin/admin.route");
+const RegisterRouter = require("./src/routes/account/register.route");
+const LoginRouter = require("./src/routes/account/login.route");
+const UserRouter = require("./src/routes/user/user.route");
+const AdminRouter = require("./src/routes/admin/admin.route");
 
-const LogoutRouter = require("./routes/account/logout.route");
-const ForgotPasswordRouter = require("./routes/account/forgot_password.route");
-const ResetPasswordRouter = require("./routes/account/reset_password.route");
+const LogoutRouter = require("./src/routes/account/logout.route");
+const ForgotPasswordRouter = require("./src/routes/account/forgot_password.route");
+const ResetPasswordRouter = require("./src/routes/account/reset_password.route");
 
-const LoginAuthentication = require("./authentications/login.authentication");
+const LoginAuthentication = require("./src/authentications/login.authentication");
 
-app.use(favicon(path.join(__dirname, "..", "public", "images", "icon.ico")));
+app.use(favicon(path.join(__dirname, "public", "images", "icon.ico")));
 app.use(require("cookie-parser")("secret"));
 app.use(require("express-session")({ cookie: { maxAge: null } }));
 app.use(require("body-parser").urlencoded({ extended: false }));
@@ -56,7 +56,7 @@ app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "views"));
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "..", "/public")));
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.use("/login", LoginRouter);
 app.use("/register", RegisterRouter);
