@@ -1,9 +1,9 @@
 const http = require("http");
 const mongoose = require("mongoose");
 // const { uploadDssv } = require("./models/user.model");
-const { saveCard } = require("../src/models/card.model");
-const { createAdmin } = require("../src/models/admin.model");
-const app = require("../app");
+const { saveCard } = require("./src/models/card.model");
+const { createAdmin } = require("./src/models/admin.model");
+const app = require("./app");
 const port = process.env.PORT;
 const MONGO_URL =
   "mongodb+srv://519h0127:d99BPAOmLKqVYfkP@final-project.srtxh.mongodb.net/final-project?retryWrites=true&w=majority";
