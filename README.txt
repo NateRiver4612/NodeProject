@@ -26,7 +26,7 @@ Kết nối trực tiếp vào cơ sở dữ liệu MongoDB sử dụng tài kho
 Sau khi truy cập thành công với tài khoản admin, để có thể xem/xóa/sử dữ liệu trực tiếp
 chúng ta vào phần Database và chọn FINAL-PROJECT và ấn browse-collection
 
------------------------------HƯỚNG DẪN CÁCH CHẠY TRANG WEB---------------------------
+-----------------------------HƯỚNG DẪN CÁCH CHẠY TRANG WEB LOCAL---------------------------
 
 Để chạy source code, chúng ta mở thư mục source, ở cửa sổ git bash terminal chúng ta
 nhập lệnh "npm i" để tải các packages cần thiết, sau đó để run trang web chúng ta nhập
